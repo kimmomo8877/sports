@@ -11,7 +11,7 @@ import SwiftUI
 
 struct SearchBarView: View  {
     
-    @ObservedObject private var favorite = FavoriteViewModel()
+    @ObservedObject private var favoriteViewModel = FavoriteViewModel()
 //    @ObservedObject private var searchModel = SearchViewModel()
     
     @State private var searchText = ""
@@ -23,10 +23,10 @@ struct SearchBarView: View  {
             VStack {
                 
 //                SearchBar(text: $searchText, searchModel: searchModel)
-                SearchBar(text: $searchText)
+                SearchBarDetailView(text: $searchText)
                     .padding(.top, 0)
      
-                List(self.favorite.favoriteData.filter({ searchText.isEmpty ? true : $0.searchWord!.contains(searchText) }),id: \.self) { item in
+                List(self.favoriteViewModel.favoriteModel.filter({ searchText.isEmpty ? true : $0.searchWord!.contains(searchText) }),id: \.self) { item in
                     Text(item.searchWord!)
 //                                        NavigationLink(destination: TeamSearch(searchWord:item.searchWord!)) {
 //                                            Text(item.searchWord!)

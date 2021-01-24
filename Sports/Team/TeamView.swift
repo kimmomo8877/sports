@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Team: View {
+struct TeamView: View {
     @ObservedObject private var vm = VirtualViewModel()
     @State var isModal: Bool = false
     
@@ -17,7 +17,7 @@ struct Team: View {
             ScrollView() {
                 VStack {
                     
-                    HomeImage(image: "image", width: 100, height: 100)
+                    HomeImageView(image: "image", width: 100, height: 100)
                     
                     HStack(){
                         
@@ -75,7 +75,7 @@ struct Team: View {
 
 struct Team_Previews: PreviewProvider {
     static var previews: some View {
-        Team()
+        TeamView()
     }
 }
 

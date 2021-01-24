@@ -9,13 +9,13 @@ import SwiftUI
 
 struct HomeTextView: View {
 
-    @ObservedObject private var infra = InfraViewModel()
+    @ObservedObject private var infraViewModel = InfraViewModel()
     
     var title: String
     
     var body: some View{
         Button(action:{
-            self.infra.isDisplay(title: title)
+            self.infraViewModel.isDisplay(title: title)
         }){
             Text(title)
                 .frame(width: CGFloat(title.count) * 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)

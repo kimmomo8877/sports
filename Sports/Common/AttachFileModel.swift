@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AttachFile: Decodable, Hashable {
+struct AttachFileModel: Decodable, Hashable {
 
     var saveFilePath: String?
     var savePath: String?

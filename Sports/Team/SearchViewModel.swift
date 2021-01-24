@@ -8,13 +8,27 @@
 import SwiftUI
 
 class SearchViewModel: ObservableObject {
-    @Published var searchData = [SearchModel]()
-    
-    init() {
-        
+    @Published var searchModel = [SearchModel]()
+
+    init(searchWord: String) {
+        let url_string = "http://www.kbostat.co.kr/resource/search?searchWord=" + searchWord
+        print(url_string)
+        let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        guard let url = URL(string: encoded!) else { return }
+
+       let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            DispatchQueue.main.async {
+                let allData = try! JSONDecoder().decode([SearchModel].self, from: data!)
+                self.searchModel = Array(allData[0 ..< (allData.count)])
+//                let searchtemp = Array(allData[0 ..< (allData.count)])
+//                print(searchtemp)
+            }
+        }
+        task.resume()
     }
     
-//    init(searchWord: String) {
+//    func call_json(searchWord: String) {
+//
 //        let url_string = "http://www.kbostat.co.kr/resource/search?searchWord=" + searchWord
 //        print(url_string)
 //        let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -30,22 +44,4 @@ class SearchViewModel: ObservableObject {
 //        }
 //        task.resume()
 //    }
-    
-    func call_json(searchWord: String) {
-
-        let url_string = "http://www.kbostat.co.kr/resource/search?searchWord=" + searchWord
-        print(url_string)
-        let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        guard let url = URL(string: encoded!) else { return }
-
-       let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
-            DispatchQueue.main.async {
-                let allData = try! JSONDecoder().decode([SearchModel].self, from: data!)
-                self.searchData = Array(allData[0 ..< (allData.count)])
-//                let searchtemp = Array(allData[0 ..< (allData.count)])
-//                print(searchtemp)
-            }
-        }
-        task.resume()
-    }
 }

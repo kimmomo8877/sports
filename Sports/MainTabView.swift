@@ -37,7 +37,7 @@ private extension MainTabView {
 //            .tabItem {
 //                Text("전지훈련팀")
 //            }
-        Home()
+        HomeView()
             .tag(Tabs.home)
             .tabItem {
                 Text("홈")
@@ -45,7 +45,7 @@ private extension MainTabView {
     }
 
     var team: some View {
-        Team()
+        TeamView()
             .tag(Tabs.team)
             .tabItem {
                 Text("전지훈련팀")

@@ -8,15 +8,15 @@
 import SwiftUI
 
 class InfraCategoryViewModel: ObservableObject {
-    @Published var infraCategoryData = [InfraCategory]()
+    @Published var infraCategoryModel = [InfraCategoryModel]()
     
     init() {
         guard let url = URL(string: "http://www.kbostat.co.kr/resource/infra-category") else { return }
-        
+        print(url)
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             DispatchQueue.main.async {
-                let allData = try! JSONDecoder().decode([InfraCategory].self, from: data!)
-                self.infraCategoryData = Array(allData[0 ..< (allData.count-1)])
+                let allData = try! JSONDecoder().decode([InfraCategoryModel].self, from: data!)
+                self.infraCategoryModel = Array(allData[0 ..< (allData.count-1)])
             }
         }
         .resume()

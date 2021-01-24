@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct SearchBar: View {
+struct SearchBarDetailView: View {
     @Binding var text: String
     @State private var isEditing = false
     @State private var isShowing = false
-    @ObservedObject private var searchModel = SearchViewModel()
+//    @ObservedObject private var searchViewModel = SearchViewModel()
     
     var body: some View {
         HStack {
@@ -48,7 +48,7 @@ struct SearchBar: View {
             
             if isEditing {
 
-                NavigationLink(destination: TeamSearch(searchModel: searchModel), isActive: $isShowing) {
+                NavigationLink(destination: TeamSearchView(searchWord: self.text), isActive: $isShowing) {
                     Button(action: {
                         //                    self.isEditing = false
                         //                                        self.text = ""
@@ -57,7 +57,7 @@ struct SearchBar: View {
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                         
                         self.text = "창원"
-                        searchModel.call_json(searchWord: self.text)
+//                        searchModel.call_json(searchWord: self.text)
                         self.isShowing = true
                         
                         

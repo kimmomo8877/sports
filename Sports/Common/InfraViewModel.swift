@@ -8,10 +8,10 @@
 import SwiftUI
 
 class InfraViewModel: ObservableObject {
-    @Published var infraSport = [Infra]()
-    @Published var infraHotel = [Infra]()
-    @Published var infraFood = [Infra]()
-    var infraSport_temp = [Infra]()
+    @Published var infraSportModel = [InfraModel]()
+    @Published var infraHotelModel = [InfraModel]()
+    @Published var infraFoodModel = [InfraModel]()
+    var infraSport_temp = [InfraModel]()
 //    @Published var infraSportSoccer = [Infra]()
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1   sport
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=16  hotel
@@ -27,9 +27,9 @@ class InfraViewModel: ObservableObject {
         
         URLSession.shared.dataTask(with: url1) { (data, resp, err) in
             DispatchQueue.main.async {
-                let allData = try! JSONDecoder().decode([Infra].self, from: data!)
-                self.infraSport = Array(allData[0 ..< (allData.count-1)])
-                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
+                let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
+                self.infraSportModel = Array(allData[0 ..< (allData.count-1)])
+//                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
                 
             }
         }
@@ -39,8 +39,8 @@ class InfraViewModel: ObservableObject {
         
         URLSession.shared.dataTask(with: url16) { (data, resp, err) in
             DispatchQueue.main.async {
-                let allData = try! JSONDecoder().decode([Infra].self, from: data!)
-                self.infraHotel = Array(allData[0 ..< (allData.count)])
+                let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
+                self.infraHotelModel = Array(allData[0 ..< (allData.count)])
             }
         }
         .resume()
@@ -49,8 +49,8 @@ class InfraViewModel: ObservableObject {
         
         URLSession.shared.dataTask(with: url17) { (data, resp, err) in
             DispatchQueue.main.async {
-                let allData = try! JSONDecoder().decode([Infra].self, from: data!)
-                self.infraFood = Array(allData[0 ..< (allData.count)])
+                let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
+                self.infraFoodModel = Array(allData[0 ..< (allData.count)])
             }
         }
         .resume()
@@ -64,9 +64,9 @@ class InfraViewModel: ObservableObject {
         }
 
         if title != "전체" {
-            self.infraSport.removeAll()
-            self.infraSport = self.infraSport_temp.filter { infra in
-                return infra.sportCode?.name == title
+            self.infraSportModel.removeAll()
+            self.infraSportModel = self.infraSport_temp.filter { infraModel in
+                return infraModel.sportCode?.name == title
             }
         }
         

@@ -5,7 +5,7 @@
 //  Created by Jinsang Jeong on 2021/01/14.
 //
 import SwiftUI
-struct SportCode: Decodable, Hashable{
+struct SportCodeModel: Decodable, Hashable{
 
     var codeTypeName: String?
     var codeId: Int?

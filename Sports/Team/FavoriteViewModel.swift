@@ -8,7 +8,7 @@
 import SwiftUI
 
 class FavoriteViewModel: ObservableObject {
-    @Published var favoriteData = [FavoriteModel]()
+    @Published var favoriteModel = [FavoriteModel]()
     
     init() {
         guard let url = URL(string: "http://www.kbostat.co.kr/resource/search/word/most-favorites") else { return }
@@ -16,7 +16,7 @@ class FavoriteViewModel: ObservableObject {
         let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
             DispatchQueue.main.sync {
                 let allData = try! JSONDecoder().decode([FavoriteModel].self, from: data!)
-                self.favoriteData = Array(allData[0 ..< (allData.count)])
+                self.favoriteModel = Array(allData[0 ..< (allData.count)])
 //                let favoriteData = Array(allData[0 ..< (allData.count)])
 //                print(favoriteData)
             }

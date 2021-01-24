@@ -46,7 +46,7 @@ struct TeamMapView: View {
             Text(searchModel.name!)
             Text(searchModel.name!)
             
-            NavigationLink(destination: TeamDetailSport(), tag : "First", selection: $selection) {
+            NavigationLink(destination: TeamDetailSportView(), tag : "First", selection: $selection) {
                 EmptyView()
             }
             NavigationLink(destination: Text(verbatim: "dd"), tag : "Second", selection: $selection) {

@@ -8,9 +8,9 @@
 import SwiftUI
 import MapKit
 
-struct TeamSearch: View {
+struct TeamSearchView: View {
     
-    @ObservedObject var searchModel: SearchViewModel
+    @ObservedObject var searchViewModel: SearchViewModel
     @State private var centerCoordinate = CLLocationCoordinate2D()
     @State private var locations = [MKPointAnnotation]()
     @State private var selectedPlace: MKPointAnnotation?
@@ -18,6 +18,10 @@ struct TeamSearch: View {
     @State private var isShowing = false
     @State private var annotation = MKPointAnnotation()
     @State private var selection:String? = nil
+    
+    init(searchWord:String) {
+        searchViewModel = SearchViewModel(searchWord:searchWord)
+    }
     
     var body: some View {
         
@@ -83,9 +87,9 @@ struct TeamSearch: View {
         ScrollView() {
             
             VStack {
-                ForEach(self.searchModel.searchData, id: \.self) { searchData in
+                ForEach(self.searchViewModel.searchModel, id: \.self) { searchModel in
 //                    NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
-                    NavigationLink(destination: TeamMapView(searchModel: searchData, locations: locations), isActive: $isShowing) {
+                    NavigationLink(destination: TeamMapView(searchModel: searchModel, locations: locations), isActive: $isShowing) {
                         
 //                        NavigationLink(destination: TeamMapView(searchModel: searchData, locations: locations), tag : "First", selection: $selection) {
 //                            EmptyView()
@@ -97,8 +101,8 @@ struct TeamSearch: View {
                             annotation.subtitle = "Home to the 2012 Summer Olympics."
                             annotation.coordinate = CLLocationCoordinate2D(latitude: 128.6635024, longitude: 35.1459809)
                             self.locations.append(annotation)
-                            print(self.searchModel.searchData.count)
-                            print(searchData)
+                            print(self.searchViewModel.searchModel.count)
+                            print(searchModel)
                             annotation.title = "Test"
                             annotation.subtitle = "Test 1234"
                             annotation.coordinate = self.centerCoordinate
@@ -110,8 +114,8 @@ struct TeamSearch: View {
                                     .resizable()
                                     .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                 VStack {
-                                    Text("\(searchData.name ?? "")")
-                                    Text("\(searchData.name ?? "")")
+                                    Text("\(searchModel.name ?? "")")
+                                    Text("\(searchModel.name ?? "")")
                                 }
                             }
                         }

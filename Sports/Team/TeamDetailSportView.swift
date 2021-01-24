@@ -14,7 +14,7 @@
 
 import SwiftUI
 
-struct TeamDetailSport: View {
+struct TeamDetailSportView: View {
     //    @ObservedObject private var infra = InfraViewModel()
     @State private var showingSheet = true
     

@@ -5,7 +5,7 @@
 //  Created by Jinsang Jeong on 2021/01/14.
 //
 
-struct Charge: Decodable, Hashable {
+struct ChargeModel: Decodable, Hashable {
 //    let id: Int
     var chargeNo: String?
     var chargeTypeNo: Int?

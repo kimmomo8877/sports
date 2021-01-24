@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct Infra: Decodable, Hashable {
+struct InfraModel: Decodable, Hashable {
 //    let id: Int?
     var infraNo: String?
     var infraCategoryNo: Int?
     var parentInfraNo: String?
     var sportCodeId: Int?
-    let sportCode: SportCode?
-    var childInfras: Array<Infra>?
-    var attachFiles: Array<AttachFile>?
+    let sportCode: SportCodeModel?
+    var childInfras: Array<InfraModel>?
+    var attachFiles: Array<AttachFileModel>?
     var name: String?
     var phoneNumber: String?
     var address: String?
@@ -27,7 +27,7 @@ struct Infra: Decodable, Hashable {
     var refundPolicyDescription: String?
     var latitude: Double?
     var longtitude: Double?
-    var charges: Array<Charge>?
+    var charges: Array<ChargeModel>?
     var reservationCnt: Int?
 //    var registeDate: Date?
 //    var modifyDate: Date?

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeImage: View {
+struct HomeImageView: View {
     
     var image: String
     var width: CGFloat
@@ -23,7 +23,7 @@ struct HomeImage: View {
 struct HomeImage_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            HomeImage(image: "image", width: 100, height: 100)
+            HomeImageView(image: "image", width: 100, height: 100)
         }
     }
 }
