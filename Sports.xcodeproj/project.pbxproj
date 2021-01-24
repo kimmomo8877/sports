@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1429B9CC25BD72FA0001CA95 /* HomeIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9CB25BD72FA0001CA95 /* HomeIntro.swift */; };
+		1429B9CF25BD73010001CA95 /* HomeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9CE25BD73010001CA95 /* HomeTextView.swift */; };
+		147FC7EB25BD6730000CD83F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 147FC7EA25BD6730000CD83F /* Kingfisher */; };
+		14F969D625BD6C4C0002D5F0 /* InBodySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D499E2925BD5F4D0031A614 /* InBodySDK.a */; };
+		14F969E225BD6EE00002D5F0 /* HomeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F969E125BD6EE00002D5F0 /* HomeImage.swift */; };
 		4D1C20E525AA0789007DCDB9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C20E425AA0789007DCDB9 /* DetailView.swift */; };
-		4D35D76025A9FADD00C0BDD5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4D35D75F25A9FADD00C0BDD5 /* Kingfisher */; };
 		4D35D76325A9FC1B00C0BDD5 /* VirtualViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D76225A9FC1B00C0BDD5 /* VirtualViewModel.swift */; };
 		4D3D4BD225A9AB1E00C3F78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D4BD125A9AB1E00C3F78F /* AppDelegate.swift */; };
 		4D3D4BD425A9AB1E00C3F78F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D4BD325A9AB1E00C3F78F /* SceneDelegate.swift */; };
@@ -24,7 +28,6 @@
 		4D499DFA25BBCEEC0031A614 /* ActivityDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DF925BBCEEC0031A614 /* ActivityDataManager.swift */; };
 		4D499E2225BC30E60031A614 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499E2125BC30E60031A614 /* ActivityModel.swift */; };
 		4D499E2725BC393E0031A614 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499E2625BC393E0031A614 /* DateUtils.swift */; };
-		4D499E2A25BD5F4D0031A614 /* InBodySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D499E2925BD5F4D0031A614 /* InBodySDK.a */; };
 		4DB784F225A9B3C900725E6C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB784F125A9B3C900725E6C /* Home.swift */; };
 		4DB784FC25A9BE0100725E6C /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB784FB25A9BE0100725E6C /* ImageCell.swift */; };
 		4DB7850225A9CDC700725E6C /* VirtualModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7850125A9CDC700725E6C /* VirtualModel.swift */; };
@@ -43,6 +46,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1429B9CB25BD72FA0001CA95 /* HomeIntro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeIntro.swift; sourceTree = "<group>"; };
+		1429B9CE25BD73010001CA95 /* HomeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTextView.swift; sourceTree = "<group>"; };
+		14F969E125BD6EE00002D5F0 /* HomeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeImage.swift; sourceTree = "<group>"; };
 		4D1C20E425AA0789007DCDB9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		4D35D76225A9FC1B00C0BDD5 /* VirtualViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualViewModel.swift; sourceTree = "<group>"; };
 		4D3D4BCE25A9AB1E00C3F78F /* Sports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sports.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,8 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D499E2A25BD5F4D0031A614 /* InBodySDK.a in Frameworks */,
-				4D35D76025A9FADD00C0BDD5 /* Kingfisher in Frameworks */,
+				14F969D625BD6C4C0002D5F0 /* InBodySDK.a in Frameworks */,
+				147FC7EB25BD6730000CD83F /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +203,9 @@
 		4DB784F025A9B3BA00725E6C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1429B9CE25BD73010001CA95 /* HomeTextView.swift */,
+				1429B9CB25BD72FA0001CA95 /* HomeIntro.swift */,
+				14F969E125BD6EE00002D5F0 /* HomeImage.swift */,
 				4D35D76225A9FC1B00C0BDD5 /* VirtualViewModel.swift */,
 				4DB7850125A9CDC700725E6C /* VirtualModel.swift */,
 				4DB784F125A9B3C900725E6C /* Home.swift */,
@@ -238,7 +247,7 @@
 			);
 			name = Sports;
 			packageProductDependencies = (
-				4D35D75F25A9FADD00C0BDD5 /* Kingfisher */,
+				147FC7EA25BD6730000CD83F /* Kingfisher */,
 			);
 			productName = Sports;
 			productReference = 4D3D4BCE25A9AB1E00C3F78F /* Sports.app */;
@@ -269,7 +278,7 @@
 			);
 			mainGroup = 4D3D4BC525A9AB1E00C3F78F;
 			packageReferences = (
-				4D35D75E25A9FADD00C0BDD5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				147FC7E925BD6730000CD83F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 4D3D4BCF25A9AB1E00C3F78F /* Products */;
 			projectDirPath = "";
@@ -301,8 +310,10 @@
 				4D3D4BED25A9AC0B00C3F78F /* MainTabView.swift in Sources */,
 				4D1C20E525AA0789007DCDB9 /* DetailView.swift in Sources */,
 				4D499DDA25B96B720031A614 /* BandViewModel.swift in Sources */,
+				1429B9CC25BD72FA0001CA95 /* HomeIntro.swift in Sources */,
 				4D35D76325A9FC1B00C0BDD5 /* VirtualViewModel.swift in Sources */,
 				4D499DFA25BBCEEC0031A614 /* ActivityDataManager.swift in Sources */,
+				1429B9CF25BD73010001CA95 /* HomeTextView.swift in Sources */,
 				4D499E2225BC30E60031A614 /* ActivityModel.swift in Sources */,
 				4D3D4BD225A9AB1E00C3F78F /* AppDelegate.swift in Sources */,
 				4D499DE925BA8E110031A614 /* TrackerMain.swift in Sources */,
@@ -314,6 +325,7 @@
 				4DB7850225A9CDC700725E6C /* VirtualModel.swift in Sources */,
 				4D3D4BD925A9AB1E00C3F78F /* Sports.xcdatamodeld in Sources */,
 				4DB784FC25A9BE0100725E6C /* ImageCell.swift in Sources */,
+				14F969E225BD6EE00002D5F0 /* HomeImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +452,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -455,7 +468,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Sports/Preview Content\"";
-				DEVELOPMENT_TEAM = YSD6RBS3ZP;
+				DEVELOPMENT_TEAM = 7D5MK5GX7R;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sports/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -467,7 +480,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sports/Helper/band",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dblab.Sports;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test2.sports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sports/Helper/band/Sports-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -484,7 +498,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Sports/Preview Content\"";
-				DEVELOPMENT_TEAM = YSD6RBS3ZP;
+				DEVELOPMENT_TEAM = 7D5MK5GX7R;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sports/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -496,7 +510,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sports/Helper/band",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.Sports;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test2.sports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sports/Helper/band/Sports-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -528,9 +543,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4D35D75E25A9FADD00C0BDD5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		147FC7E925BD6730000CD83F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 6.0.1;
@@ -539,9 +554,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4D35D75F25A9FADD00C0BDD5 /* Kingfisher */ = {
+		147FC7EA25BD6730000CD83F /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4D35D75E25A9FADD00C0BDD5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 147FC7E925BD6730000CD83F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
