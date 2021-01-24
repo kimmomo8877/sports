@@ -32,20 +32,20 @@ struct MainTabView: View {
 
 private extension MainTabView {
     var home: some View {
-        Tracker()
-            .tag(Tabs.team)
-            .tabItem {
-                Text("전지훈련팀")
-            }
-//        Home()
-//            .tag(Tabs.home)
+//        Tracker()
+//            .tag(Tabs.team)
 //            .tabItem {
-//                Text("홈")
+//                Text("전지훈련팀")
 //            }
+        Home()
+            .tag(Tabs.home)
+            .tabItem {
+                Text("홈")
+            }
     }
 
     var team: some View {
-        Text("TeamView")
+        Team()
             .tag(Tabs.team)
             .tabItem {
                 Text("전지훈련팀")

@@ -11,7 +11,7 @@ class VirtualViewModel: ObservableObject {
     @Published var virtualData = [VirtualModel]()
     
     init() {
-        guard let url = URL(string: "http://www.kbostat.co.kr/resource/infra-category") else { return }
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/photos") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             DispatchQueue.main.async {
