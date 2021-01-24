@@ -17,7 +17,6 @@
 		4D3D4BDE25A9AB1F00C3F78F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D3D4BDD25A9AB1F00C3F78F /* Preview Assets.xcassets */; };
 		4D3D4BE125A9AB1F00C3F78F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D3D4BDF25A9AB1F00C3F78F /* LaunchScreen.storyboard */; };
 		4D3D4BED25A9AC0B00C3F78F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D4BEC25A9AC0B00C3F78F /* MainTabView.swift */; };
-		4D499DA125B95E820031A614 /* InBodySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D499DA025B95E820031A614 /* InBodySDK.a */; };
 		4D499DDA25B96B720031A614 /* BandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DD925B96B720031A614 /* BandViewModel.swift */; };
 		4D499DE625B996F40031A614 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DE525B996F40031A614 /* Tracker.swift */; };
 		4D499DE925BA8E110031A614 /* TrackerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DE825BA8E110031A614 /* TrackerMain.swift */; };
@@ -25,6 +24,7 @@
 		4D499DFA25BBCEEC0031A614 /* ActivityDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DF925BBCEEC0031A614 /* ActivityDataManager.swift */; };
 		4D499E2225BC30E60031A614 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499E2125BC30E60031A614 /* ActivityModel.swift */; };
 		4D499E2725BC393E0031A614 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499E2625BC393E0031A614 /* DateUtils.swift */; };
+		4D499E2A25BD5F4D0031A614 /* InBodySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D499E2925BD5F4D0031A614 /* InBodySDK.a */; };
 		4DB784F225A9B3C900725E6C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB784F125A9B3C900725E6C /* Home.swift */; };
 		4DB784FC25A9BE0100725E6C /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB784FB25A9BE0100725E6C /* ImageCell.swift */; };
 		4DB7850225A9CDC700725E6C /* VirtualModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7850125A9CDC700725E6C /* VirtualModel.swift */; };
@@ -69,6 +69,7 @@
 		4D499DF925BBCEEC0031A614 /* ActivityDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataManager.swift; sourceTree = "<group>"; };
 		4D499E2125BC30E60031A614 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		4D499E2625BC393E0031A614 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		4D499E2925BD5F4D0031A614 /* InBodySDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = InBodySDK.a; sourceTree = "<group>"; };
 		4DB784F125A9B3C900725E6C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		4DB784FB25A9BE0100725E6C /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		4DB7850125A9CDC700725E6C /* VirtualModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualModel.swift; sourceTree = "<group>"; };
@@ -79,8 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D499E2A25BD5F4D0031A614 /* InBodySDK.a in Frameworks */,
 				4D35D76025A9FADD00C0BDD5 /* Kingfisher in Frameworks */,
-				4D499DA125B95E820031A614 /* InBodySDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +153,7 @@
 		4D499DCD25B9651A0031A614 /* band */ = {
 			isa = PBXGroup;
 			children = (
+				4D499E2925BD5F4D0031A614 /* InBodySDK.a */,
 				4D499DCE25B9653F0031A614 /* BLEController.h */,
 				4D499DD325B9653F0031A614 /* Commucation.h */,
 				4D499DD225B9653F0031A614 /* InBodyAES.h */,
@@ -461,6 +463,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sports/Helper/band",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dblab.Sports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sports/Helper/band/Sports-Bridging-Header.h";
@@ -485,6 +491,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sports/Helper/band",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.Sports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
