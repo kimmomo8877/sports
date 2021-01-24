@@ -107,11 +107,12 @@
 		4D3D4BD025A9AB1E00C3F78F /* Sports */ = {
 			isa = PBXGroup;
 			children = (
+				4DB784F025A9B3BA00725E6C /* Home */,
+				4DB784F725A9B41D00725E6C /* Touring */,
+				4DB784F825A9B42900725E6C /* MyPage */,
 				4D499E0425BBED750031A614 /* Tracker */,
 				4D3D4BF125A9AC9600C3F78F /* Helper */,
-				4D3D4BEB25A9AB7B00C3F78F /* UI */,
-				4D3D4BE925A9AB3D00C3F78F /* Model */,
-				4D499DD825B96B3B0031A614 /* ViewModel */,
+				4D3D4BEC25A9AC0B00C3F78F /* MainTabView.swift */,
 				4D3D4BD125A9AB1E00C3F78F /* AppDelegate.swift */,
 				4D3D4BD325A9AB1E00C3F78F /* SceneDelegate.swift */,
 				4D3D4BDA25A9AB1F00C3F78F /* Assets.xcassets */,
@@ -129,28 +130,6 @@
 				4D3D4BDD25A9AB1F00C3F78F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4D3D4BE925A9AB3D00C3F78F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4D499DEE25BAABBC0031A614 /* Tracker */,
-				4DB7850125A9CDC700725E6C /* VirtualModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4D3D4BEB25A9AB7B00C3F78F /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				4DB784F825A9B42900725E6C /* MyPage */,
-				4DB784F725A9B41D00725E6C /* Touring */,
-				4DB784F625A9B41700725E6C /* Sports */,
-				4DB784F525A9B40700725E6C /* Team */,
-				4DB784F025A9B3BA00725E6C /* Home */,
-				4D3D4BEC25A9AC0B00C3F78F /* MainTabView.swift */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		4D3D4BF125A9AC9600C3F78F /* Helper */ = {
@@ -182,21 +161,6 @@
 				4D499DD425B965860031A614 /* Sports-Bridging-Header.h */,
 			);
 			path = band;
-			sourceTree = "<group>";
-		};
-		4D499DD825B96B3B0031A614 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				4D35D76225A9FC1B00C0BDD5 /* VirtualViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		4D499DEE25BAABBC0031A614 /* Tracker */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tracker;
 			sourceTree = "<group>";
 		};
 		4D499E0425BBED750031A614 /* Tracker */ = {
@@ -231,25 +195,13 @@
 		4DB784F025A9B3BA00725E6C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4D35D76225A9FC1B00C0BDD5 /* VirtualViewModel.swift */,
+				4DB7850125A9CDC700725E6C /* VirtualModel.swift */,
 				4DB784F125A9B3C900725E6C /* Home.swift */,
 				4DB784FB25A9BE0100725E6C /* ImageCell.swift */,
 				4D1C20E425AA0789007DCDB9 /* DetailView.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		4DB784F525A9B40700725E6C /* Team */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Team;
-			sourceTree = "<group>";
-		};
-		4DB784F625A9B41700725E6C /* Sports */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Sports;
 			sourceTree = "<group>";
 		};
 		4DB784F725A9B41D00725E6C /* Touring */ = {
