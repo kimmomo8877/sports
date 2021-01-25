@@ -19,6 +19,7 @@ struct HomeIntroView: View {
                 .font(.system(size:20))
                 .fontWeight(.black)
                 .padding(.bottom,5)
+//                .fixedSize(horizontal: false, vertical: true)
             Button(action:{
                 
             }){

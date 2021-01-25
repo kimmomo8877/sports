@@ -18,7 +18,7 @@ struct HomeTextView: View {
             self.infraViewModel.isDisplay(title: title)
         }){
             Text(title)
-                .frame(width: CGFloat(title.count) * 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(width: CGFloat(title.count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .padding(5)
                 .foregroundColor(Color.white)
                 .background(Color.black)

@@ -20,7 +20,7 @@ struct ImageCell: View {
     var body: some View {
         KFImage(URL(string: self.imageUrl))
             .resizable()
-            .frame(width: 80, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .overlay(OverlayText(overlayText: self.title), alignment: .bottom)
     }
     

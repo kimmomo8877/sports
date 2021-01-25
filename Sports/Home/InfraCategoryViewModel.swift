@@ -13,13 +13,25 @@ class InfraCategoryViewModel: ObservableObject {
     init() {
         guard let url = URL(string: "http://www.kbostat.co.kr/resource/infra-category") else { return }
         print(url)
-        URLSession.shared.dataTask(with: url) { (data, resp, err) in
-            DispatchQueue.main.async {
-                let allData = try! JSONDecoder().decode([InfraCategoryModel].self, from: data!)
-                self.infraCategoryModel = Array(allData[0 ..< (allData.count-1)])
+        do {
+            URLSession.shared.dataTask(with: url) { (data, resp, err) in
+                if err != nil {
+                    print("URL Error")
+                } else {
+                DispatchQueue.main.async {
+                    do {
+                    let allData = try JSONDecoder().decode([InfraCategoryModel].self, from: data!)
+                    self.infraCategoryModel = Array(allData[0 ..< (allData.count-1)])
+                } catch {
+                    print("JSON Decoder error")
+                }
+                    
+                }
             }
+            }
+            .resume()
+            
         }
-        .resume()
     }
 }
 
@@ -32,7 +44,7 @@ class InfraCategoryViewModel: ObservableObject {
 //                ForEach(allData, id: \.self) { subData in
 //                    let infraCategoryNo = subData.infraCategoryNo ?? 0
 //                }
-                
+
 //                for (subData): ( InfraCategory) in allData {
 ////                    print("index: \(index), subJson : \(subJson)")
 //

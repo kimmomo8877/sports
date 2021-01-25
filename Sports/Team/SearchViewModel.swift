@@ -17,13 +17,21 @@ class SearchViewModel: ObservableObject {
         guard let url = URL(string: encoded!) else { return }
 
        let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
+        if err != nil {
+            print("URL Error")
+        } else {
             DispatchQueue.main.async {
-                let allData = try! JSONDecoder().decode([SearchModel].self, from: data!)
+                do {
+                let allData = try JSONDecoder().decode([SearchModel].self, from: data!)
                 self.searchModel = Array(allData[0 ..< (allData.count)])
 //                let searchtemp = Array(allData[0 ..< (allData.count)])
 //                print(searchtemp)
+                } catch {
+                    print("JSON Decoder Error")
+                }
             }
         }
+       }
         task.resume()
     }
     
