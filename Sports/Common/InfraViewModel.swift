@@ -9,11 +9,13 @@ import SwiftUI
 
 class InfraViewModel: ObservableObject {
     @Published var infraSportModel = [InfraModel]()
+    @Published var infraFacilityModel = [InfraModel]()
     @Published var infraHotelModel = [InfraModel]()
     @Published var infraFoodModel = [InfraModel]()
     var infraSport_temp = [InfraModel]()
     //    @Published var infraSportSoccer = [Infra]()
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1   sport
+    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2   facility
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=16  hotel
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=17  food
     init() {
@@ -34,7 +36,28 @@ class InfraViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     do {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
-                        self.infraSportModel = Array(allData[0 ..< (allData.count-1)])
+                        self.infraSportModel = Array(allData[0 ..< (allData.count)])
+                        //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                    
+                }
+                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        .resume()
+        
+        guard let url2 = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2") else { return }
+        
+        URLSession.shared.dataTask(with: url2) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraFacilityModel = Array(allData[0 ..< (allData.count)])
                         //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
                     } catch {
                         print("JSON Decoder Error")

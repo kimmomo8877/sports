@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject private var vm = VirtualViewModel()
-    @ObservedObject private var infraCViewModel = InfraCategoryViewModel()
+//    @ObservedObject private var infraCViewModel = InfraCategoryViewModel()
     @ObservedObject private var infraViewModel = InfraViewModel()
-    
+//    @Envi
     var body: some View {
         NavigationView {
             
@@ -31,149 +30,179 @@ struct HomeView: View {
                         .cornerRadius(10)
                     }
                     
-//                    Text("추천 스포츠시설")
-//                        .frame(alignment: .leading)
                     
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
-//                            HomeTextView(title: "전체")
-                                    
-                            Button(action:{
-                                self.infraViewModel.isDisplay(title: "전체")
-                            }){
-                                Text("전체")
-                                    .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                    .padding(5)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.black)
-                                    .cornerRadius(15)
-                            }
-              
-                            ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
-                                if infraSportModel.sportCode != nil {
-                                  HomeTextView(title: "\(infraSportModel.sportCode!.name!)")
-                                }
-                            }
+                    Group {
+                        
+                        HStack(){
+                            Text("추천 스포츠시설")
+                                .font(.system(size:20))
+                                .fontWeight(.black)
+                                .frame(height: 20, alignment: .leading)
                         }
-                    }
-                    .frame(height: 30)
-                    .padding(5)
-                    
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                //                            HomeTextView(title: "전체")
                                 
-                                NavigationLink(destination: Text(verbatim: "dd")) {
-                                    ForEach(infraSportModel.attachFiles!, id: \.self) {
-                                        infraModel in
-                                        ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                Button(action:{
+                                    self.infraViewModel.isDisplay(title: "전체")
+                                }){
+                                    Text("전체")
+                                        .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.black)
+                                        .cornerRadius(15)
+                                }
+                                
+                                ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
+                                    if infraSportModel.sportCode != nil {
+                                        HomeTextView(title: "\(infraSportModel.sportCode!.name!)")
                                     }
                                 }
-                                .navigationBarTitle("Navigation", displayMode: .inline)
-                                
-                                
                             }
                         }
-                    }
-                    .frame(height: 100)
-                    .padding(5).padding(.bottom,20)
-                    
-//                    Text("추천 숙소")
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
-//                            HomeTextView(title: "전체")
+                        .frame(height: 30)
+                        .padding(5)
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
                                     
-                            Button(action:{
-                                self.infraViewModel.isDisplay(title: "전체")
-                            }){
-                                Text("전체")
-                                    .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: .center)
-                                    .padding(5)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.black)
-                                    .cornerRadius(15)
-                            }
-              
-                            ForEach(self.infraViewModel.infraHotelModel, id: \.self) { infraHotelModel in
-                                if infraHotelModel.name != nil {
-                                  HomeTextView(title: "\(infraHotelModel.name!)")
+                                    NavigationLink(destination: Text(verbatim: "dd")) {
+                                        ForEach(infraSportModel.attachFiles!, id: \.self) {
+                                            infraModel in
+                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                        }
+                                    }
+                                    .navigationBarTitle("Navigation", displayMode: .inline)
+                                    
+                                    
                                 }
                             }
                         }
-                    }
-                    .frame(height: 30)
-                    .padding(5)
-                    
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(self.infraViewModel.infraHotelModel, id: \.self) { infraHotelModel in
+                        .frame(height: 100)
+                        .padding(5).padding(.bottom,30)
+                        
+                        HStack(){
+                            Text("추천 숙소")
+                                .font(.system(size:20))
+                                .fontWeight(.black)
+                                .frame(height: 20, alignment: .leading)
+                        }
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                //                            HomeTextView(title: "전체")
                                 
-                                NavigationLink(destination: Text(verbatim: "dd")) {
-                                    ForEach(infraHotelModel.attachFiles!, id: \.self) {
-                                        infraModel in
-                                        ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                Button(action:{
+                                    self.infraViewModel.isDisplay(title: "전체")
+                                }){
+                                    Text("전체")
+                                        .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: .center)
+                                        .padding(5)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.black)
+                                        .cornerRadius(15)
+                                }
+                                
+                                ForEach(self.infraViewModel.infraHotelModel, id: \.self) { infraHotelModel in
+                                    if infraHotelModel.name != nil {
+                                        HomeTextView(title: "\(infraHotelModel.name!)")
                                     }
                                 }
-//                                .navigationBarTitle("HomeView")
-                                
-                                
                             }
                         }
-                    }
-                    .frame(height: 100)
-                    .padding(5).padding(.bottom,20)
-                    
-//                    Text("추천 맛  ")
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
-//                            HomeTextView(title: "전체")
+                        .frame(height: 30)
+                        .padding(5)
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(self.infraViewModel.infraHotelModel, id: \.self) { infraHotelModel in
                                     
-                            Button(action:{
-                                self.infraViewModel.isDisplay(title: "전체")
-                            }){
-                                Text("전체")
-                                    .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: .center)
-                                    .padding(5)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.black)
-                                    .cornerRadius(15)
-                            }
-              
-                            ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
-                                if infraFoodModel.name != nil {
-                                  HomeTextView(title: "\(infraFoodModel.name!)")
+                                    NavigationLink(destination: Text(verbatim: "dd")) {
+                                        ForEach(infraHotelModel.attachFiles!, id: \.self) {
+                                            infraModel in
+                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                        }
+                                    }
+                                    //                                .navigationBarTitle("HomeView")
+                                    
+                                    
                                 }
                             }
                         }
-                    }
-                    .frame(height: 30)
-                    .padding(5)
-                    
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
+                        .frame(height: 100)
+                        .padding(5).padding(.bottom,30)
+                        
+                        HStack(){
+                            Text("추천 맛집")
+                                .font(.system(size:20))
+                                .fontWeight(.black)
+                                .frame(height: 20, alignment: .leading)
+                        }
+                        
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                //                            HomeTextView(title: "전체")
                                 
-                                NavigationLink(destination: Text(verbatim: "dd")) {
-                                    ForEach(infraFoodModel.attachFiles!, id: \.self) {
-                                        infraModel in
-                                        ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                Button(action:{
+                                    self.infraViewModel.isDisplay(title: "전체")
+                                }){
+                                    Text("전체")
+                                        .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: .center)
+                                        .padding(5)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.black)
+                                        .cornerRadius(15)
+                                }
+                                
+                                ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
+                                    if infraFoodModel.name != nil {
+                                        HomeTextView(title: "\(infraFoodModel.name!)")
                                     }
                                 }
-//                                .navigationBarTitle("HomeView")
-                                
-                                
                             }
                         }
+                        .frame(height: 30)
+                        .padding(5)
+                        
+                        
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
+                                    
+                                    NavigationLink(destination: Text(verbatim: "dd")) {
+                                        ForEach(infraFoodModel.attachFiles!, id: \.self) {
+                                            infraModel in
+                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                        }
+                                    }
+                                    //                                .navigationBarTitle("HomeView")
+                                    
+                                    
+                                }
+                            }
+                        }
+                        .frame(height: 100)
+                        .padding(5).padding(.bottom,20)
+                        
                     }
-                    .frame(height: 100)
-                    .padding(5).padding(.bottom,20)
-                    
-                    
-                    
-                    
-                    
+                }
+            }
+        }
+    }
+}
 
-                    
+struct Home_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}
+
+
 //   InfraCategory Sample Source
 //                    ScrollView (.horizontal, showsIndicators: false) {
 //                        HStack {
@@ -202,20 +231,6 @@ struct HomeView: View {
 //                        }
 //                    }
 //                    .frame(height: 100)
-                    
-                    
-                }
-            }
-        }
-    }
-}
-
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
-
 
 
 //                            ForEach(self.vm.virtualData) { virtual in

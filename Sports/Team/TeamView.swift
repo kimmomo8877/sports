@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TeamView: View {
-    @ObservedObject private var vm = VirtualViewModel()
+    
+    @ObservedObject private var infraViewModel = InfraViewModel()
     @State var isModal: Bool = false
     
     var body: some View {
@@ -42,34 +43,168 @@ struct TeamView: View {
                     //                    .overlay(Rectangle()
                     //                                .stroke(lineWidth: 0.5))
                     
-                    
-                    Text("Some horizontalView1")
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(self.vm.virtualData) { virtual in
-                                NavigationLink(destination: Text("dd")) {
-                                    ImageCell(imageUrl: virtual.thumbnailUrl, title: "virtual.title")
+                    Group {
+                        
+                        HStack(){
+                            Text("추천 스포츠시설")
+                                .font(.system(size:20))
+                                .fontWeight(.black)
+                                .frame(height: 20, alignment: .leading)
+                        }
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                //                            HomeTextView(title: "전체")
+                                
+                                Button(action:{
+                                    self.infraViewModel.isDisplay(title: "전체")
+                                }){
+                                    Text("전체")
+                                        .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.black)
+                                        .cornerRadius(15)
                                 }
-                                .navigationBarTitle("TeamView")
+                                
+                                ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
+                                    if infraSportModel.sportCode != nil {
+                                        HomeTextView(title: "\(infraSportModel.sportCode!.name!)")
+                                    }
+                                }
                             }
                         }
-                    }
-                    .frame(height: 100)
-                    Text("Some horizontalView2")
-                    ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(self.vm.virtualData, id: \.self) { virtual in
-                                NavigationLink(destination: Text("dd")) {
-                                    ImageCell(imageUrl: virtual.thumbnailUrl, title: "virtual.title")
+                        .frame(height: 30)
+                        .padding(5)
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
+                                    
+                                    NavigationLink(destination: Text(verbatim: "dd")) {
+                                        ForEach(infraSportModel.attachFiles!, id: \.self) {
+                                            infraModel in
+                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                        }
+                                    }
+                                    .navigationBarTitle("Navigation", displayMode: .inline)
+                                    
+                                    
                                 }
-                                .navigationBarTitle("TeamView")
                             }
                         }
+                        .frame(height: 100)
+                        .padding(5).padding(.bottom,30)
+                        
+                        HStack(){
+                            Text("부대 시설")
+                                .font(.system(size:20))
+                                .fontWeight(.black)
+                                .frame(height: 20, alignment: .leading)
+                        }
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                //                            HomeTextView(title: "전체")
+                                
+                                Button(action:{
+                                    self.infraViewModel.isDisplay(title: "전체")
+                                }){
+                                    Text("전체")
+                                        .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: .center)
+                                        .padding(5)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.black)
+                                        .cornerRadius(15)
+                                }
+                                
+                                ForEach(self.infraViewModel.infraFacilityModel, id: \.self) { infraFacilityModel in
+                                    if infraFacilityModel.name != nil {
+                                        HomeTextView(title: "\(infraFacilityModel.name!)")
+                                    }
+                                }
+                            }
+                        }
+                        .frame(height: 30)
+                        .padding(5)
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(self.infraViewModel.infraFacilityModel, id: \.self) { infraFacilityModel in
+                                    
+                                    NavigationLink(destination: Text(verbatim: "dd")) {
+                                        ForEach(infraFacilityModel.attachFiles!, id: \.self) {
+                                            infraModel in
+                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                        }
+                                    }
+                                    //                                .navigationBarTitle("HomeView")
+                                    
+                                    
+                                }
+                            }
+                        }
+                        .frame(height: 100)
+                        .padding(5).padding(.bottom,30)
+                        
+                        HStack(){
+                            Text("전지훈련팀 스토리")
+                                .font(.system(size:20))
+                                .fontWeight(.black)
+                                .frame(height: 20, alignment: .leading)
+                        }
+                        
+                        
+                        ScrollView (.horizontal, showsIndicators: false) {
+                            HStack {
+                                //                            HomeTextView(title: "전체")
+                                
+                                Button(action:{
+                                    self.infraViewModel.isDisplay(title: "전체")
+                                }){
+                                    Text("전체")
+                                        .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: .center)
+                                        .padding(5)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.black)
+                                        .cornerRadius(15)
+                                }
+                                
+                                ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
+                                    if infraFoodModel.name != nil {
+                                        HomeTextView(title: "\(infraFoodModel.name!)")
+                                    }
+                                }
+                            }
+                        }
+                        .frame(height: 30)
+                        .padding(5)
+                        
+                        
+                        
+//                        ScrollView (.horizontal, showsIndicators: false) {
+//                            HStack {
+//                                ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
+//
+//                                    NavigationLink(destination: Text(verbatim: "dd")) {
+//                                        ForEach(infraFoodModel.attachFiles!, id: \.self) {
+//                                            infraModel in
+//                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+//                                        }
+//                                    }
+//                                    //                                .navigationBarTitle("HomeView")
+//
+//                                    
+//                                }
+//                            }
+//                        }
+//                        .frame(height: 100)
+//                        .padding(5).padding(.bottom,20)
+                        
                     }
-                    .frame(height: 100)
                 }
             }
-        }.navigationBarTitle("Navigation", displayMode: .inline)
+        }
     }
 }
 
@@ -80,10 +215,3 @@ struct Team_Previews: PreviewProvider {
 }
 
 
-//                        }.padding(10)
-//                        .background(Color.white)
-//                        .cornerRadius(20)
-//                        .overlay(Rectangle().stroke(lineWidth: 0.5))
-//                        .sheet(isPresented: $isModal, content:{
-//                            SearchBarView()
-//                        })
