@@ -63,7 +63,7 @@ private extension MainTabView {
     }
     
     var touring: some View {
-        Text("TouringView")
+        TouringView()
             .tag(Tabs.touring)
             .tabItem {
                 Text("투어링")

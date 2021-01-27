@@ -135,18 +135,19 @@ struct HomeView: View {
                         .frame(height: 100)
                         .padding(5).padding(.bottom,30)
                         
+                        
                         HStack(){
                             Text("추천 맛집")
                                 .font(.system(size:20))
                                 .fontWeight(.black)
                                 .frame(height: 20, alignment: .leading)
                         }
-                        
-                        
+
+
                         ScrollView (.horizontal, showsIndicators: false) {
                             HStack {
                                 //                            HomeTextView(title: "전체")
-                                
+
                                 Button(action:{
                                     self.infraViewModel.isDisplay(title: "전체")
                                 }){
@@ -157,7 +158,7 @@ struct HomeView: View {
                                         .background(Color.black)
                                         .cornerRadius(15)
                                 }
-                                
+
                                 ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
                                     if infraFoodModel.name != nil {
                                         HomeTextView(title: "\(infraFoodModel.name!)")
@@ -167,13 +168,13 @@ struct HomeView: View {
                         }
                         .frame(height: 30)
                         .padding(5)
-                        
-                        
-                        
+
+
+
                         ScrollView (.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
-                                    
+
                                     NavigationLink(destination: Text(verbatim: "dd")) {
                                         ForEach(infraFoodModel.attachFiles!, id: \.self) {
                                             infraModel in
@@ -181,8 +182,8 @@ struct HomeView: View {
                                         }
                                     }
                                     //                                .navigationBarTitle("HomeView")
-                                    
-                                    
+
+
                                 }
                             }
                         }

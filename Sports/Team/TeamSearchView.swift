@@ -19,6 +19,9 @@ struct TeamSearchView: View {
     @State private var annotation = MKPointAnnotation()
     @State private var selection:String? = nil
     
+    @State private var expand1 = false
+    @State private var expand2 = false
+    
     init(searchWord:String) {
         searchViewModel = SearchViewModel(searchWord:searchWord)
     }
@@ -45,55 +48,91 @@ struct TeamSearchView: View {
         .padding(10)
         
         HStack() {
+            Button(action: {
+                
+            }) {
+                Text("시설").font(.system(size:20)).fontWeight(.bold)
+            }.padding(.leading, 20)
             
             Button(action: {
                 
             }) {
-                Text("시설")
-            }
-            
-            Button(action: {
-                
-            }) {
-                Text("스포츠")
-            }
+                Text("스포츠").font(.system(size:20)).fontWeight(.bold)
+            }.padding(.leading, 20)
+            Spacer()
         }
         
         HStack() {
+            VStack() {
+                VStack(spacing: 5) {
+                    HStack() {
+                        Text("종목")
+                        Image(systemName: expand1 ? "chevron.up" : "chevron.dwon")
+                            .resizable()
+                            .frame(width: 13, height: 6)
+                        //                        .foregroundColor(.white)
+                    }.onTapGesture {
+                        self.expand1.toggle()
+                    }
+                    if expand1 {
+                        Button(action: {
+                            self.expand1.toggle()
+                        }) {
+                            Text("1").padding(5)
+                        }
+                        //                    .foregroundColor(.white)
+                        Button(action: {
+                            self.expand1.toggle()
+                        }) {
+                            Text("2").padding(5)
+                        }
+                        //                    .foregroundColor(.white)
+                    }
+                }
+                
+            }
             
-            Menu(content: {
-                Button(action: {
-                    
-                }, label: {
-                    Label("text",systemImage: "flame.fill")
-                })
-            }, label: {
-                //                Circle().foregroundColor(Color.yellow)
-                //                    .frame(width:50, height:50)
-                Text("종목")
-            })
-            
-            Menu(content: {
-                Button(action: {
-                    
-                }, label: {
-                    Label("text",systemImage: "flame.fill")
-                })
-            }, label: {
-                Text("지역")
-            })
+            VStack() {
+                VStack(spacing: 5) {
+                    HStack() {
+                        Text("지역")
+                        Image(systemName: expand2 ? "chevron.up" : "chevron.dwon")
+                            .resizable()
+                            .frame(width: 13, height: 6)
+                        //                        .foregroundColor(.white)
+                    }.onTapGesture {
+                        self.expand2.toggle()
+                    }
+                    if expand1 {
+                        Button(action: {
+                            self.expand2.toggle()
+                        }) {
+                            Text("1").padding(5)
+                        }
+                        //                    .foregroundColor(.white)
+                        Button(action: {
+                            self.expand2.toggle()
+                        }) {
+                            Text("2").padding(5)
+                        }
+                        //                    .foregroundColor(.white)
+                    }
+                }
+                
+            }
         }
-        Text("Some horizontalView3")
+        
+        
         ScrollView() {
             
             VStack {
                 ForEach(self.searchViewModel.searchModel, id: \.self) { searchModel in
-//                    NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
+                    //                    NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
                     NavigationLink(destination: TeamMapView(searchModel: searchModel, locations: locations), isActive: $isShowing) {
                         
-//                        NavigationLink(destination: TeamMapView(searchModel: searchData, locations: locations), tag : "First", selection: $selection) {
-//                            EmptyView()
-//                        }
+                        //                        NavigationLink(destination: TeamMapView(searchModel: searchData, locations: locations), tag : "First", selection: $selection) {
+                        //                            EmptyView()
+                        //                        }
                         
                         Button(action: {
                             isShowing = true
@@ -138,3 +177,27 @@ struct TeamSearchView: View {
         
     }
 }
+
+
+//            Menu(content: {
+//                Button(action: {
+//
+//                }, label: {
+//                    Label("text",systemImage: "flame.fill")
+//                })
+//            }, label: {
+//                //                Circle().foregroundColor(Color.yellow)
+//                //                    .frame(width:50, height:50)
+//                Text("종목")
+//            })
+//
+//            Menu(content: {
+//                Button(action: {
+//
+//                }, label: {
+//                    Label("text",systemImage: "flame.fill")
+//                })
+//            }, label: {
+//                Text("지역")
+//            })
+//        }

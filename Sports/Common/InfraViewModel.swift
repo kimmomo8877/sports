@@ -10,13 +10,17 @@ import SwiftUI
 class InfraViewModel: ObservableObject {
     @Published var infraSportModel = [InfraModel]()
     @Published var infraFacilityModel = [InfraModel]()
+    @Published var infraTravelModel = [InfraModel]()
+    @Published var infraFestivalModel = [InfraModel]()
     @Published var infraHotelModel = [InfraModel]()
     @Published var infraFoodModel = [InfraModel]()
     var infraSport_temp = [InfraModel]()
     //    @Published var infraSportSoccer = [Infra]()
-    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1   sport
-    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2   facility
-    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=16  hotel
+    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1   스포츠
+    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2   부대시설
+    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=3   관광
+    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=15  축제
+    //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=16  숙박
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=17  food
     init() {
         
@@ -58,6 +62,48 @@ class InfraViewModel: ObservableObject {
                     do {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraFacilityModel = Array(allData[0 ..< (allData.count)])
+                        //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                    
+                }
+                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        .resume()
+        
+        guard let url3 = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=3") else { return }
+        
+        URLSession.shared.dataTask(with: url3) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraTravelModel = Array(allData[0 ..< (allData.count)])
+                        //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                    
+                }
+                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        .resume()
+        
+        guard let url15 = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=15") else { return }
+        
+        URLSession.shared.dataTask(with: url15) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraFestivalModel = Array(allData[0 ..< (allData.count)])
                         //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
                     } catch {
                         print("JSON Decoder Error")

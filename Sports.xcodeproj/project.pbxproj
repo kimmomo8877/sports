@@ -35,7 +35,9 @@
 		1429BA0925BD75250001CA95 /* image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1429BA0825BD75250001CA95 /* image.jpeg */; };
 		143D52C925BF1F9500C78030 /* SportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D52C825BF1F9500C78030 /* SportView.swift */; };
 		143D52CC25BF1FC600C78030 /* SportMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D52CB25BF1FC600C78030 /* SportMenuView.swift */; };
-		144B695F25C1902700E915AE /* TouringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B695E25C1902700E915AE /* TouringView.swift */; };
+		144B696325C1914600E915AE /* TouringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B696225C1914600E915AE /* TouringView.swift */; };
+		144B696725C193C300E915AE /* TouringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B696625C193C300E915AE /* TouringImageView.swift */; };
+		144B696B25C199BD00E915AE /* HomeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B696A25C199BD00E915AE /* HomeScrollView.swift */; };
 		147FC7EB25BD6730000CD83F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 147FC7EA25BD6730000CD83F /* Kingfisher */; };
 		14F969D625BD6C4C0002D5F0 /* InBodySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D499E2925BD5F4D0031A614 /* InBodySDK.a */; };
 		14F969E225BD6EE00002D5F0 /* HomeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F969E125BD6EE00002D5F0 /* HomeImageView.swift */; };
@@ -99,7 +101,9 @@
 		1429BA0825BD75250001CA95 /* image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpeg; sourceTree = "<group>"; };
 		143D52C825BF1F9500C78030 /* SportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportView.swift; sourceTree = "<group>"; };
 		143D52CB25BF1FC600C78030 /* SportMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportMenuView.swift; sourceTree = "<group>"; };
-		144B695E25C1902700E915AE /* TouringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TouringView.swift; path = ../../../../Sports/TouringView.swift; sourceTree = "<group>"; };
+		144B696225C1914600E915AE /* TouringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouringView.swift; sourceTree = "<group>"; };
+		144B696625C193C300E915AE /* TouringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouringImageView.swift; sourceTree = "<group>"; };
+		144B696A25C199BD00E915AE /* HomeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScrollView.swift; sourceTree = "<group>"; };
 		14F969E125BD6EE00002D5F0 /* HomeImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeImageView.swift; sourceTree = "<group>"; };
 		4D1C20E425AA0789007DCDB9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		4D3D4BCE25A9AB1E00C3F78F /* Sports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sports.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +195,8 @@
 			children = (
 				143D52C825BF1F9500C78030 /* SportView.swift */,
 				143D52CB25BF1FC600C78030 /* SportMenuView.swift */,
+				144B696225C1914600E915AE /* TouringView.swift */,
+				144B696625C193C300E915AE /* TouringImageView.swift */,
 			);
 			path = Sport;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 				4DB784F125A9B3C900725E6C /* HomeView.swift */,
 				4DB784FB25A9BE0100725E6C /* ImageCellView.swift */,
 				4D1C20E425AA0789007DCDB9 /* DetailView.swift */,
+				144B696A25C199BD00E915AE /* HomeScrollView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -324,7 +331,6 @@
 		4DB784F725A9B41D00725E6C /* Touring */ = {
 			isa = PBXGroup;
 			children = (
-				144B695E25C1902700E915AE /* TouringView.swift */,
 			);
 			path = Touring;
 			sourceTree = "<group>";
@@ -419,13 +425,13 @@
 				4D3D4BED25A9AC0B00C3F78F /* MainTabView.swift in Sources */,
 				1429B9E425BD73C70001CA95 /* VirtualModel.swift in Sources */,
 				1429B9E825BD73C70001CA95 /* ToDoItem.swift in Sources */,
-				144B695F25C1902700E915AE /* TouringView.swift in Sources */,
 				143D52C925BF1F9500C78030 /* SportView.swift in Sources */,
 				1429B9EA25BD73C70001CA95 /* SearchModel.swift in Sources */,
 				1429B9EB25BD73C70001CA95 /* CodeModel.swift in Sources */,
 				1429B9EF25BD73C70001CA95 /* ChargeModel.swift in Sources */,
 				4D1C20E525AA0789007DCDB9 /* DetailView.swift in Sources */,
 				1429B9F625BD73F30001CA95 /* MapView.swift in Sources */,
+				144B696725C193C300E915AE /* TouringImageView.swift in Sources */,
 				1429B9EC25BD73C70001CA95 /* FavoriteViewModel.swift in Sources */,
 				1429BA0625BD746E0001CA95 /* TeamDetailFacility.swift in Sources */,
 				1429B9E325BD73C70001CA95 /* InfraCategoryModel.swift in Sources */,
@@ -434,6 +440,7 @@
 				4D499DDA25B96B720031A614 /* BandViewModel.swift in Sources */,
 				1429B9CC25BD72FA0001CA95 /* HomeIntroView.swift in Sources */,
 				4D499DFA25BBCEEC0031A614 /* ActivityDataManager.swift in Sources */,
+				144B696B25C199BD00E915AE /* HomeScrollView.swift in Sources */,
 				1429B9EE25BD73C70001CA95 /* InfraModel.swift in Sources */,
 				1429BA0525BD746E0001CA95 /* TeamSearchView.swift in Sources */,
 				1429B9E125BD73C70001CA95 /* SearchViewModel.swift in Sources */,
@@ -454,6 +461,7 @@
 				1429B9F725BD73F30001CA95 /* SearchBarView.swift in Sources */,
 				4D3D4BD425A9AB1E00C3F78F /* SceneDelegate.swift in Sources */,
 				1429B9E925BD73C70001CA95 /* AttachFileModel.swift in Sources */,
+				144B696325C1914600E915AE /* TouringView.swift in Sources */,
 				4D3D4BD925A9AB1E00C3F78F /* Sports.xcdatamodeld in Sources */,
 				4DB784FC25A9BE0100725E6C /* ImageCellView.swift in Sources */,
 				14F969E225BD6EE00002D5F0 /* HomeImageView.swift in Sources */,
