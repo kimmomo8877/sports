@@ -33,6 +33,7 @@
 		1429BA0525BD746E0001CA95 /* TeamSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429BA0025BD746E0001CA95 /* TeamSearchView.swift */; };
 		1429BA0625BD746E0001CA95 /* TeamDetailFacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429BA0125BD746E0001CA95 /* TeamDetailFacility.swift */; };
 		1429BA0925BD75250001CA95 /* image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1429BA0825BD75250001CA95 /* image.jpeg */; };
+		143AEEDF25C3026D0098C95C /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 143AEEDE25C3026D0098C95C /* PartialSheet */; };
 		143D52C925BF1F9500C78030 /* SportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D52C825BF1F9500C78030 /* SportView.swift */; };
 		143D52CC25BF1FC600C78030 /* SportMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D52CB25BF1FC600C78030 /* SportMenuView.swift */; };
 		144B696325C1914600E915AE /* TouringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B696225C1914600E915AE /* TouringView.swift */; };
@@ -140,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				143AEEDF25C3026D0098C95C /* PartialSheet in Frameworks */,
 				14F969D625BD6C4C0002D5F0 /* InBodySDK.a in Frameworks */,
 				147FC7EB25BD6730000CD83F /* Kingfisher in Frameworks */,
 			);
@@ -190,13 +192,20 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		143AEEDB25C2E88A0098C95C /* Touring */ = {
+			isa = PBXGroup;
+			children = (
+				144B696225C1914600E915AE /* TouringView.swift */,
+				144B696625C193C300E915AE /* TouringImageView.swift */,
+			);
+			path = Touring;
+			sourceTree = "<group>";
+		};
 		143D52C725BF1F8A00C78030 /* Sport */ = {
 			isa = PBXGroup;
 			children = (
 				143D52C825BF1F9500C78030 /* SportView.swift */,
 				143D52CB25BF1FC600C78030 /* SportMenuView.swift */,
-				144B696225C1914600E915AE /* TouringView.swift */,
-				144B696625C193C300E915AE /* TouringImageView.swift */,
 			);
 			path = Sport;
 			sourceTree = "<group>";
@@ -221,12 +230,12 @@
 		4D3D4BD025A9AB1E00C3F78F /* Sports */ = {
 			isa = PBXGroup;
 			children = (
+				143AEEDB25C2E88A0098C95C /* Touring */,
 				143D52C725BF1F8A00C78030 /* Sport */,
 				1429BA1A25BD7EC70001CA95 /* Common */,
 				4DB784F025A9B3BA00725E6C /* Home */,
 				1429B9FC25BD74650001CA95 /* Team */,
 				1429B9D125BD73B90001CA95 /* Model */,
-				4DB784F725A9B41D00725E6C /* Touring */,
 				4DB784F825A9B42900725E6C /* MyPage */,
 				4D499E0425BBED750031A614 /* Tracker */,
 				4D3D4BF125A9AC9600C3F78F /* Helper */,
@@ -328,13 +337,6 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		4DB784F725A9B41D00725E6C /* Touring */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Touring;
-			sourceTree = "<group>";
-		};
 		4DB784F825A9B42900725E6C /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +363,7 @@
 			name = Sports;
 			packageProductDependencies = (
 				147FC7EA25BD6730000CD83F /* Kingfisher */,
+				143AEEDE25C3026D0098C95C /* PartialSheet */,
 			);
 			productName = Sports;
 			productReference = 4D3D4BCE25A9AB1E00C3F78F /* Sports.app */;
@@ -392,6 +395,7 @@
 			mainGroup = 4D3D4BC525A9AB1E00C3F78F;
 			packageReferences = (
 				147FC7E925BD6730000CD83F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				143AEEDD25C3026D0098C95C /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 4D3D4BCF25A9AB1E00C3F78F /* Products */;
 			projectDirPath = "";
@@ -683,6 +687,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		143AEEDD25C3026D0098C95C /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.11;
+			};
+		};
 		147FC7E925BD6730000CD83F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -694,6 +706,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		143AEEDE25C3026D0098C95C /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 143AEEDD25C3026D0098C95C /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
 		147FC7EA25BD6730000CD83F /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 147FC7E925BD6730000CD83F /* XCRemoteSwiftPackageReference "Kingfisher" */;

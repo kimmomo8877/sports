@@ -13,8 +13,10 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct TeamDetailSportView: View {
+    @EnvironmentObject var partialSheet : PartialSheetManager
     //    @ObservedObject private var infra = InfraViewModel()
     @State private var showingSheet = true
     
@@ -56,14 +58,26 @@ struct TeamDetailSportView: View {
         .frame(height: 150)
         .padding(5)
         
-        Button(action:{
-            //        self.infra.isDisplay(title: title)
-        }){
-            Text("sheet")
-        }.actionSheet(isPresented: $showingSheet) {
-            ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Dismiss Action Sheet"))])
-            
-        }
+        Button(action: {
+                                self.partialSheet.showPartialSheet({
+                                    print("dismissed")
+                                }) {
+                                    Text("Partial Sheet")
+                                }
+                            }, label: {
+                                Text("Show Partial Sheet")
+                            }).addPartialSheet()
+        
+        
+//        Button(action:{
+//            //        self.infra.isDisplay(title: title)
+//            
+//        }){
+//            Text("sheet")
+//        }.actionSheet(isPresented: $showingSheet) {
+//            ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Dismiss Action Sheet"))])
+//            
+//        }
     }
     
 }

@@ -18,13 +18,13 @@ struct SearchBarView: View  {
     
     var body: some View {
         
-        ZStack {
+//        ZStack {
             
             VStack {
                 
 //                SearchBar(text: $searchText, searchModel: searchModel)
                 SearchBarDetailView(text: $searchText)
-                    .padding(.top, 0)
+                    .padding(.top, 10)
      
                 List(self.favoriteViewModel.favoriteModel.filter({ searchText.isEmpty ? true : $0.searchWord!.contains(searchText) }),id: \.self) { item in
                     Text(item.searchWord!)
@@ -33,7 +33,7 @@ struct SearchBarView: View  {
 //                                        }
                 }
             }
-        }
+//        }
     }
 }
 

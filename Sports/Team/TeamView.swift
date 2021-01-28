@@ -50,6 +50,8 @@ struct TeamView: View {
                                 .font(.system(size:20))
                                 .fontWeight(.black)
                                 .frame(height: 20, alignment: .leading)
+                                .padding(.leading, 10)
+                            Spacer()
                         }
                         
                         ScrollView (.horizontal, showsIndicators: false) {
@@ -101,6 +103,8 @@ struct TeamView: View {
                                 .font(.system(size:20))
                                 .fontWeight(.black)
                                 .frame(height: 20, alignment: .leading)
+                                .padding(.leading, 10)
+                            Spacer()
                         }
                         
                         ScrollView (.horizontal, showsIndicators: false) {
@@ -152,6 +156,8 @@ struct TeamView: View {
                                 .font(.system(size:20))
                                 .fontWeight(.black)
                                 .frame(height: 20, alignment: .leading)
+                                .padding(.leading, 10)
+                            Spacer()
                         }
                 
                         ScrollView (.horizontal, showsIndicators: false) {

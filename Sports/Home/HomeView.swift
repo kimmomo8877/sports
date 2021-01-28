@@ -33,11 +33,13 @@ struct HomeView: View {
                     
                     Group {
                         
-                        HStack(){
+                        HStack(alignment: .top){
                             Text("추천 스포츠시설")
                                 .font(.system(size:20))
                                 .fontWeight(.black)
                                 .frame(height: 20, alignment: .leading)
+                                .padding(.leading, 10)
+                            Spacer()
                         }
                         
                         ScrollView (.horizontal, showsIndicators: false) {
@@ -89,6 +91,8 @@ struct HomeView: View {
                                 .font(.system(size:20))
                                 .fontWeight(.black)
                                 .frame(height: 20, alignment: .leading)
+                                .padding(.leading, 10)
+                            Spacer()
                         }
                         
                         ScrollView (.horizontal, showsIndicators: false) {
@@ -141,6 +145,8 @@ struct HomeView: View {
                                 .font(.system(size:20))
                                 .fontWeight(.black)
                                 .frame(height: 20, alignment: .leading)
+                                .padding(.leading, 10)
+                            Spacer()
                         }
 
 

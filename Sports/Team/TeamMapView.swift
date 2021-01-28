@@ -7,11 +7,12 @@
 
 import SwiftUI
 import MapKit
-
+import PartialSheet
 struct TeamMapView: View {
     
     var searchModel: SearchModel
     var locations: [MKPointAnnotation]
+    @EnvironmentObject var partialSheet : PartialSheetManager
     @State private var centerCoordinate = CLLocationCoordinate2D()
 //    @State private var locations = [MKPointAnnotation]()
     @State private var selectedPlace: MKPointAnnotation?
@@ -47,6 +48,7 @@ struct TeamMapView: View {
             Text(searchModel.name!)
             
             NavigationLink(destination: TeamDetailSportView(), tag : "First", selection: $selection) {
+
                 EmptyView()
             }
             NavigationLink(destination: Text(verbatim: "dd"), tag : "Second", selection: $selection) {

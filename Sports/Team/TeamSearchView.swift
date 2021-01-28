@@ -62,64 +62,76 @@ struct TeamSearchView: View {
             Spacer()
         }
         
-        HStack() {
+        HStack(alignment:.top) {
+            
             VStack() {
                 VStack(spacing: 5) {
                     HStack() {
                         Text("종목")
-                        Image(systemName: expand1 ? "chevron.up" : "chevron.dwon")
+                        Image(systemName: expand1 ? "chevron.up" : "chevron.down")
                             .resizable()
                             .frame(width: 13, height: 6)
-                        //                        .foregroundColor(.white)
-                    }.onTapGesture {
+                    }
+                    .frame(width:80, height:30)
+                    .background(Color.white)
+                    .overlay(Rectangle()
+                                .stroke(lineWidth: 0.5)
+                             
+                    )
+                    //                    .cornerRadius(5)
+                    .onTapGesture {
                         self.expand1.toggle()
                     }
                     if expand1 {
                         Button(action: {
                             self.expand1.toggle()
                         }) {
-                            Text("1").padding(5)
+                            Text("축구").padding(5)
                         }
-                        //                    .foregroundColor(.white)
                         Button(action: {
                             self.expand1.toggle()
                         }) {
-                            Text("2").padding(5)
+                            Text("야구").padding(5)
                         }
-                        //                    .foregroundColor(.white)
                     }
                 }
                 
-            }
+            }.padding(.leading, 20)
             
             VStack() {
                 VStack(spacing: 5) {
                     HStack() {
                         Text("지역")
-                        Image(systemName: expand2 ? "chevron.up" : "chevron.dwon")
+                        Image(systemName: expand2 ? "chevron.up" : "chevron.down")
                             .resizable()
                             .frame(width: 13, height: 6)
-                        //                        .foregroundColor(.white)
-                    }.onTapGesture {
+                    }
+                    .frame(width:80, height:30)
+                    .background(Color.white)
+                    .overlay(Rectangle()
+                                .stroke(lineWidth: 0.5)
+                             
+                    )
+                    //                    .cornerRadius(5)
+                    .onTapGesture {
                         self.expand2.toggle()
                     }
-                    if expand1 {
+                    if expand2 {
                         Button(action: {
                             self.expand2.toggle()
                         }) {
-                            Text("1").padding(5)
+                            Text("창원").padding(5)
                         }
-                        //                    .foregroundColor(.white)
                         Button(action: {
                             self.expand2.toggle()
                         }) {
-                            Text("2").padding(5)
+                            Text("거제도").padding(5)
                         }
-                        //                    .foregroundColor(.white)
                     }
                 }
                 
-            }
+            }.padding(.leading, 10)
+            Spacer()
         }
         
         
@@ -147,6 +159,7 @@ struct TeamSearchView: View {
                             annotation.coordinate = self.centerCoordinate
                             self.locations.append(annotation)
                             self.selection = "First"
+                            
                         }) {
                             HStack {
                                 Image("image")
@@ -154,27 +167,32 @@ struct TeamSearchView: View {
                                     .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                 VStack {
                                     Text("\(searchModel.name ?? "")")
-                                    Text("\(searchModel.name ?? "")")
+                                    Text("\(searchModel.name ?? "")").foregroundColor(.secondary)
                                 }
-                            }
+                            }.padding(.leading, 10)
+                            Spacer()
                         }
                     }
                 }
                 
             }
-        }
+        }.padding(.bottom, 20)
         
-        NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
-            Button(action: {
-                isShowing = true
-            }) {
-                Text("지도보기")
-            }
-            .padding(.trailing, 10)
-            .transition(.move(edge: .trailing))
-            .animation(.default)
+        HStack() {
+            Spacer()
+            NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
+                Button(action: {
+                    isShowing = true
+                }) {
+                    Image(systemName: "map")
+                    Text("지도보기")
+                }
+                .padding(.trailing, 10)
+                .transition(.move(edge: .trailing))
+                .animation(.default)
+            }.padding(.trailing, 30)
+            .padding(.bottom, 25)
         }
-        
     }
 }
 
