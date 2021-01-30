@@ -23,7 +23,7 @@ struct TeamMapView: View {
     
     var body: some View {
         
-        VStack() {
+        VStack(alignment: .leading) {
             HStack(){
                 
                 NavigationLink(destination: SearchBarView()) {
@@ -40,12 +40,25 @@ struct TeamMapView: View {
                 .overlay(Rectangle().stroke(lineWidth: 0.5))
                 
             }
-            .padding(10)
+            .padding(20)
             
             MapView(centerCoordinate: $centerCoordinate, annotations: self.locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails)
             
-            Text(searchModel.name!)
-            Text(searchModel.name!)
+            Text(searchModel.name!).padding(.leading,20).padding(.top,20)
+            Text(searchModel.name!).foregroundColor(.secondary).padding(.leading,20).padding(.top,5)
+            
+            
+//            NavigationLink(destination: TeamDetailSportView(), isActive: $isShowing) {
+//                Button(action: {
+//                    self.isShowing = true
+//                }) {
+//                    Text("First")
+//                }
+////                .padding(.trailing, 10)
+////                .transition(.move(edge: .trailing))
+////                .animation(.default)
+//            }.navigationBarTitle("Navigation", displayMode: .inline)
+//            .addPartialSheet()
             
             NavigationLink(destination: TeamDetailSportView(), tag : "First", selection: $selection) {
 
@@ -62,30 +75,32 @@ struct TeamMapView: View {
             }
             HStack() {
                 Button("Fisrt") { self.selection = "First" }
-                Button("Second") { self.selection = "First" }
-                Button("Third") { self.selection = "First" }
-                Button("Four") { self.selection = "First" }
-            }
+                Button("Second") { self.selection = "Second" }
+                Button("Third") { self.selection = "Third" }
+                Button("Four") { self.selection = "Four" }
+            }.padding(.leading,20)
 
             
         }
-        //                Button(action: {
-        //                    isShowing = true
-        //                    annotation.title = "London"
-        //                    annotation.subtitle = "Home to the 2012 Summer Olympics."
-        //                    annotation.coordinate = CLLocationCoordinate2D(latitude: 128.6635024, longitude: 35.1459809)
-        //                    self.locations.append(annotation)
-        //                    print(self.searchModel)
-        //                    annotation.title = "Test"
-        //                    annotation.subtitle = "Test 1234"
-        //                    annotation.coordinate = self.centerCoordinate
-        //                    self.locations.append(annotation)
-        //
-        //                }) {
-        //
-        //                }
-    }
+
+        }
+    
 }
 
 
 
+//                Button(action: {
+//                    isShowing = true
+//                    annotation.title = "London"
+//                    annotation.subtitle = "Home to the 2012 Summer Olympics."
+//                    annotation.coordinate = CLLocationCoordinate2D(latitude: 128.6635024, longitude: 35.1459809)
+//                    self.locations.append(annotation)
+//                    print(self.searchModel)
+//                    annotation.title = "Test"
+//                    annotation.subtitle = "Test 1234"
+//                    annotation.coordinate = self.centerCoordinate
+//                    self.locations.append(annotation)
+//
+//                }) {
+//
+//                }

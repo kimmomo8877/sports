@@ -13,6 +13,8 @@ class SearchViewModel: ObservableObject {
     init(searchWord: String) {
         let url_string = "http://www.kbostat.co.kr/resource/search?searchWord=" + searchWord
         print(url_string)
+        if searchWord == "" { return }
+        print("hh")
         let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         guard let url = URL(string: encoded!) else { return }
 

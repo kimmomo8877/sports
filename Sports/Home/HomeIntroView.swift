@@ -11,6 +11,7 @@ struct HomeIntroView: View {
     
     var title: String
     var subTitle: String
+    var geo: GeometryProxy
     
     var body: some View{
         //        GeometryReader{ geometry in
@@ -28,7 +29,7 @@ struct HomeIntroView: View {
             }
             
         }
-//        .frame(weight: 200)
+        .frame(width: geo.size.width * 0.85)
         .padding(20)
         .background(Color.white)
         .cornerRadius(20)
@@ -40,10 +41,3 @@ struct HomeIntroView: View {
     
 }
 
-struct MainIntroView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            HomeIntroView(title: "2222전지훈련팀 스포츠 투어링이 처음이신가요?", subTitle: "서비스소개adafds12 ")
-        }
-    }
-}

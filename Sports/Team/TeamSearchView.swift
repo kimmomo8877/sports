@@ -75,10 +75,7 @@ struct TeamSearchView: View {
                     .frame(width:80, height:30)
                     .background(Color.white)
                     .overlay(Rectangle()
-                                .stroke(lineWidth: 0.5)
-                             
-                    )
-                    //                    .cornerRadius(5)
+                                .stroke(lineWidth: 0.5))
                     .onTapGesture {
                         self.expand1.toggle()
                     }
@@ -96,7 +93,7 @@ struct TeamSearchView: View {
                     }
                 }
                 
-            }.padding(.leading, 20)
+            }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
             
             VStack() {
                 VStack(spacing: 5) {
@@ -130,9 +127,11 @@ struct TeamSearchView: View {
                     }
                 }
                 
-            }.padding(.leading, 10)
+            }.padding(.leading, 10).padding(.top,8).padding(.bottom,8)
             Spacer()
         }
+//        .frame(height:50)
+        .background(Color.gray).brightness(0.4)
         
         
         ScrollView() {
