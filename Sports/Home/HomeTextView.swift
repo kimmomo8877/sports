@@ -10,8 +10,8 @@ import SwiftUI
 struct HomeTextView: View {
     
     @EnvironmentObject var infraViewModel: InfraViewModel
-    @State var selectedTitle = "전체"
-    @State var selectedCategory = ""
+//    @State var selectedTitle = "전체"
+//    @State var selectedCategory = ""
     var title: String
     var category: String
     
@@ -19,26 +19,29 @@ struct HomeTextView: View {
         Button(action:{
             self.infraViewModel.isFilter(title: title, category: category)
             
-            switch category {
-            case "스포츠시설":
-                self.selectedTitle = self.infraViewModel.sportMenu
-                self.selectedCategory = "스포츠시설"
-                break
-            case "숙소":
-                self.selectedTitle = self.infraViewModel.hotelMenu
-                self.selectedCategory = "숙소"
-                break
-            case "맛집":
-                self.selectedTitle = self.infraViewModel.foodMenu
-                self.selectedCategory = "맛집"
-            default:
-                print("Menu Selected")
-            }
+//            switch category {
+//            case "스포츠시설":
+////                self.selectedTitle = self.infraViewModel.sportMenu
+////                self.selectedCategory = "스포츠시설"
+//                break
+//            case "숙소":
+////                self.selectedTitle = self.infraViewModel.hotelMenu
+////                self.selectedCategory = "숙소"
+//                break
+//            case "맛집":
+////                self.selectedTitle = self.infraViewModel.foodMenu
+////                self.selectedCategory = "맛집"
+//            default:
+//                print("Menu Selected")
+//            }
             
         }){
             
-            let menu_t = self.selectedTitle
-            if ( title ==  menu_t && category == "스포츠시설" ){
+//            let menu_t = self.selectedTitle
+//            if ( title ==  menu_t && category == "스포츠시설" ){
+            if ( title ==  self.infraViewModel.sportMenu && category == "스포츠시설" )
+            || ( title ==  self.infraViewModel.hotelMenu && category == "숙소" )
+                || ( title ==  self.infraViewModel.foodMenu && category == "맛집" ){
                 Text(title)
                     .frame(width: CGFloat(title.count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .padding(5)
@@ -51,6 +54,7 @@ struct HomeTextView: View {
                     .padding(5)
                 
             }
+            
             
             
             

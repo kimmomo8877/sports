@@ -126,10 +126,8 @@ struct HomeView: View {
                                 HStack {
                                     HomeTextView(title: "전체", category: "숙소")
                                     
-                                    ForEach(self.infraViewModel.infraHotelModel, id: \.self) { infraHotelModel in
-                                        if infraHotelModel.name != nil {
-                                            HomeTextView(title: "\(infraHotelModel.name!)", category: "숙소")
-                                        }
+                                    ForEach(self.infraViewModel.infraHotelMenu, id: \.self) { infraHotelMenu in
+                                        HomeTextView(title: "\(infraHotelMenu)", category: "숙소")
                                     }
                                 }
                             }
@@ -174,10 +172,8 @@ struct HomeView: View {
                                 HStack {
                                     HomeTextView(title: "전체", category: "맛집")
                                     
-                                    ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
-                                        if infraFoodModel.name != nil {
-                                            HomeTextView(title: "\(infraFoodModel.name!)", category: "맛집")
-                                        }
+                                    ForEach(self.infraViewModel.infraFoodMenu, id: \.self) { infraFoodMenu in
+                                        HomeTextView(title: "\(infraFoodMenu)", category: "맛집")
                                     }
                                 }
                             }

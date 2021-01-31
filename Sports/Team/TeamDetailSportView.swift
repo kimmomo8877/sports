@@ -55,7 +55,7 @@ struct TeamDetailSportView: View {
                         //                    Text("창원축구센터 주경기장").padding(.leading, 20)
                         //                    Text("200km | 축구").padding(.leading, 20).foregroundColor(.secondary)
 //                        Text(infraModel.name!).padding(.leading, 20).font(.system(size:25))
-//                        let testtest = infraViewModel.infraObject
+                        let testtest = infraViewModel.infraObject
                         Text(infraViewModel.infraObject[0].name ?? "").padding(.leading, 20).font(.system(size:25))
                         Text("200km | 축구").padding(.leading, 20).foregroundColor(.secondary)
                     }

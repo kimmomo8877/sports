@@ -199,6 +199,9 @@ class InfraViewModel: ObservableObject {
                 self.infraSportModel = self.infraSportModel_t.filter { infraModel in
                     return infraModel.sportCode?.name == title
                 }
+            } else {
+                self.infraSportModel.removeAll()
+                self.infraSportModel = self.infraSportModel_t
             }
             self.sportMenu = title
             print(test_filter)
@@ -212,6 +215,9 @@ class InfraViewModel: ObservableObject {
                 self.infraHotelModel = self.infraHotelModel_t.filter { infraModel in
                     return infraModel.name == title
                 }
+            } else {
+                self.infraHotelModel.removeAll()
+                self.infraHotelModel = self.infraHotelModel_t
             }
             self.hotelMenu = title
             print(test_filter)
@@ -225,6 +231,9 @@ class InfraViewModel: ObservableObject {
                 self.infraFoodModel = self.infraFoodModel_t.filter { infraModel in
                     return infraModel.name == title
                 }
+            } else {
+                self.infraFoodModel.removeAll()
+                self.infraFoodModel = self.infraFoodModel_t
             }
             self.foodMenu = title
             print(test_filter)
