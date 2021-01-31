@@ -29,8 +29,9 @@ struct HomeIntroView: View {
             }
             
         }
-        .frame(width: geo.size.width * 0.85)
+        .frame(width: geo.size.width * 0.84)
         .padding(20)
+//        .padding(.trailing, -10)
         .background(Color.white)
         .cornerRadius(20)
         .overlay(Rectangle()

@@ -14,8 +14,22 @@ class InfraViewModel: ObservableObject {
     @Published var infraFestivalModel = [InfraModel]()
     @Published var infraHotelModel = [InfraModel]()
     @Published var infraFoodModel = [InfraModel]()
-    var infraSport_temp = [InfraModel]()
     @Published var infraModel = [InfraModel]()
+    @Published var infraSportMenu = [String]()
+    @Published var sportMenu:String = "전체"
+    @Published var sportCategory:String = "스포츠시설"
+    @Published var infraFoodMenu = [String]()
+    @Published var foodMenu:String = "전체"
+    @Published var foodCategory:String = "맛집"
+    @Published var infraHotelMenu = [String]()
+    @Published var hotelMenu:String = "전체"
+    @Published var hotelCategory:String = "숙소"
+    
+    @Published var infraObject = [InfraModel]()
+    
+    var infraSportModel_t = [InfraModel]()
+    var infraHotelModel_t = [InfraModel]()
+    var infraFoodModel_t = [InfraModel]()
     //    @Published var infraSportSoccer = [Infra]()
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1   스포츠
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2   부대시설
@@ -42,13 +56,20 @@ class InfraViewModel: ObservableObject {
                     do {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraSportModel = Array(allData[0 ..< (allData.count)])
-                        //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
+                        self.infraSportModel_t = Array(allData[0 ..< (allData.count)])
+                        for (sportMenuModel) in self.infraSportModel {
+                            if sportMenuModel.sportCode!.name != nil {
+                                if !self.infraSportMenu.contains(sportMenuModel.sportCode!.name!) {
+                                    self.infraSportMenu.append(sportMenuModel.sportCode!.name!)
+                                }
+                            }
+                        }
                     } catch {
                         print("JSON Decoder Error")
                     }
                     
                 }
-                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+                //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
             }
         }
         .resume()
@@ -69,7 +90,7 @@ class InfraViewModel: ObservableObject {
                     }
                     
                 }
-                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+                //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
             }
         }
         .resume()
@@ -90,7 +111,7 @@ class InfraViewModel: ObservableObject {
                     }
                     
                 }
-                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+                //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
             }
         }
         .resume()
@@ -111,7 +132,6 @@ class InfraViewModel: ObservableObject {
                     }
                     
                 }
-                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
             }
         }
         .resume()
@@ -126,13 +146,19 @@ class InfraViewModel: ObservableObject {
                     do {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraHotelModel = Array(allData[0 ..< (allData.count)])
+                        self.infraHotelModel_t = Array(allData[0 ..< (allData.count)])
+                        for (hotelMenuModel) in self.infraHotelModel {
+                            if !self.infraHotelMenu.contains(hotelMenuModel.name!) {
+                                self.infraHotelMenu.append(hotelMenuModel.name!)
+                            }
+                        }
+                        
                     } catch {
                         print("JSON Decoder Error")
                     }
                 }
             }
-        }
-        .resume()
+        }.resume()
         
         guard let url17 = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=17") else { return }
         
@@ -144,53 +170,100 @@ class InfraViewModel: ObservableObject {
                     do {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraFoodModel = Array(allData[0 ..< (allData.count)])
+                        self.infraFoodModel_t = Array(allData[0 ..< (allData.count)])
+                        for (foodMenu) in self.infraFoodModel {
+                            if foodMenu.name != nil {
+                                if !self.infraFoodMenu.contains(foodMenu.name!) {
+                                    self.infraFoodMenu.append(foodMenu.name!)
+                                }
+                            }
+                        }
                     } catch {
                         print("JSON Decoder error")
                     }
                 }
             }
-        }
-        .resume()
+        }.resume()
     }
     
     
-    func isDisplay(title: String) {
+    func isFilter(title: String, category: String) {
         
-        let test_fileter = self.infraSport_temp.filter { infra in
-            return infra.sportCode?.name == title
-        }
-        
-        if title != "전체" {
-            self.infraSportModel.removeAll()
-            self.infraSportModel = self.infraSport_temp.filter { infraModel in
-                return infraModel.sportCode?.name == title
+        switch category {
+        case "스포츠시설":
+            let test_filter = self.infraSportModel_t.filter { infra in
+                return infra.sportCode?.name == title
             }
-        }
-        
-        print(test_fileter)
-        
-    }
-    
-        func search_infra(searchWord: String) {
-    
-            let url_string = "http://www.kbostat.co.kr/resource/infra/=" + searchWord
-            print(url_string)
-            let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-            guard let url = URL(string: encoded!) else { return }
-    
-           let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
-                DispatchQueue.main.async {
-                    let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
-                    self.infraModel = Array(allData[0 ..< (allData.count)])
-    //                let searchtemp = Array(allData[0 ..< (allData.count)])
-    //                print(searchtemp)
+            if title != "전체" {
+                self.infraSportModel.removeAll()
+                self.infraSportModel = self.infraSportModel_t.filter { infraModel in
+                    return infraModel.sportCode?.name == title
                 }
             }
-            task.resume()
+            self.sportMenu = title
+            print(test_filter)
+            break
+        case "숙소":
+            let test_filter = self.infraHotelModel_t.filter { infra in
+                return infra.name == title
+            }
+            if title != "전체" {
+                self.infraHotelModel.removeAll()
+                self.infraHotelModel = self.infraHotelModel_t.filter { infraModel in
+                    return infraModel.name == title
+                }
+            }
+            self.hotelMenu = title
+            print(test_filter)
+            break
+        case "맛집":
+            let test_filter = self.infraFoodModel_t.filter { infra in
+                return infra.name == title
+            }
+            if title != "전체" {
+                self.infraFoodModel.removeAll()
+                self.infraFoodModel = self.infraFoodModel_t.filter { infraModel in
+                    return infraModel.name == title
+                }
+            }
+            self.foodMenu = title
+            print(test_filter)
+        default:
+            print("Filter Test")
         }
+        
+        
+//        print(test_filter)
+    }
+    
+    func search_infra(searchWord: String) {
+        
+        let url_string = "http://www.kbostat.co.kr/resource/infra/=" + searchWord
+        print(url_string)
+        let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        guard let url = URL(string: encoded!) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            DispatchQueue.main.async {
+                let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
+                self.infraModel = Array(allData[0 ..< (allData.count)])
+                //                let searchtemp = Array(allData[0 ..< (allData.count)])
+                //                print(searchtemp)
+            }
+        }
+        task.resume()
+    }
+    
+    func set_infra(infraObject: InfraModel) {
+        self.infraObject.removeAll()
+        self.infraObject.append(infraObject)
+    }
     
     
 }
+
+
+
 
 
 

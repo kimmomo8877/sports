@@ -17,7 +17,7 @@ import PartialSheet
 
 struct TeamDetailSportView: View {
     //    @EnvironmentObject var partialSheet : PartialSheetManager
-    //    @ObservedObject private var infra = InfraViewModel()
+    @EnvironmentObject var infraViewModel:InfraViewModel
     @State private var showingSheet = true
     
     var infraModel: InfraModel   
@@ -54,7 +54,9 @@ struct TeamDetailSportView: View {
                     Group {
                         //                    Text("창원축구센터 주경기장").padding(.leading, 20)
                         //                    Text("200km | 축구").padding(.leading, 20).foregroundColor(.secondary)
-                        Text(infraModel.name!).padding(.leading, 20).font(.system(size:25))
+//                        Text(infraModel.name!).padding(.leading, 20).font(.system(size:25))
+//                        let testtest = infraViewModel.infraObject
+                        Text(infraViewModel.infraObject[0].name ?? "").padding(.leading, 20).font(.system(size:25))
                         Text("200km | 축구").padding(.leading, 20).foregroundColor(.secondary)
                     }
                     Group {
@@ -105,27 +107,22 @@ struct TeamDetailSportView: View {
                         HStack() {
                             Text("주소").padding(.leading, 20).foregroundColor(.secondary)
                             // font(Font.body.bold()).
-                            Text(infraModel.address ?? "").padding(.leading, 33)
+                            Text(infraViewModel.infraObject[0].address ?? "").padding(.leading, 33)
                             Spacer()
                         }
                         HStack() {
                             Text("홈페이지").padding(.leading, 20).foregroundColor(.secondary)
-                            Text(infraModel.homepageUrl ?? "").padding(.leading, 8)
+                            Text(infraViewModel.infraObject[0].homepageUrl ?? "").padding(.leading, 8)
                             Spacer()
                         }.padding(.top,1)
                         HStack() {
                             Text("전화").padding(.leading, 20).foregroundColor(.secondary)
-                            Text(infraModel.phoneNumber ?? "").padding(.leading, 33)
+                            Text(infraViewModel.infraObject[0].phoneNumber ?? "").padding(.leading, 33)
                             Spacer()
                         }.padding(.top,1)
                         
                         VStack { Divider().background(Color.gray) }.padding(CGFloat(20)).foregroundColor(.secondary)
-//                        Path { path in
-//                            path.move(to: CGPoint(x: 20, y: 700))
-//                            path.addLine(to:CGPoint(x:20, y: 700))
-//                            path.addLine(to: CGPoint(x:geo.size.width, y: 700))
-//                        }
-//                        .stroke(Color.blue, lineWidth: 10)
+
                     }
                     
                     Group {
@@ -182,6 +179,14 @@ struct TeamDetailSportView: View {
         //            ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Dismiss Action Sheet"))])
         //
         //        }
+        
+        
+        //                        Path { path in
+        //                            path.move(to: CGPoint(x: 20, y: 700))
+        //                            path.addLine(to:CGPoint(x:20, y: 700))
+        //                            path.addLine(to: CGPoint(x:geo.size.width, y: 700))
+        //                        }
+        //                        .stroke(Color.blue, lineWidth: 10)
     }
     
 }

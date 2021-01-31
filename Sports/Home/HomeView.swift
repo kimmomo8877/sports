@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    //    @ObservedObject private var infraCViewModel = InfraCategoryViewModel()
-    @ObservedObject private var infraViewModel = InfraViewModel()
+
+    @EnvironmentObject var infraViewModel:InfraViewModel
+    
     @State private var isTrackerShowing = false
     @State private var isSportShowing = false
     @State private var isHotelShowing = false
@@ -23,24 +24,30 @@ struct HomeView: View {
                     VStack {
                         Group {
                             ZStack (alignment:.top) {
+                                
+                                HomeImageView(image: "m-intro_bg", width: geo.size.width, height: 200)
+                                //                                    .padding(.top,10)
+                                HomeImageView(image: "logo-intro", width: geo.size.width / 2 , height: 100)
+                                    .padding(.top,50)
                                 NavigationLink(destination: TrackingConfigView(), isActive: $isTrackerShowing) {
-                                    Button(action: {
-                                        self.isTrackerShowing = true
-                                    }) {
-                                        Spacer()
-                                        Text("트래커")
-                                            .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                            .padding(5)
-                                            .foregroundColor(Color.white)
-                                            .background(Color.black)
-                                            .cornerRadius(15)
-                                    }
-                                    .padding(.trailing, 20).padding(.top,20)
-                                    .transition(.move(edge: .trailing))
-                                    .animation(.default)
-                                }.navigationBarTitle("Tracker", displayMode: .inline)
-                                HomeImageView(image: "image", width: 200, height: 200)
-                                    .padding(.top,10)
+                                    
+                                }.navigationBarTitle("스포츠 투어링", displayMode: .inline)
+                                .navigationBarItems(trailing:
+                                                        Button(action: {
+                                                            self.isTrackerShowing = true
+                                                        }) {
+                                                            Spacer()
+                                                            Text("트래커")
+                                                                .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                                                .padding(5)
+                                                                .foregroundColor(Color.white)
+                                                                .background(Color.black)
+                                                                .cornerRadius(15)
+                                                        }
+                                    //                                                        .padding(.trailing, 20).padding(.top,20)
+                                                        .transition(.move(edge: .trailing))
+                                                        .animation(.default)
+                                )
                             }
                         }
                         
@@ -70,17 +77,18 @@ struct HomeView: View {
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    HomeTextView(title: "전체")
+                                    HomeTextView(title: "전체", category: "스포츠시설")
                                     
-                                    ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
-                                        if infraSportModel.sportCode != nil {
-                                            HomeTextView(title: "\(infraSportModel.sportCode!.name!)")
-                                        }
+                                    ForEach(self.infraViewModel.infraSportMenu, id: \.self) { infraSportMenu in
+//                                        if infraSportModel.sportCode != nil {
+//                                            self.infraViewModel.checkMenuSport(sportCode: infraSportModel.sprotCode)
+                                        HomeTextView(title: "\(infraSportMenu)", category: "스포츠시설")
+//                                        }
                                     }
                                 }
                             }
                             .frame(height: 30)
-                            .padding(5)
+                            .padding(10)
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
@@ -101,8 +109,9 @@ struct HomeView: View {
                                 }
                             }
                             .frame(height: 100)
-                            .padding(5).padding(.bottom,30)
+                            .padding(10).padding(.bottom,30)
                         }
+                        
                         Group {
                             HStack(){
                                 Text("추천 숙소")
@@ -115,17 +124,17 @@ struct HomeView: View {
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    HomeTextView(title: "전체")
+                                    HomeTextView(title: "전체", category: "숙소")
                                     
                                     ForEach(self.infraViewModel.infraHotelModel, id: \.self) { infraHotelModel in
                                         if infraHotelModel.name != nil {
-                                            HomeTextView(title: "\(infraHotelModel.name!)")
+                                            HomeTextView(title: "\(infraHotelModel.name!)", category: "숙소")
                                         }
                                     }
                                 }
                             }
                             .frame(height: 30)
-                            .padding(5)
+                            .padding(10)
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
@@ -133,7 +142,9 @@ struct HomeView: View {
                                         
                                         NavigationLink(destination: TeamDetailSportView(infraModel: infraHotelModel), isActive: $isHotelShowing) {
                                             Button(action: {
+                                                self.infraViewModel.set_infra(infraObject: infraHotelModel)
                                                 self.isHotelShowing = true
+                                                
                                             }) {
                                                 ForEach(infraHotelModel.attachFiles!, id: \.self) {
                                                     infraModel in
@@ -146,7 +157,7 @@ struct HomeView: View {
                                 }
                             }
                             .frame(height: 100)
-                            .padding(5).padding(.bottom,30)
+                            .padding(10).padding(.bottom,30)
                         }
                         Group {
                             HStack(){
@@ -161,17 +172,17 @@ struct HomeView: View {
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    HomeTextView(title: "전체")
+                                    HomeTextView(title: "전체", category: "맛집")
                                     
                                     ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
                                         if infraFoodModel.name != nil {
-                                            HomeTextView(title: "\(infraFoodModel.name!)")
+                                            HomeTextView(title: "\(infraFoodModel.name!)", category: "맛집")
                                         }
                                     }
                                 }
                             }
                             .frame(height: 30)
-                            .padding(5)
+                            .padding(10)
                             
                             
                             
@@ -194,7 +205,7 @@ struct HomeView: View {
                                 }
                             }
                             .frame(height: 100)
-                            .padding(5).padding(.bottom,20)
+                            .padding(10).padding(.bottom,20)
                             
                         }
                     }

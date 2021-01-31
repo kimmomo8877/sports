@@ -8,33 +8,76 @@
 import SwiftUI
 
 struct HomeTextView: View {
-
-    @ObservedObject private var infraViewModel = InfraViewModel()
     
+    @EnvironmentObject var infraViewModel: InfraViewModel
+    @State var selectedTitle = "전체"
+    @State var selectedCategory = ""
     var title: String
+    var category: String
     
     var body: some View{
         Button(action:{
-            self.infraViewModel.isDisplay(title: title)
+            self.infraViewModel.isFilter(title: title, category: category)
+            
+            switch category {
+            case "스포츠시설":
+                self.selectedTitle = self.infraViewModel.sportMenu
+                self.selectedCategory = "스포츠시설"
+                break
+            case "숙소":
+                self.selectedTitle = self.infraViewModel.hotelMenu
+                self.selectedCategory = "숙소"
+                break
+            case "맛집":
+                self.selectedTitle = self.infraViewModel.foodMenu
+                self.selectedCategory = "맛집"
+            default:
+                print("Menu Selected")
+            }
+            
         }){
-            Text(title)
-                .frame(width: CGFloat(title.count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .padding(5)
-                .foregroundColor(Color.white)
-                .background(Color.black)
-                .cornerRadius(15)
+            
+            let menu_t = self.selectedTitle
+            if ( title ==  menu_t && category == "스포츠시설" ){
+                Text(title)
+                    .frame(width: CGFloat(title.count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding(5)
+                    .foregroundColor(Color.white)
+                    .background(Color.black)
+                    .cornerRadius(15)
+            } else {
+                Text(title)
+                    .frame(width: CGFloat(title.count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding(5)
+                
+            }
+            
+            
+            
         }
         
     }
 }
 
-struct HomeTextView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            HomeTextView(title: "축구하자")
-        }
-    }
-}
+
+//                .overlay(
+//                                RoundedRectangle(cornerRadius: 10)
+//                                    .stroke(Color.black, lineWidth: 0.1) )
+//                .foregroundColor(Color.white)
+//                .background(Color.black)
+//                .cornerRadius(15)
+
+//                .overlay(
+//                                RoundedRectangle(cornerRadius: 10)
+//                                    .stroke(Color.black, lineWidth: 0.1) )
+
+//struct HomeTextView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            HomeTextView(title: "축구하자")
+//        }
+//    }
+//}
 
 
 //print(title)
