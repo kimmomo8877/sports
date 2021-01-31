@@ -15,6 +15,7 @@ class InfraViewModel: ObservableObject {
     @Published var infraHotelModel = [InfraModel]()
     @Published var infraFoodModel = [InfraModel]()
     var infraSport_temp = [InfraModel]()
+    @Published var infraModel = [InfraModel]()
     //    @Published var infraSportSoccer = [Infra]()
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1   스포츠
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2   부대시설
@@ -169,6 +170,26 @@ class InfraViewModel: ObservableObject {
         print(test_fileter)
         
     }
+    
+        func search_infra(searchWord: String) {
+    
+            let url_string = "http://www.kbostat.co.kr/resource/infra/=" + searchWord
+            print(url_string)
+            let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+            guard let url = URL(string: encoded!) else { return }
+    
+           let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
+                DispatchQueue.main.async {
+                    let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
+                    self.infraModel = Array(allData[0 ..< (allData.count)])
+    //                let searchtemp = Array(allData[0 ..< (allData.count)])
+    //                print(searchtemp)
+                }
+            }
+            task.resume()
+        }
+    
+    
 }
 
 

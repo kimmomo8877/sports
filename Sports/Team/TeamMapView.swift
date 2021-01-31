@@ -13,6 +13,7 @@ struct TeamMapView: View {
     var searchModel: SearchModel
     var locations: [MKPointAnnotation]
     @EnvironmentObject var partialSheet : PartialSheetManager
+    @ObservedObject private var infraViewModel = InfraViewModel()
     @State private var centerCoordinate = CLLocationCoordinate2D()
 //    @State private var locations = [MKPointAnnotation]()
     @State private var selectedPlace: MKPointAnnotation?
@@ -47,7 +48,33 @@ struct TeamMapView: View {
             Text(searchModel.name!).padding(.leading,20).padding(.top,20)
             Text(searchModel.name!).foregroundColor(.secondary).padding(.leading,20).padding(.top,5)
             
+//            NavigationLink(destination: TeamDetailSportView(infraModel: infraViewModel), tag : "First", selection: $selection) {
+//                infraViewModel.search_infra(searchWord: "e56065ff83")
+//                EmptyView()
+//            }
+//            NavigationLink(destination: Text(verbatim: "dd"), tag : "Second", selection: $selection) {
+//                EmptyView()
+//            }
+//            NavigationLink(destination: Text(verbatim: "dd"), tag : "Third", selection: $selection) {
+//                EmptyView()
+//            }
+//            NavigationLink(destination: Text(verbatim: "dd"), tag : "Four", selection: $selection) {
+//                EmptyView()
+//            }
+//            HStack() {
+//                Button("Fisrt") { self.selection = "First" }
+//                Button("Second") { self.selection = "Second" }
+//                Button("Third") { self.selection = "Third" }
+//                Button("Four") { self.selection = "Four" }
+//            }.padding(.leading,20)
+
             
+        }
+
+        }
+    
+}
+
 //            NavigationLink(destination: TeamDetailSportView(), isActive: $isShowing) {
 //                Button(action: {
 //                    self.isShowing = true
@@ -59,35 +86,6 @@ struct TeamMapView: View {
 ////                .animation(.default)
 //            }.navigationBarTitle("Navigation", displayMode: .inline)
 //            .addPartialSheet()
-            
-            NavigationLink(destination: TeamDetailSportView(), tag : "First", selection: $selection) {
-
-                EmptyView()
-            }
-            NavigationLink(destination: Text(verbatim: "dd"), tag : "Second", selection: $selection) {
-                EmptyView()
-            }
-            NavigationLink(destination: Text(verbatim: "dd"), tag : "Third", selection: $selection) {
-                EmptyView()
-            }
-            NavigationLink(destination: Text(verbatim: "dd"), tag : "Four", selection: $selection) {
-                EmptyView()
-            }
-            HStack() {
-                Button("Fisrt") { self.selection = "First" }
-                Button("Second") { self.selection = "Second" }
-                Button("Third") { self.selection = "Third" }
-                Button("Four") { self.selection = "Four" }
-            }.padding(.leading,20)
-
-            
-        }
-
-        }
-    
-}
-
-
 
 //                Button(action: {
 //                    isShowing = true

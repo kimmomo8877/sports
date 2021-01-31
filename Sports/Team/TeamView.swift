@@ -11,6 +11,8 @@ struct TeamView: View {
     
     @ObservedObject private var infraViewModel = InfraViewModel()
     @State var isModal: Bool = false
+    @State var isSportShowing = false
+    @State var isFacilityShowing = false
     
     var body: some View {
         NavigationView {
@@ -56,19 +58,8 @@ struct TeamView: View {
                         
                         ScrollView (.horizontal, showsIndicators: false) {
                             HStack {
-                                //                            HomeTextView(title: "전체")
-                                
-                                Button(action:{
-                                    self.infraViewModel.isDisplay(title: "전체")
-                                }){
-                                    Text("전체")
-                                        .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                        .padding(5)
-                                        .foregroundColor(Color.white)
-                                        .background(Color.black)
-                                        .cornerRadius(15)
-                                }
-                                
+                                HomeTextView(title: "전체")
+  
                                 ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
                                     if infraSportModel.sportCode != nil {
                                         HomeTextView(title: "\(infraSportModel.sportCode!.name!)")
@@ -83,10 +74,14 @@ struct TeamView: View {
                             HStack {
                                 ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
                                     
-                                    NavigationLink(destination: Text(verbatim: "dd")) {
-                                        ForEach(infraSportModel.attachFiles!, id: \.self) {
-                                            infraModel in
-                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                    NavigationLink(destination: TeamDetailSportView(infraModel: infraSportModel), isActive: $isSportShowing) {
+                                        Button(action: {
+                                            self.isSportShowing = true
+                                        }) {
+                                            ForEach(infraSportModel.attachFiles!, id: \.self) {
+                                                infraModel in
+                                                ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: infraSportModel.name!)
+                                            }
                                         }
                                     }
                                     .navigationBarTitle("Navigation", displayMode: .inline)
@@ -109,18 +104,7 @@ struct TeamView: View {
                         
                         ScrollView (.horizontal, showsIndicators: false) {
                             HStack {
-                                //                            HomeTextView(title: "전체")
-                                
-                                Button(action:{
-                                    self.infraViewModel.isDisplay(title: "전체")
-                                }){
-                                    Text("전체")
-                                        .frame(width: CGFloat("전체".count) * 20, height: 15, alignment: .center)
-                                        .padding(5)
-                                        .foregroundColor(Color.white)
-                                        .background(Color.black)
-                                        .cornerRadius(15)
-                                }
+                                HomeTextView(title: "전체")
                                 
                                 ForEach(self.infraViewModel.infraFacilityModel, id: \.self) { infraFacilityModel in
                                     if infraFacilityModel.name != nil {
@@ -136,15 +120,17 @@ struct TeamView: View {
                             HStack {
                                 ForEach(self.infraViewModel.infraFacilityModel, id: \.self) { infraFacilityModel in
                                     
-                                    NavigationLink(destination: Text(verbatim: "dd")) {
-                                        ForEach(infraFacilityModel.attachFiles!, id: \.self) {
-                                            infraModel in
-                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                    NavigationLink(destination: TeamDetailSportView(infraModel: infraFacilityModel), isActive: $isFacilityShowing) {
+                                        Button(action: {
+                                            self.isFacilityShowing = true
+                                        }) {
+                                            ForEach(infraFacilityModel.attachFiles!, id: \.self) {
+                                                infraModel in
+                                                ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: infraFacilityModel.name!)
+                                            }
                                         }
                                     }
                                     //                                .navigationBarTitle("HomeView")
-                                    
-                                    
                                 }
                             }
                         }
