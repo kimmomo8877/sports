@@ -53,7 +53,7 @@
 		4D499DDA25B96B720031A614 /* BandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DD925B96B720031A614 /* BandViewModel.swift */; };
 		4D499DE625B996F40031A614 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DE525B996F40031A614 /* Tracker.swift */; };
 		4D499DE925BA8E110031A614 /* TrackerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DE825BA8E110031A614 /* TrackerMain.swift */; };
-		4D499DF125BAD8D60031A614 /* BandActivityRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DF025BAD8D60031A614 /* BandActivityRaw.swift */; };
+		4D499DF125BAD8D60031A614 /* BandActivityRawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DF025BAD8D60031A614 /* BandActivityRawModel.swift */; };
 		4D499DFA25BBCEEC0031A614 /* ActivityDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DF925BBCEEC0031A614 /* ActivityDataManager.swift */; };
 		4D499E2225BC30E60031A614 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499E2125BC30E60031A614 /* ActivityModel.swift */; };
 		4D499E2725BC393E0031A614 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499E2625BC393E0031A614 /* DateUtils.swift */; };
@@ -127,7 +127,7 @@
 		4D499DD925B96B720031A614 /* BandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandViewModel.swift; sourceTree = "<group>"; };
 		4D499DE525B996F40031A614 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		4D499DE825BA8E110031A614 /* TrackerMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerMain.swift; sourceTree = "<group>"; };
-		4D499DF025BAD8D60031A614 /* BandActivityRaw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandActivityRaw.swift; sourceTree = "<group>"; };
+		4D499DF025BAD8D60031A614 /* BandActivityRawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandActivityRawModel.swift; sourceTree = "<group>"; };
 		4D499DF925BBCEEC0031A614 /* ActivityDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataManager.swift; sourceTree = "<group>"; };
 		4D499E2125BC30E60031A614 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		4D499E2625BC393E0031A614 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 		4D499E0525BBED8E0031A614 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4D499DF025BAD8D60031A614 /* BandActivityRaw.swift */,
+				4D499DF025BAD8D60031A614 /* BandActivityRawModel.swift */,
 				4D499E2125BC30E60031A614 /* ActivityModel.swift */,
 			);
 			path = Model;
@@ -460,7 +460,7 @@
 				4D499E2725BC393E0031A614 /* DateUtils.swift in Sources */,
 				1429BA0425BD746E0001CA95 /* TeamDetailSportView.swift in Sources */,
 				143D52CC25BF1FC600C78030 /* SportMenuView.swift in Sources */,
-				4D499DF125BAD8D60031A614 /* BandActivityRaw.swift in Sources */,
+				4D499DF125BAD8D60031A614 /* BandActivityRawModel.swift in Sources */,
 				4D499DE625B996F40031A614 /* Tracker.swift in Sources */,
 				1429B9F725BD73F30001CA95 /* SearchBarView.swift in Sources */,
 				4D3D4BD425A9AB1E00C3F78F /* SceneDelegate.swift in Sources */,
