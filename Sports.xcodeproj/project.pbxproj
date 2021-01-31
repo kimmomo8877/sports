@@ -37,9 +37,9 @@
 		143AA51525C69B09004F9B6B /* man-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51325C69B09004F9B6B /* man-2.png */; };
 		143AA51625C69B09004F9B6B /* man-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51425C69B09004F9B6B /* man-3.png */; };
 		143AA51A25C69BD5004F9B6B /* main_visual.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51925C69BD5004F9B6B /* main_visual.jpg */; };
-		143AA51D25C69BE2004F9B6B /* m-intro_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51C25C69BE2004F9B6B /* m-intro_bg.jpg */; };
 		143AA52225C69E20004F9B6B /* logo-footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA52125C69E20004F9B6B /* logo-footer.png */; };
 		143AA52525C69E7F004F9B6B /* logo-intro.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA52425C69E7F004F9B6B /* logo-intro.png */; };
+		143AA52C25C6F870004F9B6B /* m-intro_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 143AA52B25C6F870004F9B6B /* m-intro_bg.jpg */; };
 		143AEEDF25C3026D0098C95C /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 143AEEDE25C3026D0098C95C /* PartialSheet */; };
 		143D52C925BF1F9500C78030 /* SportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D52C825BF1F9500C78030 /* SportView.swift */; };
 		143D52CC25BF1FC600C78030 /* SportMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D52CB25BF1FC600C78030 /* SportMenuView.swift */; };
@@ -115,9 +115,9 @@
 		143AA51325C69B09004F9B6B /* man-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-2.png"; sourceTree = "<group>"; };
 		143AA51425C69B09004F9B6B /* man-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-3.png"; sourceTree = "<group>"; };
 		143AA51925C69BD5004F9B6B /* main_visual.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_visual.jpg; sourceTree = "<group>"; };
-		143AA51C25C69BE2004F9B6B /* m-intro_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "m-intro_bg.jpg"; path = "../../../../Downloads/이미지리사이징/img_x2/m-intro_bg.jpg"; sourceTree = "<group>"; };
 		143AA52125C69E20004F9B6B /* logo-footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-footer.png"; sourceTree = "<group>"; };
 		143AA52425C69E7F004F9B6B /* logo-intro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-intro.png"; sourceTree = "<group>"; };
+		143AA52B25C6F870004F9B6B /* m-intro_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "m-intro_bg.jpg"; sourceTree = "<group>"; };
 		143D52C825BF1F9500C78030 /* SportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportView.swift; sourceTree = "<group>"; };
 		143D52CB25BF1FC600C78030 /* SportMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportMenuView.swift; sourceTree = "<group>"; };
 		144B696225C1914600E915AE /* TouringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouringView.swift; sourceTree = "<group>"; };
@@ -265,12 +265,12 @@
 				4D3D4BD125A9AB1E00C3F78F /* AppDelegate.swift */,
 				4D3D4BD325A9AB1E00C3F78F /* SceneDelegate.swift */,
 				4D3D4BDA25A9AB1F00C3F78F /* Assets.xcassets */,
-				143AA51C25C69BE2004F9B6B /* m-intro_bg.jpg */,
 				143AA51325C69B09004F9B6B /* man-2.png */,
 				143AA52425C69E7F004F9B6B /* logo-intro.png */,
 				143AA51425C69B09004F9B6B /* man-3.png */,
 				143AA52125C69E20004F9B6B /* logo-footer.png */,
 				143AA51025C69B03004F9B6B /* man-1.png */,
+				143AA52B25C6F870004F9B6B /* m-intro_bg.jpg */,
 				143AA51925C69BD5004F9B6B /* main_visual.jpg */,
 				1429BA0825BD75250001CA95 /* image.jpeg */,
 				4D3D4BDF25A9AB1F00C3F78F /* LaunchScreen.storyboard */,
@@ -449,9 +449,9 @@
 				143AA51125C69B03004F9B6B /* man-1.png in Resources */,
 				4D3D4BE125A9AB1F00C3F78F /* LaunchScreen.storyboard in Resources */,
 				1429BA0925BD75250001CA95 /* image.jpeg in Resources */,
-				143AA51D25C69BE2004F9B6B /* m-intro_bg.jpg in Resources */,
 				4D3D4BDE25A9AB1F00C3F78F /* Preview Assets.xcassets in Resources */,
 				4D3D4BDB25A9AB1F00C3F78F /* Assets.xcassets in Resources */,
+				143AA52C25C6F870004F9B6B /* m-intro_bg.jpg in Resources */,
 				143AA51A25C69BD5004F9B6B /* main_visual.jpg in Resources */,
 				143AA51525C69B09004F9B6B /* man-2.png in Resources */,
 				143AA52225C69E20004F9B6B /* logo-footer.png in Resources */,
