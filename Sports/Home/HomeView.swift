@@ -23,7 +23,7 @@ struct HomeView: View {
                     VStack {
                         
                         ZStack (alignment:.top) {
-                            NavigationLink(destination: Tracker(), isActive: $isShowing) {
+                            NavigationLink(destination: TrackingConfigView(), isActive: $isShowing) {
                                 Button(action: {
                                     self.isShowing = true
                                 }) {
