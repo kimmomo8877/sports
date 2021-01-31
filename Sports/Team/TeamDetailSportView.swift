@@ -103,39 +103,54 @@ struct TeamDetailSportView: View {
                     }
                     Group {
                         HStack() {
-                            Text("주소").padding(.leading, 20).font(Font.body.bold())
-                            //                        Text("경남 성산시 창이대로 266-265").padding(.leading, 20)
-                            Text(infraModel.address ?? "").padding(.leading, 20)
+                            Text("주소").padding(.leading, 20).foregroundColor(.secondary)
+                            // font(Font.body.bold()).
+                            Text(infraModel.address ?? "").padding(.leading, 33)
                             Spacer()
                         }
                         HStack() {
-                            Text("홈페이지").padding(.leading, 20)
-                            //                        Text("http://staet;f.dfdasfasd.fdsafdsafasd").padding(.leading, 20)
-                            Text(infraModel.homepageUrl ?? "").padding(.leading, 20)
+                            Text("홈페이지").padding(.leading, 20).foregroundColor(.secondary)
+                            Text(infraModel.homepageUrl ?? "").padding(.leading, 8)
                             Spacer()
-                        }
+                        }.padding(.top,1)
                         HStack() {
-                            Text("전화").padding(.leading, 20)
-                            //                        Text("055-235-2345").padding(.leading, 20)
-                            Text(infraModel.phoneNumber ?? "").padding(.leading, 20)
+                            Text("전화").padding(.leading, 20).foregroundColor(.secondary)
+                            Text(infraModel.phoneNumber ?? "").padding(.leading, 33)
                             Spacer()
-                        }
+                        }.padding(.top,1)
                         
-                        Text("                            ").underline()
+                        VStack { Divider().background(Color.gray) }.padding(CGFloat(20)).foregroundColor(.secondary)
+//                        Path { path in
+//                            path.move(to: CGPoint(x: 20, y: 700))
+//                            path.addLine(to:CGPoint(x:20, y: 700))
+//                            path.addLine(to: CGPoint(x:geo.size.width, y: 700))
+//                        }
+//                        .stroke(Color.blue, lineWidth: 10)
+                    }
+                    
+                    Group {
+                        Text("스포츠시설").padding(.leading, 20).font(.system(size:21)).font(.system(size:20))
+                        Text("주경기장, 보조경기장, 체력단력장, 세미나실, 숙소").padding(.leading, 20).padding(.top,3)
+                        VStack { Divider().background(Color.gray) }.padding(CGFloat(20)).foregroundColor(.secondary)
+                    }
+                    
+                    Group {
+                        Text("부속시설").padding(.leading, 20).font(.system(size:21)).font(.system(size:20))
+                        Text("주경기장, 보조경기장, 체력단력장, 세미나실, 숙소").padding(.leading, 20).padding(.top,3)
+                        VStack { Divider().background(Color.gray) }.padding(CGFloat(20)).foregroundColor(.secondary)
                     }
                     Group {
-                        Text("부속시설").padding(.leading, 20)
-                        Text("주경기장, 보조경기장, 체력단력장, 세미나실, 숙소").padding(.leading, 20)
-                        Text("                            ").underline()
-                        Text("기타부속시설").padding(.leading, 20)
-                        Text("편의점, 카페, 선수대기실, 심판실, 감독실, 치어리더실").padding(.leading, 20)
-                        Text("                            ").underline()
-                        Text("위치").padding(.leading, 20)
-                        Text("경남 창원시 성산구 사파정동 비음로 97").padding(.leading, 20)
-                        Text("                            ").underline()
-                        Text("요금").padding(.leading, 20)
+                        Text("기타부속시설").padding(.leading, 20).font(.system(size:21)).font(.system(size:20))
+                        Text("편의점, 카페, 선수대기실, 심판실, 감독실, 치어리더실").padding(.leading, 20).padding(.top,3)
+                        VStack { Divider().background(Color.gray) }.padding(CGFloat(20)).foregroundColor(.secondary)
+                    }
+                    Group {
+                        Text("위치").padding(.leading, 20).font(.system(size:21)).font(.system(size:20))
+                        Text("경남 창원시 성산구 사파정동 비음로 97").padding(.leading, 20).padding(.top,3)
+                        VStack { Divider().background(Color.gray) }.padding(CGFloat(20)).foregroundColor(.secondary)
                         
-                        
+                        Text("요금").padding(.leading, 20).font(Font.body.bold())
+ 
                     }
                 }
                 
