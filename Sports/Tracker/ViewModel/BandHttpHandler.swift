@@ -52,7 +52,7 @@ class BandHttpHandler {
     }
     
     static func sendInbody(inBodyData: BandInbodyRawModel) {
-        let timestamp = inBodyData.Date + " " + inBodyData.Time
+        let timestamp = inBodyData.Date! + " " + inBodyData.Time!
         let toSendBody:[String: Any] = ["targetExerNo": 100, "tracking": ["timestamp": timestamp, "pbf": inBodyData.PBF!,
                                                                           "ffm": inBodyData.FFM!, "tbw": inBodyData.TBW!, "imp": inBodyData.IMP!]]
         sendPost(urlString: "http://www.kbostat.co.kr/resource/tracking/exercise", jsonDict: toSendBody)

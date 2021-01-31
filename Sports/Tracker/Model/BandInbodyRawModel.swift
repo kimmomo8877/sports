@@ -8,8 +8,8 @@
 import Foundation
 
 struct BandInbodyRawModel: Decodable, Hashable {
-    var Date: String
-    var Time: String
+    var Date: String?
+    var Time: String?
     var PBF: Float?
     var FFM: Float?
     var TBW: Float?

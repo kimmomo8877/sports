@@ -10,14 +10,32 @@ import SwiftUI
 struct TrackingConfigView: View {
     var body: some View {
         VStack {
-            Text("나이와 체중을 입력해 18")
+            Text("트래커 실행에 필요한 나이와 체중을 입력해주세요.")
+                .font(.title)
+                .padding()
+            Rectangle()
+                .foregroundColor(.blue)
+                .frame(width: 350, height: 80)
+            Rectangle()
+                .foregroundColor(.blue)
+                .frame(width: 350, height: 80)
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
             NavigationLink(
                 destination: TrackerMainView(age: 20, weight: 50),
                 label: {
-                    Text("Start")
+                    Text("설정완료")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(Color.white)
+                        .font(.title2)
+                        .cornerRadius(8)
                 })
+            Spacer()
         }
-        .navigationBarTitle("Check menu")
+        .navigationBarTitle("트래커 설정")
     }
 }
 

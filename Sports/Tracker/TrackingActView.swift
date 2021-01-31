@@ -32,6 +32,7 @@ struct TrackingActView: View {
                 Text("Time")
                 Text("\(self.displayTime)")
                     .font(.title)
+                    .bold()
                     .onReceive(secondTimer) { input in
                         let diffTime = Int(Date().timeIntervalSince(startTime))
                         let min = Int(diffTime / 60)
@@ -42,17 +43,26 @@ struct TrackingActView: View {
                 Spacer()
                 statusGroup
                 Spacer()
-                HStack(spacing: 50) {
+                HStack(spacing: 30) {
                     Button(action: { bandVm.getActivity() }, label: {
                         Text("Refresh ACT")
+                            .background(Color.blue)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(8)
                     })
                     
                     Button(action: { bandVm.runHR() }, label: {
                         Text("Start HR")
+                            .background(Color.blue)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(8)
                     })
                     
                     Button(action: { bandVm.runInBody() }, label: {
                         Text("Start BCA")
+                            .background(Color.blue)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(8)
                     })
                 }
                 Spacer()
@@ -68,13 +78,14 @@ struct TrackingActView: View {
                 
             }
         }
+        .background(Color.green)
     }
 }
 
 private extension TrackingActView {
     var infoGroup: some View {
         Group {
-            HStack(spacing: 100) {
+            HStack(spacing: 80) {
                 VStack(alignment: .leading) {
                     Text("보행수")
                     HStack {
@@ -83,6 +94,8 @@ private extension TrackingActView {
                         Text("걸음")
                     }
                 }
+                .frame(width: 100, height: 100, alignment: .center)
+                .background(Color.red)
                 
                 VStack(alignment: .leading) {
                     Text("거리")
@@ -92,10 +105,12 @@ private extension TrackingActView {
                         Text("m")
                     }
                 }
+                .frame(width: 100, height: 100, alignment: .center)
+                .background(Color.red)
             }
             .padding()
             
-            HStack(spacing: 100) {
+            HStack(spacing: 80) {
                 VStack (alignment: .leading) {
                     Text("칼로리")
                     HStack {
@@ -104,6 +119,8 @@ private extension TrackingActView {
                         Text("kcal")
                     }
                 }
+                .frame(width: 100, height: 100, alignment: .center)
+                .background(Color.red)
                 
                 VStack (alignment: .leading) {
                     Text("보행시간")
@@ -113,6 +130,8 @@ private extension TrackingActView {
                         Text("min")
                     }
                 }
+                .frame(width: 100, height: 100, alignment: .center)
+                .background(Color.red)
             }
             .padding()
         }

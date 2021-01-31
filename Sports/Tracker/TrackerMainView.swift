@@ -13,22 +13,37 @@ struct TrackerMainView: View {
     let weight:Int
     
     var body: some View {
-        VStack {
-            Text("Tracker Main page : age-\(age), weight-\(weight)")
-            NavigationLink(
-                destination: TrackingActView(startTime: Date()),
-                label: {
-                    Text("Start ACT")
-                })
+        ScrollView {
+            VStack {
+                //            Text("Tracker Main page : age-\(age), weight-\(weight)")
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .frame(width: 300, height: 70)
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .frame(width: 300, height: 70)
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .frame(width: 150, height: 150)
+                NavigationLink(
+                    destination: TrackingActView(startTime: Date()),
+                    label: {
+                        Text("Start")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(8)
+                            .font(.title2)
+                    })
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .frame(width: 300, height: 100)
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .frame(width: 300, height: 160)
+            }
+            .padding()
         }
-        //        VStack {
-        //            List(self.bandVm.activities, id: \.timestamp) { activity in
-        //                Text("time : \(convertDateToString(targetDate: activity.timestamp)), walk : \(activity.walk)")
-        //            }
-        //
-        //        }.onAppear {
-        //            self.bandVm.refreshActivity()
-        //        }
     }
 }
 
