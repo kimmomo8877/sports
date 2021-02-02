@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         var infraViewModel = InfraViewModel()
         var infraCategoryViewModel = InfraCategoryViewModel()
-//        var searchViewModel = SearchViewModel()
         var favoriteViewModel = FavoriteViewModel()
         var searchViewModel = SearchViewModel()
         

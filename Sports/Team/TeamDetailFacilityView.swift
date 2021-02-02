@@ -1,26 +1,19 @@
 //
-//  TeamDetailSport.swift
+//  TeamDetailFacility.swift
 //  Sports
 //
 //  Created by Jinsang Jeong on 2021/01/23.
 //
 
-//
-//  Home.swift
-//  Sports
-//
-//  Created by TF-Mac-122 on 2021/01/09.
-//
-
 import SwiftUI
 import PartialSheet
 
-struct TeamDetailSportView: View {
+struct TeamDetailFacilityView: View {
     //    @EnvironmentObject var partialSheet : PartialSheetManager
     @EnvironmentObject var infraViewModel:InfraViewModel
     @State private var showingSheet = true
     
-    var infraModel: InfraModel   
+    var infraModel: InfraModel
     
     var body: some View {
         
@@ -154,7 +147,40 @@ struct TeamDetailSportView: View {
             }
         }
         
-       
+        //        VStack(){
+        //        self.partialSheet.showPartialSheet(){
+        //                                                print("dismissed")
+        //                                            }
+        //        }
+        //        Button(action: {
+        //                                self.partialSheet.showPartialSheet({
+        //                                    print("dismissed")
+        //                                }) {
+        //                                    Text("Partial Sheet")
+        //                                }
+        //                            }, label: {
+        //                                Text("Show Partial Sheet")
+        //                            }).addPartialSheet()
+        
+        
+        //        Button(action:{
+        //            //        self.infra.isDisplay(title: title)
+        //
+        //        }){
+        //            Text("sheet")
+        //        }.actionSheet(isPresented: $showingSheet) {
+        //            ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Dismiss Action Sheet"))])
+        //
+        //        }
+        
+        
+        //                        Path { path in
+        //                            path.move(to: CGPoint(x: 20, y: 700))
+        //                            path.addLine(to:CGPoint(x:20, y: 700))
+        //                            path.addLine(to: CGPoint(x:geo.size.width, y: 700))
+        //                        }
+        //                        .stroke(Color.blue, lineWidth: 10)
     }
     
 }
+

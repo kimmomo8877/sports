@@ -414,15 +414,17 @@ class InfraViewModel: ObservableObject {
     
     func search_infra(searchWord: String) {
         
-        let url_string = "http://www.kbostat.co.kr/resource/infra/=" + searchWord
+        let url_string = "http://www.kbostat.co.kr/resource/infra/" + searchWord
         print(url_string)
         let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         guard let url = URL(string: encoded!) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
-            DispatchQueue.main.async {
-                let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
-                self.infraModel = Array(allData[0 ..< (allData.count)])
+            DispatchQueue.main.sync {
+                let allData = try! JSONDecoder().decode(InfraModel.self, from: data!)
+                self.infraModel.removeAll()
+                self.infraModel.append(allData)
+                //Array(allData[0 ..< (allData.count)])
                 //                let searchtemp = Array(allData[0 ..< (allData.count)])
                 //                print(searchtemp)
             }
@@ -435,6 +437,23 @@ class InfraViewModel: ObservableObject {
         self.infraObject.append(infraObject)
     }
     
+    func search_team(searchWord: String) {
+//        let url_string = "http://www.kbostat.co.kr/resource/infra/=" + searchWord
+//        print(url_string)
+//        let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+//        guard let url = URL(string: encoded!) else { return }
+//        
+//        let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
+//            DispatchQueue.main.async {
+//                let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
+//                self.infraModel = Array(allData[0 ..< (allData.count)])
+//                //                let searchtemp = Array(allData[0 ..< (allData.count)])
+//                //                print(searchtemp)
+//            }
+//        }
+//        task.resume()
+        
+    }
     
 }
 

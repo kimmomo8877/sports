@@ -29,8 +29,17 @@ struct SearchBarView: View  {
                 
      
                 List(self.favoriteViewModel.favoriteModel.filter({ searchText.isEmpty ? true : $0.searchWord!.contains(searchText) }),id: \.self) { item in
-                    Text(item.searchWord!)
+//                    Text(item.searchWord!)
             
+                    
+                    Button(action: {
+                                           // Save the object into a global store to be used later on
+                                           self.searchText = item.searchWord!
+                                           // Present new view
+//                                           self.link.presented?.value = true
+                                       }) {
+                                           Text(item.searchWord!)
+                                       }
                     
 //                                        NavigationLink(destination: TeamSearch(searchWord:item.searchWord!)) {
 //                                            Text(item.searchWord!)

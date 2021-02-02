@@ -92,7 +92,7 @@ struct HomeView: View {
                                 HStack {
                                     ForEach(self.infraViewModel.infraSportRModel, id: \.self) { infraSportModel in
                                         
-                                        NavigationLink(destination: TeamDetailSportView(infraModel: infraSportModel), isActive: $isSportShowing) {
+                                        NavigationLink(destination: TeamDetailFacilityView(infraModel: infraSportModel), isActive: $isSportShowing) {
                                             Button(action: {
                                                 self.isSportShowing = true
                                                 self.infraViewModel.set_infra(infraObject: infraSportModel)
@@ -136,7 +136,7 @@ struct HomeView: View {
                                 HStack {
                                     ForEach(self.infraViewModel.infraHotelRModel, id: \.self) { infraHotelModel in
                                         
-                                        NavigationLink(destination: TeamDetailSportView(infraModel: infraHotelModel), isActive: $isHotelShowing) {
+                                        NavigationLink(destination: TeamDetailFacilityView(infraModel: infraHotelModel), isActive: $isHotelShowing) {
                                             Button(action: {
                                                 self.infraViewModel.set_infra(infraObject: infraHotelModel)
                                                 self.isHotelShowing = true
@@ -184,7 +184,7 @@ struct HomeView: View {
                                 HStack {
                                     ForEach(self.infraViewModel.infraFoodRModel, id: \.self) { infraFoodModel in
                                         
-                                        NavigationLink(destination: TeamDetailSportView(infraModel: infraFoodModel), isActive: $isFoodShowing) {
+                                        NavigationLink(destination: TeamDetailFacilityView(infraModel: infraFoodModel), isActive: $isFoodShowing) {
                                             Button(action: {
                                                 self.isFoodShowing = true
                                                 self.infraViewModel.set_infra(infraObject: infraFoodModel)

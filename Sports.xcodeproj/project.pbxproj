@@ -31,7 +31,7 @@
 		1429BA0325BD746E0001CA95 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9FE25BD746E0001CA95 /* TeamView.swift */; };
 		1429BA0425BD746E0001CA95 /* TeamDetailSportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9FF25BD746E0001CA95 /* TeamDetailSportView.swift */; };
 		1429BA0525BD746E0001CA95 /* TeamSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429BA0025BD746E0001CA95 /* TeamSearchView.swift */; };
-		1429BA0625BD746E0001CA95 /* TeamDetailFacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429BA0125BD746E0001CA95 /* TeamDetailFacility.swift */; };
+		1429BA0625BD746E0001CA95 /* TeamDetailFacilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429BA0125BD746E0001CA95 /* TeamDetailFacilityView.swift */; };
 		1429BA0925BD75250001CA95 /* image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1429BA0825BD75250001CA95 /* image.jpeg */; };
 		143AA51125C69B03004F9B6B /* man-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51025C69B03004F9B6B /* man-1.png */; };
 		143AA51525C69B09004F9B6B /* man-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51325C69B09004F9B6B /* man-2.png */; };
@@ -109,7 +109,7 @@
 		1429B9FE25BD746E0001CA95 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		1429B9FF25BD746E0001CA95 /* TeamDetailSportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailSportView.swift; sourceTree = "<group>"; };
 		1429BA0025BD746E0001CA95 /* TeamSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamSearchView.swift; sourceTree = "<group>"; };
-		1429BA0125BD746E0001CA95 /* TeamDetailFacility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailFacility.swift; sourceTree = "<group>"; };
+		1429BA0125BD746E0001CA95 /* TeamDetailFacilityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailFacilityView.swift; sourceTree = "<group>"; };
 		1429BA0825BD75250001CA95 /* image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpeg; sourceTree = "<group>"; };
 		143AA51025C69B03004F9B6B /* man-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-1.png"; sourceTree = "<group>"; };
 		143AA51325C69B09004F9B6B /* man-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-2.png"; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 				1429B9DD25BD73C70001CA95 /* FavoriteViewModel.swift */,
 				1429B9DE25BD73C70001CA95 /* FavoriteModel.swift */,
 				1429B9FE25BD746E0001CA95 /* TeamView.swift */,
-				1429BA0125BD746E0001CA95 /* TeamDetailFacility.swift */,
+				1429BA0125BD746E0001CA95 /* TeamDetailFacilityView.swift */,
 				1429B9FF25BD746E0001CA95 /* TeamDetailSportView.swift */,
 				1429B9FD25BD746E0001CA95 /* TeamMapView.swift */,
 				1429BA0025BD746E0001CA95 /* TeamSearchView.swift */,
@@ -479,7 +479,7 @@
 				1429B9F625BD73F30001CA95 /* MapView.swift in Sources */,
 				144B696725C193C300E915AE /* TouringImageView.swift in Sources */,
 				1429B9EC25BD73C70001CA95 /* FavoriteViewModel.swift in Sources */,
-				1429BA0625BD746E0001CA95 /* TeamDetailFacility.swift in Sources */,
+				1429BA0625BD746E0001CA95 /* TeamDetailFacilityView.swift in Sources */,
 				1429B9E325BD73C70001CA95 /* InfraCategoryModel.swift in Sources */,
 				1429B9E525BD73C70001CA95 /* VirtualViewModel.swift in Sources */,
 				1429BA0225BD746E0001CA95 /* TeamMapView.swift in Sources */,

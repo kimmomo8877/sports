@@ -27,7 +27,7 @@ struct InfraModel: Decodable, Hashable {
     var useRuleDescription: String?
     var refundPolicyDescription: String?
     var latitude: Double?
-    var longtitude: Double?
+    var longitude: Double?
     var charges: Array<ChargeModel>?
     var reservationCnt: Int?
 //    var registeDate: Date?
