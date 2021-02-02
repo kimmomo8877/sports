@@ -14,4 +14,11 @@ class DateUtils {
         dateFormatter.timeZone = NSTimeZone(name: "Asia/Seoul") as TimeZone?
         return dateFormatter.date(from: dateString)!
     }
+    
+    static func currentDateString() -> String {
+        let currentDate: Date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: currentDate)
+    }
 }

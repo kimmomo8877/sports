@@ -7,9 +7,17 @@
 
 import Foundation
 
-class BandHttpHandler {
-    static func sendPost(urlString:String, jsonDict:[String: Any]) {
-        let url = URL(string: urlString)!
+class BandHttpHandler: ObservableObject {
+    static let shared: BandHttpHandler = BandHttpHandler()
+    
+    @Published var exerciseId: String = ""
+    @Published var isComplete: Bool = false
+    
+    func sendBeginRequest() {
+        self.isComplete = true
+        let jsonDict:[String: Any] = ["exerType": "Tracking", "bodyComposition": ["timestamp": DateUtils.currentDateString()]]
+        
+        let url = URL(string: "http://www.kbostat.co.kr/resource/tracking/begin")!
         let serializedData = try! JSONSerialization.data(withJSONObject: jsonDict, options: [])
         let toRequestjsonText = String(decoding: serializedData, as: UTF8.self)
         print("requestBody : \(toRequestjsonText)")
@@ -38,23 +46,23 @@ class BandHttpHandler {
         task.resume()
     }
     
-    static func sendHR(hrData: BandHrRawModel) {
-        let timestamp = hrData.Date! + " " + hrData.Time!
-        let toSendBody:[String: Any] = ["targetExerNo": 100, "tracking": ["timestamp": timestamp, "hr": hrData.HR!]]
-        sendPost(urlString: "http://www.kbostat.co.kr/resource/tracking/exercise", jsonDict: toSendBody)
-    }
-
-    static func sendAct(actData: BandActivityRawModel) {
-        let timestamp = actData.Date + " " + actData.Time
-        let toSendBody:[String: Any] = ["targetExerNo": 100, "tracking": ["timestamp": timestamp, "walk": actData.Walk,
-                                                                          "walkCalories": actData.WalkCalories]]
-        sendPost(urlString: "http://www.kbostat.co.kr/resource/tracking/exercise", jsonDict: toSendBody)
-    }
-    
-    static func sendInbody(inBodyData: BandInbodyRawModel) {
-        let timestamp = inBodyData.Date! + " " + inBodyData.Time!
-        let toSendBody:[String: Any] = ["targetExerNo": 100, "tracking": ["timestamp": timestamp, "pbf": inBodyData.PBF!,
-                                                                          "ffm": inBodyData.FFM!, "tbw": inBodyData.TBW!, "imp": inBodyData.IMP!]]
-        sendPost(urlString: "http://www.kbostat.co.kr/resource/tracking/exercise", jsonDict: toSendBody)
-    }
+//    static func sendHR(hrData: BandHrRawModel) {
+//        let timestamp = hrData.Date! + " " + hrData.Time!
+//        let toSendBody:[String: Any] = ["targetExerNo": 100, "tracking": ["timestamp": timestamp, "hr": hrData.HR!]]
+//        sendPost(urlString: "http://www.kbostat.co.kr/resource/tracking/exercise", jsonDict: toSendBody)
+//    }
+//
+//    static func sendAct(actData: BandActivityRawModel) {
+//        let timestamp = actData.Date + " " + actData.Time
+//        let toSendBody:[String: Any] = ["targetExerNo": 100, "tracking": ["timestamp": timestamp, "walk": actData.Walk,
+//                                                                          "walkCalories": actData.WalkCalories]]
+//        sendPost(urlString: "http://www.kbostat.co.kr/resource/tracking/exercise", jsonDict: toSendBody)
+//    }
+//    
+//    static func sendInbody(inBodyData: BandInbodyRawModel) {
+//        let timestamp = inBodyData.Date! + " " + inBodyData.Time!
+//        let toSendBody:[String: Any] = ["targetExerNo": 100, "tracking": ["timestamp": timestamp, "pbf": inBodyData.PBF!,
+//                                                                          "ffm": inBodyData.FFM!, "tbw": inBodyData.TBW!, "imp": inBodyData.IMP!]]
+//        sendPost(urlString: "http://www.kbostat.co.kr/resource/tracking/exercise", jsonDict: toSendBody)
+//    }
 }
