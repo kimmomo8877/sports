@@ -201,6 +201,8 @@
 		1429BA1A25BD7EC70001CA95 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1429B9D425BD73C70001CA95 /* InfraCategoryModel.swift */,
+				1429B9D725BD73C70001CA95 /* InfraCategoryViewModel.swift */,
 				1429B9D325BD73C70001CA95 /* InfraViewModel.swift */,
 				1429B9DF25BD73C70001CA95 /* InfraModel.swift */,
 				1429B9F325BD73F30001CA95 /* MapView.swift */,
@@ -357,8 +359,6 @@
 		4DB784F025A9B3BA00725E6C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				1429B9D425BD73C70001CA95 /* InfraCategoryModel.swift */,
-				1429B9D725BD73C70001CA95 /* InfraCategoryViewModel.swift */,
 				1429B9CE25BD73010001CA95 /* HomeTextView.swift */,
 				1429B9CB25BD72FA0001CA95 /* HomeIntroView.swift */,
 				14F969E125BD6EE00002D5F0 /* HomeImageView.swift */,

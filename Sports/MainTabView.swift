@@ -7,14 +7,29 @@
 
 import SwiftUI
 
+//struct MainTabView: View {
+//    @Environment(\.managedObjectContext) private var viewContext
+//    @State private var searchText = "cc"
+//
+//    var body: some View {
+//        NavigationView {
+////        Text("Hello, world!")
+////            .padding()
+//
+//        TextField("Search ...", text: $searchText)
+//    }
+//    }
+//
+//}
+
 struct MainTabView: View {
     private enum Tabs {
       case home, team, sports, touring, myPage
     }
-    
+
     @State private var selectedTab: Tabs = .home
 //    private var testViewModel = TestViewModel()
-    
+
     var body: some View {
         TabView(selection: $selectedTab) {
             Group {
@@ -38,6 +53,7 @@ private extension MainTabView {
 //                Text("전지훈련팀")
 //            }
         HomeView()
+//        SportView()
             .tag(Tabs.home)
             .tabItem {
                 Text("홈")
@@ -46,40 +62,56 @@ private extension MainTabView {
 
     var team: some View {
         TeamView()
+//        SportView()
+//        Text("MyPageView")
             .tag(Tabs.team)
             .tabItem {
                 Text("전지훈련팀")
             }
-        
+
     }
-    
+
     var sports: some View {
-        Text("SportsView")
+        SportView()
+//        Text("MyPageView")
             .tag(Tabs.sports)
             .tabItem {
                 Text("스포츠재활")
             }
-        
+
     }
-    
+
     var touring: some View {
-        TouringView()
+//        TouringView()
+        SportView()
+//        Text("MyPageView")
             .tag(Tabs.touring)
             .tabItem {
                 Text("투어링")
             }
-        
+
     }
-    
+
     var myPage: some View {
         Text("MyPageView")
             .tag(Tabs.myPage)
             .tabItem {
                 Text("MY")
             }
-        
+
     }
 }
+
+
+struct MainTabView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainTabView()
+    }
+}
+
+
+
+
 
 //fileprivate extension View {
 //  func tabItem(image: String, text: String) -> some View {
@@ -90,9 +122,3 @@ private extension MainTabView {
 //    }
 //  }
 //}
-
-struct MainTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
-    }
-}

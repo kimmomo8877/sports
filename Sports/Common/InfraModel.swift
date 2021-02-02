@@ -13,6 +13,7 @@ struct InfraModel: Decodable, Hashable {
     var infraCategoryNo: Int?
     var parentInfraNo: String?
     var sportCodeId: Int?
+    let infraCategory: InfraCategoryModel?
     let sportCode: SportCodeModel?
     var childInfras: Array<InfraModel>?
     var attachFiles: Array<AttachFileModel>?

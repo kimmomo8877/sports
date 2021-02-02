@@ -9,15 +9,21 @@
 import SwiftUI
 
 struct SearchBarDetailView: View {
+    
+    
     @Binding var text: String
+    //    @State private var text: String = "hh"
     @State private var isEditing = false
     @State private var isShowing = false
-//    @ObservedObject private var searchViewModel = SearchViewModel()
+    @EnvironmentObject var searchViewModel : SearchViewModel
+    //    @ObservedObject private var searchViewModel = SearchViewModel()
     
     var body: some View {
         HStack {
             
+            
             TextField("Search ...", text: $text)
+                
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -47,8 +53,8 @@ struct SearchBarDetailView: View {
                 }
             
             if isEditing {
-
-                NavigationLink(destination: TeamSearchView(searchWord: self.text), isActive: $isShowing) {
+                
+                NavigationLink(destination: TeamSearchView(), isActive: $isShowing) {
                     Button(action: {
                         //                    self.isEditing = false
                         //                                        self.text = ""
@@ -56,10 +62,10 @@ struct SearchBarDetailView: View {
                         // Dismiss the keyboard
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                         
-                        self.text = "창원"
-//                        searchModel.call_json(searchWord: self.text)
+//                        self.text = "창원"
+                        searchViewModel.call_json(searchWord: self.text)
                         self.isShowing = true
-                        
+//                        self.isEditing =
                         
                     }) {
                         Text("검색")
@@ -67,18 +73,9 @@ struct SearchBarDetailView: View {
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))
                     .animation(.default)
-                }.navigationBarTitle("Navigation", displayMode: .inline)
-
+                }.navigationBarTitle("검색", displayMode: .inline)
+                
             }
-            //            else {
-            //                if self.text != "" {
-            //                    NavigationLink(destination: TeamSearch(searchWord:self.text)) {
-            //                        Text("검색")
-            //                    }.padding(.trailing, 10)
-            //                    .transition(.move(edge: .trailing))
-            //                    .animation(.default)
-            //                }
-            //            }
         }
     }
 }

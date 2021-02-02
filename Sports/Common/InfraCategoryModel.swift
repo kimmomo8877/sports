@@ -12,7 +12,7 @@ struct InfraCategoryModel: Decodable, Hashable{
 
     var infraCategoryNo: Int?
     var parentInfraCategoryNo: Int?
-    var parentInfraCategory: Array<InfraCategoryModel>?
+//    var parentInfraCategory: Array<InfraCategoryModel>?
 //    var parentInfraCategory: String?
     var name: String?
 //    var infras: Set<InfraCategory>

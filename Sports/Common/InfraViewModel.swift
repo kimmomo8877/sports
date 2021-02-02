@@ -15,6 +15,15 @@ class InfraViewModel: ObservableObject {
     @Published var infraHotelModel = [InfraModel]()
     @Published var infraFoodModel = [InfraModel]()
     @Published var infraModel = [InfraModel]()
+    
+    @Published var infraSportRModel = [InfraModel]()
+    @Published var infraFacilityRModel = [InfraModel]()
+    @Published var infraTravelRModel = [InfraModel]()
+    @Published var infraFestivalRModel = [InfraModel]()
+    @Published var infraHotelRModel = [InfraModel]()
+    @Published var infraFoodRModel = [InfraModel]()
+    @Published var infraRModel = [InfraModel]()
+    
     @Published var infraSportMenu = [String]()
     @Published var sportMenu:String = "전체"
     @Published var sportCategory:String = "스포츠시설"
@@ -25,11 +34,32 @@ class InfraViewModel: ObservableObject {
     @Published var hotelMenu:String = "전체"
     @Published var hotelCategory:String = "숙소"
     
+    @Published var infraFacilityMenu = [String]()
+    @Published var facilityMenu:String = "전체"
+    @Published var facilityCategory:String = "부대시설"
+    @Published var infraTravelMenu = [String]()
+    @Published var travelMenu:String = "전체"
+    @Published var travelCategory:String = "여행"
+    @Published var infraFestivalMenu = [String]()
+    @Published var festivalMenu:String = "전체"
+    @Published var festivalCategory:String = "축제"
+    
     @Published var infraObject = [InfraModel]()
     
     var infraSportModel_t = [InfraModel]()
     var infraHotelModel_t = [InfraModel]()
     var infraFoodModel_t = [InfraModel]()
+    var infraFacilityModel_t = [InfraModel]()
+    var infraFestivalModel_t = [InfraModel]()
+    var infraTravelModel_t = [InfraModel]()
+    
+    var infraSportRModel_t = [InfraModel]()
+    var infraHotelRModel_t = [InfraModel]()
+    var infraFoodRModel_t = [InfraModel]()
+    var infraFacilityRModel_t = [InfraModel]()
+    var infraFestivalRModel_t = [InfraModel]()
+    var infraTravelRModel_t = [InfraModel]()
+    
     //    @Published var infraSportSoccer = [Infra]()
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1   스포츠
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2   부대시설
@@ -38,15 +68,7 @@ class InfraViewModel: ObservableObject {
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=16  숙박
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=17  food
     init() {
-        
         guard let url1 = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1") else { return }
-        
-        //        1번 스포츠 카타로그
-        //        2번 카타로그별 json 호출
-        //        3번 개별 호출 전부 합침,
-        //        "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1?sportId='1000'
-        
-        
         
         URLSession.shared.dataTask(with: url1) { (data, resp, err) in
             if err != nil {
@@ -57,17 +79,9 @@ class InfraViewModel: ObservableObject {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraSportModel = Array(allData[0 ..< (allData.count)])
                         self.infraSportModel_t = Array(allData[0 ..< (allData.count)])
-                        for (sportMenuModel) in self.infraSportModel {
-                            if sportMenuModel.sportCode!.name != nil {
-                                if !self.infraSportMenu.contains(sportMenuModel.sportCode!.name!) {
-                                    self.infraSportMenu.append(sportMenuModel.sportCode!.name!)
-                                }
-                            }
-                        }
                     } catch {
                         print("JSON Decoder Error")
                     }
-                    
                 }
                 //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
             }
@@ -84,11 +98,10 @@ class InfraViewModel: ObservableObject {
                     do {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraFacilityModel = Array(allData[0 ..< (allData.count)])
-                        //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
+                        self.infraFacilityModel_t = Array(allData[0 ..< (allData.count)])
                     } catch {
                         print("JSON Decoder Error")
                     }
-                    
                 }
                 //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
             }
@@ -105,11 +118,10 @@ class InfraViewModel: ObservableObject {
                     do {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraTravelModel = Array(allData[0 ..< (allData.count)])
-                        //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
+                        self.infraTravelModel_t = Array(allData[0 ..< (allData.count)])
                     } catch {
                         print("JSON Decoder Error")
                     }
-                    
                 }
                 //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
             }
@@ -126,11 +138,10 @@ class InfraViewModel: ObservableObject {
                     do {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraFestivalModel = Array(allData[0 ..< (allData.count)])
-                        //                self.infraSport_temp = Array(allData[0 ..< (allData.count)])
+                        self.infraFestivalModel_t = Array(allData[0 ..< (allData.count)])
                     } catch {
                         print("JSON Decoder Error")
                     }
-                    
                 }
             }
         }
@@ -147,12 +158,6 @@ class InfraViewModel: ObservableObject {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraHotelModel = Array(allData[0 ..< (allData.count)])
                         self.infraHotelModel_t = Array(allData[0 ..< (allData.count)])
-                        for (hotelMenuModel) in self.infraHotelModel {
-                            if !self.infraHotelMenu.contains(hotelMenuModel.name!) {
-                                self.infraHotelMenu.append(hotelMenuModel.name!)
-                            }
-                        }
-                        
                     } catch {
                         print("JSON Decoder Error")
                     }
@@ -171,19 +176,129 @@ class InfraViewModel: ObservableObject {
                         let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
                         self.infraFoodModel = Array(allData[0 ..< (allData.count)])
                         self.infraFoodModel_t = Array(allData[0 ..< (allData.count)])
-                        for (foodMenu) in self.infraFoodModel {
-                            if foodMenu.name != nil {
-                                if !self.infraFoodMenu.contains(foodMenu.name!) {
-                                    self.infraFoodMenu.append(foodMenu.name!)
-                                }
-                            }
-                        }
                     } catch {
                         print("JSON Decoder error")
                     }
                 }
             }
         }.resume()
+        
+        
+        guard let url1r = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1&recommandation=true") else { return }
+        
+        URLSession.shared.dataTask(with: url1r) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraSportRModel = Array(allData[0 ..< (allData.count)])
+                        self.infraSportRModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                }
+                //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        .resume()
+        
+        guard let url2r = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2&recommandation=true") else { return }
+        
+        URLSession.shared.dataTask(with: url2r) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraFacilityRModel = Array(allData[0 ..< (allData.count)])
+                        self.infraFacilityRModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                }
+                //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        .resume()
+        
+        guard let url3r = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=3&recommandation=true") else { return }
+        
+        URLSession.shared.dataTask(with: url3r) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraTravelRModel = Array(allData[0 ..< (allData.count)])
+                        self.infraTravelRModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                }
+                //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        .resume()
+        
+        guard let url15r = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=15&recommandation=true") else { return }
+        
+        URLSession.shared.dataTask(with: url15r) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraFestivalRModel = Array(allData[0 ..< (allData.count)])
+                        self.infraFestivalRModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                }
+            }
+        }
+        .resume()
+        
+        guard let url16r = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=16&recommandation=true") else { return }
+        
+        URLSession.shared.dataTask(with: url16r) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraHotelRModel = Array(allData[0 ..< (allData.count)])
+                        self.infraHotelRModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                }
+            }
+        }.resume()
+        
+        guard let url17r = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=17&recommandation=true") else { return }
+        
+        URLSession.shared.dataTask(with: url17r) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraFoodRModel = Array(allData[0 ..< (allData.count)])
+                        self.infraFoodRModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder error")
+                    }
+                }
+            }
+        }.resume()
+        
     }
     
     
@@ -192,12 +307,12 @@ class InfraViewModel: ObservableObject {
         switch category {
         case "스포츠시설":
             let test_filter = self.infraSportModel_t.filter { infra in
-                return infra.sportCode?.name == title
+                return infra.infraCategory?.name == title
             }
             if title != "전체" {
                 self.infraSportModel.removeAll()
                 self.infraSportModel = self.infraSportModel_t.filter { infraModel in
-                    return infraModel.sportCode?.name == title
+                    return infraModel.infraCategory?.name == title
                 }
             } else {
                 self.infraSportModel.removeAll()
@@ -208,12 +323,12 @@ class InfraViewModel: ObservableObject {
             break
         case "숙소":
             let test_filter = self.infraHotelModel_t.filter { infra in
-                return infra.name == title
+                return infra.infraCategory?.name == title
             }
             if title != "전체" {
                 self.infraHotelModel.removeAll()
                 self.infraHotelModel = self.infraHotelModel_t.filter { infraModel in
-                    return infraModel.name == title
+                    return infraModel.infraCategory?.name == title
                 }
             } else {
                 self.infraHotelModel.removeAll()
@@ -224,12 +339,12 @@ class InfraViewModel: ObservableObject {
             break
         case "맛집":
             let test_filter = self.infraFoodModel_t.filter { infra in
-                return infra.name == title
+                return infra.infraCategory?.name == title
             }
             if title != "전체" {
                 self.infraFoodModel.removeAll()
                 self.infraFoodModel = self.infraFoodModel_t.filter { infraModel in
-                    return infraModel.name == title
+                    return infraModel.infraCategory?.name == title
                 }
             } else {
                 self.infraFoodModel.removeAll()
@@ -240,9 +355,61 @@ class InfraViewModel: ObservableObject {
         default:
             print("Filter Test")
         }
+    }
+    
+    func isFilterR(title: String, category: String) {
         
-        
-//        print(test_filter)
+        switch category {
+        case "추천스포츠시설":
+            let test_filter = self.infraSportRModel_t.filter { infra in
+                return infra.infraCategory?.name == title
+            }
+            if title != "전체" {
+                self.infraSportRModel.removeAll()
+                self.infraSportRModel = self.infraSportRModel_t.filter { infraModel in
+                    return infraModel.infraCategory?.name == title
+                }
+            } else {
+                self.infraSportRModel.removeAll()
+                self.infraSportRModel = self.infraSportRModel_t
+            }
+            self.sportMenu = title
+            print(test_filter)
+            break
+        case "추천숙소":
+            let test_filter = self.infraHotelRModel_t.filter { infra in
+                return infra.infraCategory?.name == title
+            }
+            if title != "전체" {
+                self.infraHotelRModel.removeAll()
+                self.infraHotelRModel = self.infraHotelRModel_t.filter { infraModel in
+                    return infraModel.infraCategory?.name == title
+                }
+            } else {
+                self.infraHotelRModel.removeAll()
+                self.infraHotelRModel = self.infraHotelRModel_t
+            }
+            self.hotelMenu = title
+            print(test_filter)
+            break
+        case "추천맛집":
+            let test_filter = self.infraFoodRModel_t.filter { infra in
+                return infra.infraCategory?.name == title
+            }
+            if title != "전체" {
+                self.infraFoodRModel.removeAll()
+                self.infraFoodRModel = self.infraFoodRModel_t.filter { infraModel in
+                    return infraModel.infraCategory?.name == title
+                }
+            } else {
+                self.infraFoodRModel.removeAll()
+                self.infraFoodRModel = self.infraFoodRModel_t
+            }
+            self.foodMenu = title
+            print(test_filter)
+        default:
+            print("Filter Test")
+        }
     }
     
     func search_infra(searchWord: String) {
@@ -309,3 +476,13 @@ class InfraViewModel: ObservableObject {
 ////                infra.sportCode!
 //    }
 //}
+
+
+
+//                        for (sportMenuModel) in self.infraSportModel {
+//                            if sportMenuModel.sportCode!.name != nil {
+//                                if !self.infraSportMenu.contains(sportMenuModel.sportCode!.name!) {
+//                                    self.infraSportMenu.append(sportMenuModel.sportCode!.name!)
+//                                }
+//                            }
+//                        }

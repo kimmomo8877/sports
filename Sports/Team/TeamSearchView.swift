@@ -10,7 +10,8 @@ import MapKit
 
 struct TeamSearchView: View {
     
-    @ObservedObject var searchViewModel: SearchViewModel
+    @EnvironmentObject var searchViewModel: SearchViewModel
+//    @ObservedObject var searchViewModel: SearchViewModel
     @State private var centerCoordinate = CLLocationCoordinate2D()
     @State private var locations = [MKPointAnnotation]()
     @State private var selectedPlace: MKPointAnnotation?
@@ -22,23 +23,21 @@ struct TeamSearchView: View {
     @State private var expand1 = false
     @State private var expand2 = false
     
-    init(searchWord:String) {
-        searchViewModel = SearchViewModel(searchWord:searchWord)
-    }
+//    init(searchWord:String) {
+//        searchViewModel = SearchViewModel(searchWord:searchWord)
+//    }
     
     var body: some View {
         
-        //        NavigationView {
+//                NavigationView {
         HStack(){
             
             NavigationLink(destination: SearchBarView()) {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
-                    //                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 4)
                 
                 Text("시설이나 팀을 검색해 보세요")
-                    //                                .padding(.left, -20)
                     .foregroundColor(.secondary)
                 
             }.padding(.bottom,10).padding(.top,10).padding(.leading,60).padding(.trailing,50)
@@ -63,7 +62,7 @@ struct TeamSearchView: View {
         }
         
         HStack(alignment:.top) {
-            
+
             VStack() {
                 VStack(spacing: 5) {
                     HStack() {
@@ -92,9 +91,9 @@ struct TeamSearchView: View {
                         }
                     }
                 }
-                
+
             }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
-            
+
             VStack() {
                 VStack(spacing: 5) {
                     HStack() {
@@ -107,7 +106,7 @@ struct TeamSearchView: View {
                     .background(Color.white)
                     .overlay(Rectangle()
                                 .stroke(lineWidth: 0.5)
-                             
+
                     )
                     //                    .cornerRadius(5)
                     .onTapGesture {
@@ -126,7 +125,7 @@ struct TeamSearchView: View {
                         }
                     }
                 }
-                
+
             }.padding(.leading, 10).padding(.top,8).padding(.bottom,8)
             Spacer()
         }
@@ -135,16 +134,16 @@ struct TeamSearchView: View {
         
         
         ScrollView() {
-            
+
             VStack {
                 ForEach(self.searchViewModel.searchModel, id: \.self) { searchModel in
                     //                    NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
                     NavigationLink(destination: TeamMapView(searchModel: searchModel, locations: locations), isActive: $isShowing) {
-                        
+
                         //                        NavigationLink(destination: TeamMapView(searchModel: searchData, locations: locations), tag : "First", selection: $selection) {
                         //                            EmptyView()
                         //                        }
-                        
+
                         Button(action: {
                             isShowing = true
                             annotation.title = "London"
@@ -158,7 +157,7 @@ struct TeamSearchView: View {
                             annotation.coordinate = self.centerCoordinate
                             self.locations.append(annotation)
                             self.selection = "First"
-                            
+
                         }) {
                             HStack {
                                 Image("image")
@@ -173,7 +172,7 @@ struct TeamSearchView: View {
                         }
                     }
                 }
-                
+
             }
         }.padding(.bottom, 20)
         

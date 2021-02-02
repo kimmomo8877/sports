@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
 
     @EnvironmentObject var infraViewModel:InfraViewModel
+    @EnvironmentObject var infraCViewModel:InfraCategoryViewModel
     
     @State private var isTrackerShowing = false
     @State private var isSportShowing = false
@@ -31,7 +32,7 @@ struct HomeView: View {
                                     .padding(.top,50)
                                 NavigationLink(destination: TrackingConfigView(), isActive: $isTrackerShowing) {
                                     
-                                }.navigationBarTitle("스포츠 투어링", displayMode: .inline)
+                                }.navigationBarTitle("홈", displayMode: .inline)
                                 .navigationBarItems(trailing:
                                                         Button(action: {
                                                             self.isTrackerShowing = true
@@ -73,38 +74,35 @@ struct HomeView: View {
                                     .frame(height: 20, alignment: .leading)
                                     .padding(.leading, 10)
                                 Spacer()
-                            }
+                            }.padding(.top, 20)
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    HomeTextView(title: "전체", category: "스포츠시설")
+                                    HomeTextView(title: "전체", category: "추천스포츠시설")
                                     
-                                    ForEach(self.infraViewModel.infraSportMenu, id: \.self) { infraSportMenu in
-//                                        if infraSportModel.sportCode != nil {
-//                                            self.infraViewModel.checkMenuSport(sportCode: infraSportModel.sprotCode)
-                                        HomeTextView(title: "\(infraSportMenu)", category: "스포츠시설")
-//                                        }
+                                    ForEach(self.infraCViewModel.infraCSportModel, id: \.self) { infraMenu in
+                                        HomeTextView(title: "\(infraMenu.name!)", category: "추천스포츠시설")
                                     }
                                 }
                             }
-                            .frame(height: 30)
-                            .padding(10)
+                            .frame(height: 10)
+                            .padding(7)
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
+                                    ForEach(self.infraViewModel.infraSportRModel, id: \.self) { infraSportModel in
                                         
                                         NavigationLink(destination: TeamDetailSportView(infraModel: infraSportModel), isActive: $isSportShowing) {
                                             Button(action: {
                                                 self.isSportShowing = true
+                                                self.infraViewModel.set_infra(infraObject: infraSportModel)
                                             }) {
-                                                ForEach(infraSportModel.attachFiles!, id: \.self) {
-                                                    infraModel in
-                                                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: infraSportModel.name!)
+                                                if infraSportModel.attachFiles!.count > 0 {
+                                                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!)
                                                 }
                                             }
                                         }
-                                        .navigationBarTitle("Sport", displayMode: .inline)
+                                        .navigationBarTitle("홈", displayMode: .inline)
                                     }
                                 }
                             }
@@ -124,30 +122,30 @@ struct HomeView: View {
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    HomeTextView(title: "전체", category: "숙소")
+                                    HomeTextView(title: "전체", category: "추천숙소")
                                     
-                                    ForEach(self.infraViewModel.infraHotelMenu, id: \.self) { infraHotelMenu in
-                                        HomeTextView(title: "\(infraHotelMenu)", category: "숙소")
+                                    ForEach(self.infraCViewModel.infraCHotelModel, id: \.self) { infraMenu in
+                                        HomeTextView(title: "\(infraMenu.name!)", category: "추천숙소")
                                     }
                                 }
                             }
-                            .frame(height: 30)
-                            .padding(10)
+                            .frame(height: 10)
+                            .padding(7)
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    ForEach(self.infraViewModel.infraHotelModel, id: \.self) { infraHotelModel in
+                                    ForEach(self.infraViewModel.infraHotelRModel, id: \.self) { infraHotelModel in
                                         
                                         NavigationLink(destination: TeamDetailSportView(infraModel: infraHotelModel), isActive: $isHotelShowing) {
                                             Button(action: {
                                                 self.infraViewModel.set_infra(infraObject: infraHotelModel)
                                                 self.isHotelShowing = true
-                                                
                                             }) {
-                                                ForEach(infraHotelModel.attachFiles!, id: \.self) {
-                                                    infraModel in
-                                                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: infraHotelModel.name!)
+                                                
+                                                if infraHotelModel.attachFiles!.count > 0 {
+                                                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraHotelModel.attachFiles![0].saveFilePath!, title: infraHotelModel.name!)
                                                 }
+
                                             }
                                         }
                                         //                                .navigationBarTitle("HomeView")
@@ -170,29 +168,29 @@ struct HomeView: View {
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    HomeTextView(title: "전체", category: "맛집")
+                                    HomeTextView(title: "전체", category: "추천맛집")
                                     
-                                    ForEach(self.infraViewModel.infraFoodMenu, id: \.self) { infraFoodMenu in
-                                        HomeTextView(title: "\(infraFoodMenu)", category: "맛집")
+                                    ForEach(self.infraCViewModel.infraCFoodModel, id: \.self) { infraMenu in
+                                        HomeTextView(title: "\(infraMenu.name!)", category: "추천맛집")
                                     }
                                 }
                             }
-                            .frame(height: 30)
-                            .padding(10)
+                            .frame(height: 10)
+                            .padding(7)
                             
                             
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
-                                    ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
+                                    ForEach(self.infraViewModel.infraFoodRModel, id: \.self) { infraFoodModel in
                                         
                                         NavigationLink(destination: TeamDetailSportView(infraModel: infraFoodModel), isActive: $isFoodShowing) {
                                             Button(action: {
                                                 self.isFoodShowing = true
+                                                self.infraViewModel.set_infra(infraObject: infraFoodModel)
                                             }) {
-                                                ForEach(infraFoodModel.attachFiles!, id: \.self) {
-                                                    infraModel in
-                                                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: infraFoodModel.name!)
+                                                if infraFoodModel.attachFiles!.count > 0 {
+                                                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFoodModel.attachFiles![0].saveFilePath!, title: infraFoodModel.name!)
                                                 }
                                             }
                                         }
@@ -254,3 +252,8 @@ struct Home_Previews: PreviewProvider {
 //                                }
 //                                .navigationBarTitle("HomeView")
 //                            }
+
+//                                                ForEach(infraHotelModel.attachFiles!, id: \.self) {
+//                                                    infraModel in
+//                                                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: infraHotelModel.name!)
+//                                                }
