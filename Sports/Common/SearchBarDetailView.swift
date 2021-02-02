@@ -73,7 +73,8 @@ struct SearchBarDetailView: View {
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))
                     .animation(.default)
-                }.navigationBarTitle("검색", displayMode: .inline)
+                }
+//                .navigationBarTitle("검색", displayMode: .inline)
                 
             }
         }

@@ -11,7 +11,7 @@ import MapKit
 struct TeamSearchView: View {
     
     @EnvironmentObject var searchViewModel: SearchViewModel
-//    @ObservedObject var searchViewModel: SearchViewModel
+    @EnvironmentObject var infraViewModel: InfraViewModel
     @State private var centerCoordinate = CLLocationCoordinate2D()
     @State private var locations = [MKPointAnnotation]()
     @State private var selectedPlace: MKPointAnnotation?
@@ -23,13 +23,8 @@ struct TeamSearchView: View {
     @State private var expand1 = false
     @State private var expand2 = false
     
-//    init(searchWord:String) {
-//        searchViewModel = SearchViewModel(searchWord:searchWord)
-//    }
-    
     var body: some View {
-        
-//                NavigationView {
+
         HStack(){
             
             NavigationLink(destination: SearchBarView()) {
@@ -50,13 +45,13 @@ struct TeamSearchView: View {
             Button(action: {
                 
             }) {
-                Text("시설").font(.system(size:20)).fontWeight(.bold)
+                Text("시설\(self.searchViewModel.searchInfra.count)").font(.system(size:20)).fontWeight(.bold)
             }.padding(.leading, 20)
             
             Button(action: {
                 
             }) {
-                Text("스포츠").font(.system(size:20)).fontWeight(.bold)
+                Text("스포츠팀\(self.searchViewModel.searchInfra.count)").font(.system(size:20)).fontWeight(.bold)
             }.padding(.leading, 20)
             Spacer()
         }
@@ -136,28 +131,33 @@ struct TeamSearchView: View {
         ScrollView() {
 
             VStack {
-                ForEach(self.searchViewModel.searchModel, id: \.self) { searchModel in
+                ForEach(self.searchViewModel.searchInfra, id: \.self) { searchModel in
                     //                    NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
-                    NavigationLink(destination: TeamMapView(searchModel: searchModel, locations: locations), isActive: $isShowing) {
+                    NavigationLink(destination: TeamMapView(locations: self.locations), isActive: $isShowing) {
 
                         //                        NavigationLink(destination: TeamMapView(searchModel: searchData, locations: locations), tag : "First", selection: $selection) {
                         //                            EmptyView()
                         //                        }
 
                         Button(action: {
-                            isShowing = true
-                            annotation.title = "London"
-                            annotation.subtitle = "Home to the 2012 Summer Olympics."
-                            annotation.coordinate = CLLocationCoordinate2D(latitude: 128.6635024, longitude: 35.1459809)
-                            self.locations.append(annotation)
-                            print(self.searchViewModel.searchModel.count)
-                            print(searchModel)
-                            annotation.title = "Test"
-                            annotation.subtitle = "Test 1234"
-                            annotation.coordinate = self.centerCoordinate
-                            self.locations.append(annotation)
-                            self.selection = "First"
+                            
+                            if searchModel.searchType == "INFRA" {
+                                self.infraViewModel.search_infra(searchWord: searchModel.searchItemNo!)
+                                
+                                if self.infraViewModel.infraModel.count > 0 {
+                                annotation.title = self.infraViewModel.infraModel[0].name ?? ""
+                                                annotation.subtitle = self.infraViewModel.infraModel[0].address ?? ""
+                                                annotation.coordinate = CLLocationCoordinate2D(latitude: self.infraViewModel.infraModel[0].latitude ?? 0, longitude: self.infraViewModel.infraModel[0].longitude ?? 0)
+                                                self.locations.append(annotation)
+                                }
+                                
+                                
+                            } else {
+                                self.infraViewModel.search_team(searchWord: searchModel.searchItemNo!)
+                            }
 
+                            isShowing = true
+                            
                         }) {
                             HStack {
                                 Image("image")

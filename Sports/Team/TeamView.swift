@@ -94,7 +94,7 @@ struct TeamView: View {
                             HStack {
                                 ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
                                     
-                                    NavigationLink(destination: TeamDetailSportView(infraModel: infraSportModel), isActive: $isSportShowing) {
+                                    NavigationLink(destination: TeamDetailFacilityView(infraModel: infraSportModel), isActive: $isSportShowing) {
                                         Button(action: {
                                             self.isSportShowing = true
                                             self.infraViewModel.set_infra(infraObject: infraSportModel)
@@ -138,7 +138,7 @@ struct TeamView: View {
                             HStack {
                                 ForEach(self.infraViewModel.infraFacilityModel, id: \.self) { infraFacilityModel in
                                     
-                                    NavigationLink(destination: TeamDetailSportView(infraModel: infraFacilityModel), isActive: $isFacilityShowing) {
+                                    NavigationLink(destination: TeamDetailFacilityView(infraModel: infraFacilityModel), isActive: $isFacilityShowing) {
                                         Button(action: {
                                             self.isFacilityShowing = true
                                             self.infraViewModel.set_infra(infraObject: infraFacilityModel)

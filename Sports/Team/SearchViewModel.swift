@@ -9,6 +9,10 @@ import SwiftUI
 
 class SearchViewModel: ObservableObject {
     @Published var searchModel = [SearchModel]()
+    
+    @Published var searchTeam = [SearchModel]()
+    @Published var searchInfra = [SearchModel]()
+    
     init () {
         
     }
@@ -39,7 +43,8 @@ class SearchViewModel: ObservableObject {
     //    }
     
     func call_json(searchWord: String) {
-        
+        self.searchTeam.removeAll()
+        self.searchInfra.removeAll()
         let url_string = "http://www.kbostat.co.kr/resource/search?searchWord=" + searchWord
         print(url_string)
         if searchWord == "" { return }
@@ -54,8 +59,13 @@ class SearchViewModel: ObservableObject {
                     do {
                         let allData = try JSONDecoder().decode([SearchModel].self, from: data!)
                         self.searchModel = Array(allData[0 ..< (allData.count)])
-                        //                let searchtemp = Array(allData[0 ..< (allData.count)])
-                        //                print(searchtemp)
+                        for (model) in self.searchModel {
+                            if model.searchType == "TEAM" {      
+                                self.searchTeam.append(model)
+                            } else {
+                                self.searchInfra.append(model)
+                            }
+                        }
                     } catch {
                         print("JSON Decoder Error")
                     }
