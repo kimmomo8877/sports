@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct TrackingActView: View {
-    @ObservedObject private var bandVm = BandViewModel()
+    @Environment(\.presentationMode) var presentation
+    @ObservedObject private var bandVm: BandActViewModel
     @State var counter = 0
     @State var displayTime = "0"
-    var startTime: Date
+    let startTime: Date
     let secondTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    @State var trackingTime = 0
     
     init(startTime: Date) {
         self.startTime = startTime
+        self.bandVm = BandActViewModel.shared
+        print("init : \(startTime)")
     }
     
     var body: some View {
@@ -25,8 +29,8 @@ struct TrackingActView: View {
                 infoGroup
                     .onReceive(minuteTimer) { input in
                         print("onMinuteTimer : \(input)")
-                        if (bandVm.isLoading == false) {
-                            bandVm.getActivity()
+                        if (bandVm.isLoading == false && bandVm.isRunning) {
+                            bandVm.getActivity(isEnd: false)
                         }
                     }
                 Text("Time")
@@ -34,104 +38,166 @@ struct TrackingActView: View {
                     .font(.title)
                     .bold()
                     .onReceive(secondTimer) { input in
-                        let diffTime = Int(Date().timeIntervalSince(startTime))
-                        let min = Int(diffTime / 60)
-                        let second = Int(diffTime % 60)
-                        self.displayTime = String(min) + "." + String(second)
-                        counter += 1
+                        if bandVm.isRunning {
+                            let min = Int(trackingTime / 60)
+                            let second = Int(trackingTime % 60)
+                            self.displayTime = String(min) + "." + String(second)
+                            trackingTime += 1
+                        }
                     }
                 Spacer()
                 statusGroup
                 Spacer()
-                HStack(spacing: 30) {
-                    Button(action: { bandVm.getActivity() }, label: {
-                        Text("Refresh ACT")
-                            .background(Color.blue)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(8)
-                    })
-                    
-                    Button(action: { bandVm.runHR() }, label: {
-                        Text("Start HR")
-                            .background(Color.blue)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(8)
-                    })
-                    
-                    Button(action: { bandVm.runInBody() }, label: {
-                        Text("Start BCA")
-                            .background(Color.blue)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(8)
-                    })
-                }
+                firstButtonGroup
+                Text("")
+                secondButtonGroup
                 Spacer()
+                
             }
             .padding()
             
             if self.bandVm.isLoading {
-                GeometryReader {_ in
+                GeometryReader {geo in
                     Loader()
+                        .position(x: geo.size.width / 2, y: geo.size.height / 2)
                 }
                 .background(Color.black.opacity(0.45))
-                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                .edgesIgnoringSafeArea(.all)
                 
             }
         }
-        .background(Color.green)
     }
 }
 
 private extension TrackingActView {
+    func endTracking() {
+        self.bandVm.getActivity(isEnd: false)
+        self.presentation.wrappedValue.dismiss()
+    }
+    
+    func togglePause() {
+        bandVm.toggleIsRunning()
+    }
+    
+    var firstButtonGroup: some View {
+        Group {
+            HStack(spacing: 20) {
+                Button(action: { bandVm.getActivity(isEnd: false) }, label: {
+                    Text("Refresh ACT")
+                        .frame(width: 120, height: 40, alignment: .center)
+                        .background(bandVm.isRunning ? Color.blue : Color.gray)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(8)
+                })
+                .disabled(!bandVm.isRunning)
+                
+                Button(action: { bandVm.runHR() }, label: {
+                    Text("Start HR")
+                        .frame(width: 80, height: 40, alignment: .center)
+                        .background(bandVm.isRunning ? Color.blue : Color.gray)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(8)
+                })
+                .disabled(!bandVm.isRunning)
+                
+                Button(action: { bandVm.runInBody() }, label: {
+                    Text("Start BCA")
+                        .frame(width: 120, height: 40, alignment: .center)
+                        .background(bandVm.isRunning ? Color.blue : Color.gray)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(8)
+                })
+                .disabled(!bandVm.isRunning)
+            }
+        }
+    }
+    
+    var secondButtonGroup: some View {
+        Group {
+            HStack(spacing: 25) {
+                Button(action: { togglePause() }, label: {
+                    Text("Pause")
+                        .frame(width: 80, height: 40, alignment: .center)
+                        .background(bandVm.isRunning ? Color.blue : Color.gray)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(8)
+                })
+                .disabled(!bandVm.isRunning)
+                
+                Button(action: { bandVm.setProfileSync() }, label: {
+                    Text("Start")
+                        .frame(width: 80, height: 40, alignment: .center)
+                        .background(!bandVm.isRunning ? Color.blue : Color.gray)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(8)
+                })
+                .disabled(bandVm.isRunning)
+                
+                Button(action: { endTracking() }, label: {
+                    Text("Stop")
+                        .frame(width: 80, height: 40, alignment: .center)
+                        .background(bandVm.isRunning ? Color.blue : Color.gray)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(8)
+                })
+                .disabled(!bandVm.isRunning)
+            }
+        }
+    }
+    
     var infoGroup: some View {
         Group {
             HStack(spacing: 80) {
                 VStack(alignment: .leading) {
-                    Text("보행수")
+                    Text("보행수").foregroundColor(.gray)
                     HStack {
-                        Text("\(bandVm.lastActivity?.Walk ?? 0)")
-                            .font(.title)
-                        Text("걸음")
+                        Text("\(bandVm.trackingCount)")
+                            .font(.title).bold().foregroundColor(.gray)
+                        Text("걸음").foregroundColor(.gray)
                     }
                 }
-                .frame(width: 100, height: 100, alignment: .center)
-                .background(Color.red)
+                .frame(width: 130, height: 100, alignment: .center)
+                .background(Color(hue: 0.562, saturation: 0.193, brightness: 0.936))
+                .cornerRadius(10)
                 
                 VStack(alignment: .leading) {
-                    Text("거리")
+                    Text("거리").foregroundColor(.gray)
                     HStack {
-                        Text("\(bandVm.lastActivity?.WalkDistance ?? 0)")
-                            .font(.title)
-                        Text("m")
+                        Text("\(bandVm.trackingDistance)")
+                            .font(.title).bold().foregroundColor(.gray)
+                        Text("m").foregroundColor(.gray)
                     }
                 }
-                .frame(width: 100, height: 100, alignment: .center)
-                .background(Color.red)
+                .frame(width: 130, height: 100, alignment: .center)
+                .background(Color(hue: 0.562, saturation: 0.193, brightness: 0.936))
+                .cornerRadius(10)
             }
             .padding()
             
             HStack(spacing: 80) {
                 VStack (alignment: .leading) {
-                    Text("칼로리")
+                    Text("칼로리").foregroundColor(.gray)
                     HStack {
-                        Text("\(bandVm.lastActivity?.WalkCalories ?? 0)")
-                            .font(.title)
-                        Text("kcal")
+                        Text("\(bandVm.trackingCalories)")
+                            .font(.title).bold().foregroundColor(.gray)
+                        Text("kcal").foregroundColor(.gray)
                     }
                 }
-                .frame(width: 100, height: 100, alignment: .center)
-                .background(Color.red)
+                .frame(width: 130, height: 100, alignment: .center)
+                .background(Color(hue: 0.562, saturation: 0.193, brightness: 0.936))
+                .cornerRadius(10)
                 
                 VStack (alignment: .leading) {
-                    Text("보행시간")
+                    Text("보행시간").foregroundColor(.gray)
                     HStack {
-                        Text("\(bandVm.lastActivity?.WalkTime ?? 0)")
-                            .font(.title)
-                        Text("min")
+                        Text("\(bandVm.trackingTime)")
+                            .font(.title).bold().foregroundColor(.gray)
+                        Text("min").foregroundColor(.gray)
                     }
                 }
-                .frame(width: 100, height: 100, alignment: .center)
-                .background(Color.red)
+                .frame(width: 130, height: 100, alignment: .center)
+                .background(Color(hue: 0.562, saturation: 0.193, brightness: 0.936))
+                .cornerRadius(10)
             }
             .padding()
         }

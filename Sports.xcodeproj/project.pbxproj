@@ -65,7 +65,7 @@
 		4D3D4BDE25A9AB1F00C3F78F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D3D4BDD25A9AB1F00C3F78F /* Preview Assets.xcassets */; };
 		4D3D4BE125A9AB1F00C3F78F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D3D4BDF25A9AB1F00C3F78F /* LaunchScreen.storyboard */; };
 		4D3D4BED25A9AC0B00C3F78F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D4BEC25A9AC0B00C3F78F /* MainTabView.swift */; };
-		4D499DDA25B96B720031A614 /* BandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DD925B96B720031A614 /* BandViewModel.swift */; };
+		4D499DDA25B96B720031A614 /* BandActViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DD925B96B720031A614 /* BandActViewModel.swift */; };
 		4D499DE625B996F40031A614 /* TrackingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DE525B996F40031A614 /* TrackingConfigView.swift */; };
 		4D499DE925BA8E110031A614 /* TrackerMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DE825BA8E110031A614 /* TrackerMainView.swift */; };
 		4D499DF125BAD8D60031A614 /* BandActivityRawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D499DF025BAD8D60031A614 /* BandActivityRawModel.swift */; };
@@ -76,8 +76,12 @@
 		4D53C3BB25C6647D00117D5D /* BandInbodyRawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53C3BA25C6647D00117D5D /* BandInbodyRawModel.swift */; };
 		4D53C3C125C664ED00117D5D /* TrackingActView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53C3C025C664ED00117D5D /* TrackingActView.swift */; };
 		4D53C3C425C6651800117D5D /* BandHttpHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53C3C325C6651800117D5D /* BandHttpHandler.swift */; };
+		4D53C3DC25C7F3E000117D5D /* BandSyncRawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53C3DB25C7F3E000117D5D /* BandSyncRawModel.swift */; };
+		4D53C3E425C95C3B00117D5D /* BandMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53C3E325C95C3B00117D5D /* BandMainViewModel.swift */; };
+		4D53C3E825C967A700117D5D /* BandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53C3E725C967A700117D5D /* BandManager.swift */; };
 		4DB784F225A9B3C900725E6C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB784F125A9B3C900725E6C /* HomeView.swift */; };
 		4DB784FC25A9BE0100725E6C /* ImageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB784FB25A9BE0100725E6C /* ImageCellView.swift */; };
+		4DF55A8025C98CB400BC06C7 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF55A7F25C98CB400BC06C7 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -158,7 +162,7 @@
 		4D499DD225B9653F0031A614 /* InBodyAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InBodyAES.h; sourceTree = "<group>"; };
 		4D499DD325B9653F0031A614 /* Commucation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Commucation.h; sourceTree = "<group>"; };
 		4D499DD425B965860031A614 /* Sports-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sports-Bridging-Header.h"; sourceTree = "<group>"; };
-		4D499DD925B96B720031A614 /* BandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandViewModel.swift; sourceTree = "<group>"; };
+		4D499DD925B96B720031A614 /* BandActViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandActViewModel.swift; sourceTree = "<group>"; };
 		4D499DE525B996F40031A614 /* TrackingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingConfigView.swift; sourceTree = "<group>"; };
 		4D499DE825BA8E110031A614 /* TrackerMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerMainView.swift; sourceTree = "<group>"; };
 		4D499DF025BAD8D60031A614 /* BandActivityRawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandActivityRawModel.swift; sourceTree = "<group>"; };
@@ -170,8 +174,12 @@
 		4D53C3BA25C6647D00117D5D /* BandInbodyRawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandInbodyRawModel.swift; sourceTree = "<group>"; };
 		4D53C3C025C664ED00117D5D /* TrackingActView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingActView.swift; sourceTree = "<group>"; };
 		4D53C3C325C6651800117D5D /* BandHttpHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandHttpHandler.swift; sourceTree = "<group>"; };
+		4D53C3DB25C7F3E000117D5D /* BandSyncRawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandSyncRawModel.swift; sourceTree = "<group>"; };
+		4D53C3E325C95C3B00117D5D /* BandMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandMainViewModel.swift; sourceTree = "<group>"; };
+		4D53C3E725C967A700117D5D /* BandManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandManager.swift; sourceTree = "<group>"; };
 		4DB784F125A9B3C900725E6C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4DB784FB25A9BE0100725E6C /* ImageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellView.swift; sourceTree = "<group>"; };
+		4DF55A7F25C98CB400BC06C7 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +362,7 @@
 				4D499DF925BBCEEC0031A614 /* ActivityDataManager.swift */,
 				4D499DE525B996F40031A614 /* TrackingConfigView.swift */,
 				4D499DE825BA8E110031A614 /* TrackerMainView.swift */,
+				4DF55A7F25C98CB400BC06C7 /* TestView.swift */,
 				4D53C3C025C664ED00117D5D /* TrackingActView.swift */,
 			);
 			path = Tracker;
@@ -367,6 +376,7 @@
 				4D499E2125BC30E60031A614 /* ActivityModel.swift */,
 				4D53C3B725C6646B00117D5D /* BandHrRawModel.swift */,
 				4D53C3BA25C6647D00117D5D /* BandInbodyRawModel.swift */,
+				4D53C3DB25C7F3E000117D5D /* BandSyncRawModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -374,8 +384,10 @@
 		4D499E0625BBEDA60031A614 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4D499DD925B96B720031A614 /* BandViewModel.swift */,
+				4D499DD925B96B720031A614 /* BandActViewModel.swift */,
+				4D53C3E325C95C3B00117D5D /* BandMainViewModel.swift */,
 				4D53C3C325C6651800117D5D /* BandHttpHandler.swift */,
+				4D53C3E725C967A700117D5D /* BandManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -499,6 +511,7 @@
 				1429B9E425BD73C70001CA95 /* VirtualModel.swift in Sources */,
 				1429B9E825BD73C70001CA95 /* ToDoItem.swift in Sources */,
 				143D52C925BF1F9500C78030 /* SportView.swift in Sources */,
+				4D53C3E425C95C3B00117D5D /* BandMainViewModel.swift in Sources */,
 				4D53C3B825C6646B00117D5D /* BandHrRawModel.swift in Sources */,
 				4D53C3BB25C6647D00117D5D /* BandInbodyRawModel.swift in Sources */,
 				1429B9EA25BD73C70001CA95 /* SearchModel.swift in Sources */,
@@ -507,6 +520,7 @@
 				4D1C20E525AA0789007DCDB9 /* DetailView.swift in Sources */,
 				1429B9F625BD73F30001CA95 /* MapView.swift in Sources */,
 				144B696725C193C300E915AE /* TouringImageView.swift in Sources */,
+				4D53C3DC25C7F3E000117D5D /* BandSyncRawModel.swift in Sources */,
 				1429B9EC25BD73C70001CA95 /* FavoriteViewModel.swift in Sources */,
 				1429BA0625BD746E0001CA95 /* TeamDetailFacilityView.swift in Sources */,
 				1429B9E325BD73C70001CA95 /* InfraCategoryModel.swift in Sources */,
@@ -522,6 +536,7 @@
 				1429B9EE25BD73C70001CA95 /* InfraModel.swift in Sources */,
 				1429BA0525BD746E0001CA95 /* TeamSearchView.swift in Sources */,
 				1429B9E125BD73C70001CA95 /* SearchViewModel.swift in Sources */,
+				4D53C3E825C967A700117D5D /* BandManager.swift in Sources */,
 				1429B9CF25BD73010001CA95 /* HomeTextView.swift in Sources */,
 				1429B9E725BD73C70001CA95 /* SportCodeModel.swift in Sources */,
 				4D499E2225BC30E60031A614 /* ActivityModel.swift in Sources */,
@@ -530,6 +545,7 @@
 				1429BA0325BD746E0001CA95 /* TeamView.swift in Sources */,
 				1429B9E225BD73C70001CA95 /* InfraViewModel.swift in Sources */,
 				4D499DE925BA8E110031A614 /* TrackerMainView.swift in Sources */,
+				4DF55A8025C98CB400BC06C7 /* TestView.swift in Sources */,
 				4DB784F225A9B3C900725E6C /* HomeView.swift in Sources */,
 				4D499E2725BC393E0031A614 /* DateUtils.swift in Sources */,
 				4D53C3C425C6651800117D5D /* BandHttpHandler.swift in Sources */,
