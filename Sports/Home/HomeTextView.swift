@@ -27,11 +27,13 @@ struct HomeTextView: View {
 //            let menu_t = self.selectedTitle
 //            if ( title ==  menu_t && category == "스포츠시설" ){
 //            let testt = self.infraViewModel.sportMenu
-            if ( title ==  self.infraViewModel.sportMenu  && category == "추천스포츠시설")
-                || ( title ==  self.infraViewModel.hotelMenu && category == "추천숙소")
-                || ( title ==  self.infraViewModel.foodMenu && category == "추천맛집" )
+            if ( title ==  self.infraViewModel.sportMenuR  && category == "추천스포츠시설")
+                || ( title ==  self.infraViewModel.hotelMenuR && category == "추천숙소")
+                || ( title ==  self.infraViewModel.foodMenuR && category == "추천맛집" )
+                || ( title ==  self.infraViewModel.festivalMenuR && category == "추천축제" )
+                || ( title ==  self.infraViewModel.travelMenuR && category == "추천관광" )
                 || ( title ==  self.infraViewModel.sportMenu && category == "스포츠시설" )
-                || ( title ==  self.infraViewModel.facilityMenu && category == "부대시설" ){
+                || ( title ==  self.infraViewModel.facilityMenuR && category == "부대시설" ){
                 Text(title)
                     .frame(width: CGFloat(title.count) * 20, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .padding(5)

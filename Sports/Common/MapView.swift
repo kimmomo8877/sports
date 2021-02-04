@@ -10,8 +10,10 @@ import Combine
 
 struct MapView: UIViewRepresentable {
     
+    @EnvironmentObject var infraViewModel: InfraViewModel
+    @EnvironmentObject var searchViewModel: SearchViewModel
     @Binding var centerCoordinate: CLLocationCoordinate2D
-    var annotations: [MKPointAnnotation]
+//    var annotations: [MKPointAnnotation]
     @Binding var selectedPlace: MKPointAnnotation?
     @Binding var showingPlaceDetails: Bool
     
@@ -23,9 +25,9 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
-        if annotations.count != view.annotations.count {
+        if self.infraViewModel.locations.count != view.annotations.count {
             view.removeAnnotations(view.annotations)
-            view.addAnnotations(annotations)
+            view.addAnnotations(self.infraViewModel.locations)
         }
     }
 
@@ -89,8 +91,8 @@ extension MKPointAnnotation {
     }
 }
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView(centerCoordinate: .constant(MKPointAnnotation.example.coordinate), annotations: [MKPointAnnotation.example], selectedPlace: .constant(MKPointAnnotation.example), showingPlaceDetails: .constant(false))
-    }
-}
+//struct MapView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MapView(centerCoordinate: .constant(MKPointAnnotation.example.coordinate), annotations: [MKPointAnnotation.example], selectedPlace: .constant(MKPointAnnotation.example), showingPlaceDetails: .constant(false))
+//    }
+//}

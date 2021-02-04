@@ -12,19 +12,22 @@ struct TeamSearchView: View {
     
     @EnvironmentObject var searchViewModel: SearchViewModel
     @EnvironmentObject var infraViewModel: InfraViewModel
+    @EnvironmentObject var codeViewModel: CodeViewModel
+    @EnvironmentObject var teamViewModel: TeamViewModel
     @State private var centerCoordinate = CLLocationCoordinate2D()
-    @State private var locations = [MKPointAnnotation]()
     @State private var selectedPlace: MKPointAnnotation?
     @State private var showingPlaceDetails = false
-    @State private var isShowing = false
+    @State private var isInfraShowing = false
+    @State private var isTeamShowing = false
     @State private var annotation = MKPointAnnotation()
     @State private var selection:String? = nil
     
     @State private var expand1 = false
     @State private var expand2 = false
+    @State private var changeList = false
     
     var body: some View {
-
+        
         HStack(){
             
             NavigationLink(destination: SearchBarView()) {
@@ -37,27 +40,28 @@ struct TeamSearchView: View {
                 
             }.padding(.bottom,10).padding(.top,10).padding(.leading,60).padding(.trailing,50)
             .overlay(Rectangle().stroke(lineWidth: 0.5))
+            .navigationBarTitle("검색결과", displayMode: .inline)
             
         }
         .padding(10)
         
         HStack() {
             Button(action: {
-                
+                changeList = false
             }) {
                 Text("시설\(self.searchViewModel.searchInfra.count)").font(.system(size:20)).fontWeight(.bold)
             }.padding(.leading, 20)
             
             Button(action: {
-                
+                changeList = true
             }) {
-                Text("스포츠팀\(self.searchViewModel.searchInfra.count)").font(.system(size:20)).fontWeight(.bold)
+                Text("스포츠팀\(self.searchViewModel.searchTeam.count)").font(.system(size:20)).fontWeight(.bold)
             }.padding(.leading, 20)
             Spacer()
         }
         
         HStack(alignment:.top) {
-
+            
             VStack() {
                 VStack(spacing: 5) {
                     HStack() {
@@ -86,9 +90,9 @@ struct TeamSearchView: View {
                         }
                     }
                 }
-
+                
             }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
-
+            
             VStack() {
                 VStack(spacing: 5) {
                     HStack() {
@@ -101,7 +105,7 @@ struct TeamSearchView: View {
                     .background(Color.white)
                     .overlay(Rectangle()
                                 .stroke(lineWidth: 0.5)
-
+                             
                     )
                     //                    .cornerRadius(5)
                     .onTapGesture {
@@ -120,79 +124,132 @@ struct TeamSearchView: View {
                         }
                     }
                 }
-
+                
             }.padding(.leading, 10).padding(.top,8).padding(.bottom,8)
             Spacer()
         }
-//        .frame(height:50)
+        //        .frame(height:50)
         .background(Color.gray).brightness(0.4)
         
         
         ScrollView() {
-
+            
             VStack {
-                ForEach(self.searchViewModel.searchInfra, id: \.self) { searchModel in
-                    //                    NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
-                    NavigationLink(destination: TeamMapView(locations: self.locations), isActive: $isShowing) {
-
-                        //                        NavigationLink(destination: TeamMapView(searchModel: searchData, locations: locations), tag : "First", selection: $selection) {
-                        //                            EmptyView()
-                        //                        }
-
-                        Button(action: {
+                if !changeList {
+                    ForEach(self.searchViewModel.searchInfra, id: \.self) { searchModel in
+                        
+                        NavigationLink(destination: TeamMapView(), isActive: $isInfraShowing) {
                             
-                            if searchModel.searchType == "INFRA" {
-                                self.infraViewModel.search_infra(searchWord: searchModel.searchItemNo!)
-                                
-                                if self.infraViewModel.infraModel.count > 0 {
-                                annotation.title = self.infraViewModel.infraModel[0].name ?? ""
-                                                annotation.subtitle = self.infraViewModel.infraModel[0].address ?? ""
-                                                annotation.coordinate = CLLocationCoordinate2D(latitude: self.infraViewModel.infraModel[0].latitude ?? 0, longitude: self.infraViewModel.infraModel[0].longitude ?? 0)
-                                                self.locations.append(annotation)
-                                }
-                                
-                                
-                            } else {
-                                self.infraViewModel.search_team(searchWord: searchModel.searchItemNo!)
+                            Button(action: {
+                                isInfraShowing = true
+                                self.infraViewModel.set_infra(infraObject: searchModel)
+                                annotation.title = searchModel.name ?? ""
+                                annotation.subtitle = searchModel.address ?? ""
+                                annotation.coordinate = CLLocationCoordinate2D(
+                                    latitude: searchModel.latitude ?? 35.106826,
+                                    longitude: searchModel.longitude ?? 128.988596)
+                                self.infraViewModel.set_map(annotation: annotation)
+                            }) {
+                                HStack {
+                                    if searchModel.attachFiles!.count > 0 {
+                                        ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + searchModel.attachFiles![0].saveFilePath!, title: "", width: 50, height: 50)
+                                    } else {
+                                        Image("search_default_image")
+                                            .resizable()
+                                            .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    }
+                                    VStack {
+                                        Text("\(searchModel.name ?? "")")
+                                        Text("\(searchModel.address ?? "")").foregroundColor(.secondary)
+                                            .font(Font.system(size:15))
+                                    }
+                                }.padding(.leading, 10)
+                                Spacer()
                             }
-
-                            isShowing = true
-                            
-                        }) {
-                            HStack {
-                                Image("image")
-                                    .resizable()
-                                    .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                VStack {
-                                    Text("\(searchModel.name ?? "")")
-                                    Text("\(searchModel.name ?? "")").foregroundColor(.secondary)
-                                }
-                            }.padding(.leading, 10)
-                            Spacer()
                         }
                     }
+                    
                 }
+                else {
 
+
+                    ForEach(self.searchViewModel.searchTeam, id: \.self) { searchModel in
+
+                        NavigationLink(destination: TeamMapView(), isActive: $isTeamShowing) {
+//
+                            Button(action: {
+                                isTeamShowing = true
+                                self.teamViewModel.set_team(teamObject: searchModel)
+//                                annotation.title = searchModel.name ?? ""
+//                                annotation.subtitle = searchModel.address ?? ""
+//                                annotation.coordinate = CLLocationCoordinate2D(
+//                                    latitude: searchModel.latitude ?? 35.106826,
+//                                    longitude: searchModel.longitude ?? 128.988596)
+//                                self.infraViewModel.set_map(annotation: annotation)
+                            }) {
+                                HStack {
+//                                    if searchModel.attachFiles!.count > 0 {
+//                                        ImageCellSearch(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + searchModel.attachFiles![0].saveFilePath!, title: "")
+//                                    } else {
+                                        Image("search_default_image")
+                                            .resizable()
+                                            .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                                    }
+                                    VStack {
+                                        Text("\(searchModel.name ?? "")")
+//                                        Text("\(searchModel.name ?? "")").foregroundColor(.secondary)
+                                    }
+                                }.padding(.leading, 10)
+                                Spacer()
+                            }
+
+                        }
+                        
+                    }
+                }
             }
         }.padding(.bottom, 20)
-        
-        HStack() {
-            Spacer()
-            NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
-                Button(action: {
-                    isShowing = true
-                }) {
-                    Image(systemName: "map")
-                    Text("지도보기")
-                }
-                .padding(.trailing, 10)
-                .transition(.move(edge: .trailing))
-                .animation(.default)
-            }.padding(.trailing, 30)
-            .padding(.bottom, 25)
-        }
     }
 }
+
+
+
+
+//                                self.infraViewModel.search_infra(searchWord: searchModel.searchItemNo!)
+//
+//                                if self.infraViewModel.infraModel.count > 0 {
+//                                    annotation.title = self.infraViewModel.infraModel[0].name ?? ""
+//                                    annotation.subtitle = self.infraViewModel.infraModel[0].address ?? ""
+//                                    annotation.coordinate = CLLocationCoordinate2D(latitude: self.infraViewModel.infraModel[0].latitude ?? 35.106826,  longitude: self.infraViewModel.infraModel[0].longitude ?? 128.988596)
+////                                    self.locations.append(annotation)
+//                                    self.infraViewModel.set_map(annotation: annotation)
+//                                }
+
+
+
+
+
+//                    NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
+
+
+
+
+//        HStack() {
+//            Spacer()
+//            NavigationLink(destination: MapView(centerCoordinate: $centerCoordinate, annotations: locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails), isActive: $isShowing) {
+//                Button(action: {
+//                    isShowing = true
+//                }) {
+//                    Image(systemName: "map")
+//                    Text("지도보기")
+//                }
+//                .padding(.trailing, 10)
+//                .transition(.move(edge: .trailing))
+//                .animation(.default)
+//            }.padding(.trailing, 30)
+//            .padding(.bottom, 25)
+//        }
+
 
 
 //            Menu(content: {

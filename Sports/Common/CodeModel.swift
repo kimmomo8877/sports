@@ -6,6 +6,7 @@
 //
 
 struct CodeModel: Decodable, Hashable {
+    var codeTypeName: String?
     var codeId: Int?
     var indexCodeId: Int?
     var parentCodeId: Int?

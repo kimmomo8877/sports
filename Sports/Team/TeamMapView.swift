@@ -10,7 +10,6 @@ import MapKit
 import PartialSheet
 struct TeamMapView: View {
     
-    var locations:[MKPointAnnotation]
     @EnvironmentObject var partialSheet : PartialSheetManager
     @EnvironmentObject var infraViewModel: InfraViewModel
     @EnvironmentObject var searchViewModel: SearchViewModel
@@ -26,46 +25,24 @@ struct TeamMapView: View {
         GeometryReader { geo in
         VStack(alignment: .leading) {
             
-//            Group {
-//                HStack(){
-//
-//                    NavigationLink(destination: SearchBarView()) {
-//                        Image(systemName: "magnifyingglass")
-//                            .foregroundColor(.gray)
-//                            //                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-//                            .padding(.leading, 4)
-//
-//                        Text("시설이나 팀을 검색해 보세요")
-//                            //                                .padding(.left, -20)
-//                            .foregroundColor(.secondary)
-//
-//                    }.padding(.bottom,10).padding(.top,10).padding(.leading,60).padding(.trailing,50)
-//                    .overlay(Rectangle().stroke(lineWidth: 0.5))
-//
-//                }
-//                .padding(20)
-//            }
-            
             Group {
+                        
+                MapView(centerCoordinate: $centerCoordinate, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails)
                 
-//                annotation.title = "London"
-//                annotation.subtitle = "Home to the 2012 Summer Olympics."
-//                annotation.coordinate = CLLocationCoordinate2D(latitude: 128.6635024, longitude: 35.1459809)
-//                self.locations.append(annotation)
-
-//                annotation.title = "Test"
-//                annotation.subtitle = "Test 1234"
-//                annotation.coordinate = self.centerCoordinate
-//                self.locations.append(annotation)
-//                self.selection = "First"
-
                 
-                MapView(centerCoordinate: $centerCoordinate, annotations: self.locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails)
-                
-                if self.infraViewModel.infraModel.count > 0 {
-                    Text(self.infraViewModel.infraModel[0].name ?? "").padding(.leading,20).padding(.top,20)
-                    Text(self.infraViewModel.infraModel[0].address ?? "").foregroundColor(.secondary).padding(.leading,20).padding(.top,5)
+                NavigationLink(destination: TeamDetailFacilityView(infraModel: self.infraViewModel.infraObject[0]), isActive: $isShowing) {
+                    Button(action: {
+                        self.isShowing = true
+//                        self.infraViewModel.set_infra(infraObject: infraSportModel)
+                    }) {
+                        if self.infraViewModel.infraObject.count > 0 {
+                            Text(self.infraViewModel.infraObject[0].name ?? "").padding(.leading,20).padding(.top,5)
+                            Text(self.infraViewModel.infraObject[0].address ?? "").foregroundColor(.secondary).padding(.leading,20).font(Font.system(size:15))
+                        }
+                    }
                 }
+                .navigationBarTitle("위치검색", displayMode: .inline)
+                
             }
             
             Group {
@@ -110,7 +87,7 @@ struct TeamMapView: View {
                     }
                     Spacer()
                     
-                }.padding(.top,20).padding(.bottom,20).padding(.leading,40)
+                }.padding(.top,5).padding(.bottom,10).padding(.leading,40)
                 //                NavigationLink(destination: TeamDetailSportView(infraModel: infraViewModel.infraModel), tag : "First", selection: $selection) {
                 //                    infraViewModel.search_infra(searchWord: "e56065ff83")
                 //                    EmptyView()

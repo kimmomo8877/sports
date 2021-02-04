@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import MapKit
 class InfraViewModel: ObservableObject {
     @Published var infraSportModel = [InfraModel]()
     @Published var infraFacilityModel = [InfraModel]()
@@ -26,25 +26,27 @@ class InfraViewModel: ObservableObject {
     
     @Published var infraSportMenu = [String]()
     @Published var sportMenu:String = "전체"
+    @Published var sportMenuR:String = "전체"
     @Published var sportCategory:String = "스포츠시설"
     @Published var infraFoodMenu = [String]()
-    @Published var foodMenu:String = "전체"
+    @Published var foodMenuR:String = "전체"
     @Published var foodCategory:String = "맛집"
     @Published var infraHotelMenu = [String]()
-    @Published var hotelMenu:String = "전체"
+    @Published var hotelMenuR:String = "전체"
     @Published var hotelCategory:String = "숙소"
-    
     @Published var infraFacilityMenu = [String]()
-    @Published var facilityMenu:String = "전체"
+    @Published var facilityMenuR:String = "전체"
     @Published var facilityCategory:String = "부대시설"
     @Published var infraTravelMenu = [String]()
-    @Published var travelMenu:String = "전체"
+    @Published var travelMenuR:String = "전체"
     @Published var travelCategory:String = "여행"
     @Published var infraFestivalMenu = [String]()
-    @Published var festivalMenu:String = "전체"
+    @Published var festivalMenuR:String = "전체"
     @Published var festivalCategory:String = "축제"
     
     @Published var infraObject = [InfraModel]()
+    
+    @Published var locations = [MKPointAnnotation]()
     
     var infraSportModel_t = [InfraModel]()
     var infraHotelModel_t = [InfraModel]()
@@ -334,7 +336,7 @@ class InfraViewModel: ObservableObject {
                 self.infraHotelModel.removeAll()
                 self.infraHotelModel = self.infraHotelModel_t
             }
-            self.hotelMenu = title
+            self.hotelMenuR = title
             print(test_filter)
             break
         case "맛집":
@@ -350,7 +352,7 @@ class InfraViewModel: ObservableObject {
                 self.infraFoodModel.removeAll()
                 self.infraFoodModel = self.infraFoodModel_t
             }
-            self.foodMenu = title
+            self.foodMenuR = title
             print(test_filter)
         default:
             print("Filter Test")
@@ -373,7 +375,7 @@ class InfraViewModel: ObservableObject {
                 self.infraSportRModel.removeAll()
                 self.infraSportRModel = self.infraSportRModel_t
             }
-            self.sportMenu = title
+            self.sportMenuR = title
             print(test_filter)
             break
         case "추천숙소":
@@ -389,7 +391,7 @@ class InfraViewModel: ObservableObject {
                 self.infraHotelRModel.removeAll()
                 self.infraHotelRModel = self.infraHotelRModel_t
             }
-            self.hotelMenu = title
+            self.hotelMenuR = title
             print(test_filter)
             break
         case "추천맛집":
@@ -405,7 +407,37 @@ class InfraViewModel: ObservableObject {
                 self.infraFoodRModel.removeAll()
                 self.infraFoodRModel = self.infraFoodRModel_t
             }
-            self.foodMenu = title
+            self.foodMenuR = title
+            print(test_filter)
+        case "추천축제":
+            let test_filter = self.infraFestivalRModel_t.filter { infra in
+                return infra.infraCategory?.name == title
+            }
+            if title != "전체" {
+                self.infraFestivalRModel.removeAll()
+                self.infraFestivalRModel = self.infraFestivalRModel_t.filter { infraModel in
+                    return infraModel.infraCategory?.name == title
+                }
+            } else {
+                self.infraFestivalRModel.removeAll()
+                self.infraFestivalRModel = self.infraFestivalRModel_t
+            }
+            self.festivalMenuR = title
+            print(test_filter)
+        case "추천관광":
+            let test_filter = self.infraTravelRModel_t.filter { infra in
+                return infra.infraCategory?.name == title
+            }
+            if title != "전체" {
+                self.infraTravelRModel.removeAll()
+                self.infraTravelRModel = self.infraTravelRModel_t.filter { infraModel in
+                    return infraModel.infraCategory?.name == title
+                }
+            } else {
+                self.infraTravelRModel.removeAll()
+                self.infraTravelRModel = self.infraTravelRModel_t
+            }
+            self.travelMenuR = title
             print(test_filter)
         default:
             print("Filter Test")
@@ -436,23 +468,9 @@ class InfraViewModel: ObservableObject {
         self.infraObject.removeAll()
         self.infraObject.append(infraObject)
     }
-    
-    func search_team(searchWord: String) {
-//        let url_string = "http://www.kbostat.co.kr/resource/infra/=" + searchWord
-//        print(url_string)
-//        let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-//        guard let url = URL(string: encoded!) else { return }
-//        
-//        let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
-//            DispatchQueue.main.async {
-//                let allData = try! JSONDecoder().decode([InfraModel].self, from: data!)
-//                self.infraModel = Array(allData[0 ..< (allData.count)])
-//                //                let searchtemp = Array(allData[0 ..< (allData.count)])
-//                //                print(searchtemp)
-//            }
-//        }
-//        task.resume()
-        
+
+    func set_map(annotation: MKPointAnnotation) {
+        self.locations.append(annotation)
     }
     
 }

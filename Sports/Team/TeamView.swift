@@ -100,7 +100,7 @@ struct TeamView: View {
                                             self.infraViewModel.set_infra(infraObject: infraSportModel)
                                         }) {
                                             if infraSportModel.attachFiles!.count > 0 {
-                                                ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!)
+                                                ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!, width: 100, height: 100)
                                             }
                                         }
                                     }
@@ -144,7 +144,7 @@ struct TeamView: View {
                                             self.infraViewModel.set_infra(infraObject: infraFacilityModel)
                                         }) {
                                             if infraFacilityModel.attachFiles!.count > 0 {
-                                                ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFacilityModel.attachFiles![0].saveFilePath!, title: infraFacilityModel.name!)
+                                                ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFacilityModel.attachFiles![0].saveFilePath!, title: infraFacilityModel.name!, width: 100, height:100)
                                             }
                                         }
                                     }
@@ -168,10 +168,10 @@ struct TeamView: View {
                             HStack {
                                 ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
                                     
-                                    NavigationLink(destination: Text(verbatim: "dd")) {
+                                    NavigationLink(destination: Text(verbatim: "구현 중")) {
                                         ForEach(infraFoodModel.attachFiles!, id: \.self) {
                                             infraModel in
-                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "")
+                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "", width:100, height:100)
                                         }
                                     }
                                     //                                .navigationBarTitle("HomeView")

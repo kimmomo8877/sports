@@ -24,12 +24,12 @@ import SwiftUI
 
 struct MainTabView: View {
     private enum Tabs {
-      case home, team, sports, touring, myPage
+        case home, team, sports, touring, myPage
     }
-
+    
     @State private var selectedTab: Tabs = .home
-//    private var testViewModel = TestViewModel()
-
+    //    private var testViewModel = TestViewModel()
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             Group {
@@ -47,58 +47,72 @@ struct MainTabView: View {
 
 private extension MainTabView {
     var home: some View {
-//        Tracker()
-//            .tag(Tabs.team)
-//            .tabItem {
-//                Text("전지훈련팀")
-//            }
+        //        Tracker()
+        //            .tag(Tabs.team)
+        //            .tabItem {
+        //                Text("전지훈련팀")
+        //            }
         HomeView()
-//        SportView()
+            //        SportView()
             .tag(Tabs.home)
             .tabItem {
-                Text("홈")
+                VStack() {
+                    Image(systemName: "house.fill")
+                    Text("홈").font(Font.system(size:15))
+                }
             }
     }
-
+    
     var team: some View {
         TeamView()
-//        SportView()
-//        Text("MyPageView")
+            //        SportView()
+            //        Text("MyPageView")
             .tag(Tabs.team)
             .tabItem {
-                Text("전지훈련팀")
+                VStack() {
+                    Image(systemName: "calendar.circle.fill")
+                    Text("전지훈련팀").font(Font.system(size:15))
+                }
             }
-
+        
     }
-
+    
     var sports: some View {
         SportView()
-//        Text("MyPageView")
+            //        Text("MyPageView")
             .tag(Tabs.sports)
             .tabItem {
-                Text("스포츠재활")
+                VStack() {
+                    Image(systemName: "sportscourt.fill")
+                    Text("스포츠재활").font(Font.system(size:15))
+                }
             }
-
+        
     }
-
+    
     var touring: some View {
-//        TouringView()
-        SportView()
-//        Text("MyPageView")
+        TouringView()
+            //        Text("MyPageView")
             .tag(Tabs.touring)
             .tabItem {
-                Text("투어링")
+                VStack() {
+                    Image(systemName: "airplane.circle.fill")
+                    Text("투어링").font(Font.system(size:15))
+                }
             }
-
+        
     }
-
+    
     var myPage: some View {
         Text("MyPageView")
             .tag(Tabs.myPage)
             .tabItem {
-                Text("MY")
+                VStack() {
+                    Image(systemName: "person.crop.circle.fill")
+                    Text("MY").font(Font.system(size:15))
+                }
             }
-
+        
     }
 }
 

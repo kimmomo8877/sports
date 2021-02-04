@@ -28,6 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var infraCategoryViewModel = InfraCategoryViewModel()
         var favoriteViewModel = FavoriteViewModel()
         var searchViewModel = SearchViewModel()
+        var codeViewModel = CodeViewModel()
+        var teamViewModel = TeamViewModel()
         
         let mainView = MainTabView()
             .environment(\.managedObjectContext, context)
@@ -36,6 +38,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(favoriteViewModel)
             .environmentObject(infraCategoryViewModel)
             .environmentObject(searchViewModel)
+            .environmentObject(codeViewModel)
+            .environmentObject(teamViewModel)
         
 //        let mainView = MainTabView()
 //            .environment(\.managedObjectContext, context)

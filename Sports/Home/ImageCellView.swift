@@ -11,16 +11,20 @@ import Kingfisher
 struct ImageCell: View {
     var imageUrl: String
     var title: String
-
-    init(imageUrl: String!, title: String!) {
+    var width: CGFloat
+    var height: CGFloat
+    
+    init(imageUrl: String!, title: String!, width: CGFloat!, height: CGFloat!) {
         self.title = title
         self.imageUrl = imageUrl
+        self.width = width
+        self.height = height
     }
     
     var body: some View {
         KFImage(URL(string: self.imageUrl))
             .resizable()
-            .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(width: self.width, height: self.height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .overlay(OverlayText(overlayText: self.title), alignment: .bottom)
     }
     
@@ -43,8 +47,8 @@ struct OverlayText: View {
     }
 }
 
-struct ImageCell_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageCell(imageUrl: "https://via.placeholder.com/150/771796", title: "Title")
-    }
-}
+//struct ImageCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ImageCell(imageUrl: "https://via.placeholder.com/150/771796", title: "Title")
+//    }
+//}

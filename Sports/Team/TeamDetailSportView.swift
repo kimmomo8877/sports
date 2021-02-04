@@ -26,21 +26,17 @@ struct TeamDetailSportView: View {
         
             ScrollView (.horizontal, showsIndicators: false) {
                 HStack {
-                    Image("image")
-                        .resizable()
-                        .frame(width: 150, height: 150, alignment: .center)
-                    Image("image")
-                        .resizable()
-                        .frame(width: 150, height: 150, alignment: .center)
-                    Image("image")
-                        .resizable()
-                        .frame(width: 150, height: 150, alignment: .center)
-                    Image("image")
-                        .resizable()
-                        .frame(width: 150, height: 150, alignment: .center)
-                    Image("image")
-                        .resizable()
-                        .frame(width: 150, height: 150, alignment: .center)
+                    
+//                    if infraViewModel.infraObject[0].attachFiles!.count > 0 {
+//                        ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!)
+//                    }
+                    
+                    ForEach(infraViewModel.infraObject[0].attachFiles!, id: \.self) {
+                                                                        infraModel in
+                        ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "", width:100, height: 100)
+                                                                    }
+                    
+
                     
                 }
             }

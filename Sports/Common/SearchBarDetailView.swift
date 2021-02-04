@@ -1,27 +1,17 @@
-//
-//  SearchBar.swift
-//  ToDoList
-//
-//  Created by Simon Ng on 15/4/2020.
-//  Copyright © 2020 AppCoda. All rights reserved.
-//
+
 
 import SwiftUI
 
 struct SearchBarDetailView: View {
     
-    
     @Binding var text: String
-    //    @State private var text: String = "hh"
     @State private var isEditing = false
     @State private var isShowing = false
     @EnvironmentObject var searchViewModel : SearchViewModel
-    //    @ObservedObject private var searchViewModel = SearchViewModel()
     
     var body: some View {
         HStack {
-            
-            
+
             TextField("Search ...", text: $text)
                 
                 .padding(7)
@@ -56,25 +46,22 @@ struct SearchBarDetailView: View {
                 
                 NavigationLink(destination: TeamSearchView(), isActive: $isShowing) {
                     Button(action: {
-                        //                    self.isEditing = false
-                        //                                        self.text = ""
                         
                         // Dismiss the keyboard
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                        
-//                        self.text = "창원"
-                        searchViewModel.call_json(searchWord: self.text)
+
+                        searchViewModel.searchInfra(searchWord: self.text)
+                        searchViewModel.searchTeam(searchWord: self.text)
                         self.isShowing = true
-//                        self.isEditing =
                         
                     }) {
-                        Text("검색")
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
                     }
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))
                     .animation(.default)
-                }
-//                .navigationBarTitle("검색", displayMode: .inline)
+                }.navigationBarTitle("검색", displayMode: .inline)
                 
             }
         }
