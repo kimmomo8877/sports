@@ -21,6 +21,7 @@ class BandActViewModel: NSObject, ObservableObject {
     enum BandFunction: Int {
         case NOTHING = 0
         case GET_HR
+        case INIT_ACTIVITY
         case GET_ACTIVITY
         case END_ACTIVITY
         case GET_BCA
@@ -32,12 +33,15 @@ class BandActViewModel: NSObject, ObservableObject {
     
     static let shared: BandActViewModel = BandActViewModel()
     
-    @Published var lastActivity: BandActivityRawModel? = nil
+    @Published var firstActivity: BandActivityRawModel? = nil
+    @Published var completeActivity: BandActivityRawModel? = nil
+    @Published var tempActivity: BandActivityRawModel? = nil
     @Published var lastHR: BandHrRawModel? = nil
     @Published var lastInBody: BandInbodyRawModel? = nil
     @Published var status: String = "None"
+    @Published var showingPopup = false
     @Published var isLoading: Bool = false
-    @Published var isRunning = false
+    @Published var isRunning: Bool = false
     @Published var isFinished: Bool = false
     
 //    트래커 메인페이지
@@ -54,6 +58,13 @@ class BandActViewModel: NSObject, ObservableObject {
         super.init()
         print("init band act model")
         manager.initSDK(withCallback: 175, weight: 100, age: 35, gender: "M", deviceName: "InBodyBand2", delegate: self, abnormalDisconnect: #selector(callbackDisconnect(returnValue:)), callback: #selector(callbackConnected(returnValue:)), useHealthKit: false)
+    }
+    
+    func initTrackingData() {
+        self.trackingCount = 0
+        self.trackingDistance = 0
+        self.trackingCalories = 0
+        self.trackingTime = 0
     }
     
     func toggleIsRunning() {
@@ -95,6 +106,7 @@ class BandActViewModel: NSObject, ObservableObject {
     func runHR() {
         print("run HR")
         self.status = "기기 연결중.."
+        self.showingPopup = true
         self.isLoading = true
         toRunFunc = BandFunction.RUN_HR
         manager.connectDisconnect(withCallback: #selector(callbackDisconnect(returnValue:)), isNeedScanList: true)
@@ -108,9 +120,8 @@ class BandActViewModel: NSObject, ObservableObject {
             
             let parsed = try! JSONDecoder().decode(BandHrRawModel.self, from: jsonData)
             if parsed.IsComplete == 1 {
-                self.status = "측정완료 (심박)"
-                self.isLoading = false
                 self.lastHR = parsed
+                sendHeartBeatRequest(heartRateData: parsed)
             } else {
                 self.status = "심박 측정중...(손가락 올려)"
             }
@@ -189,6 +200,34 @@ class BandActViewModel: NSObject, ObservableObject {
         manager.connectDisconnect(withCallback: #selector(callbackDisconnect(returnValue:)), isNeedScanList: true)
     }
     
+    func initActivity() {
+        print("InitActivity")
+        DispatchQueue.main.async {
+            self.status = "기기 연결중.. (Activity)"
+            self.isLoading = true
+        }
+        
+        self.toRunFunc = BandFunction.INIT_ACTIVITY
+        
+        manager.connectDisconnect(withCallback: #selector(callbackDisconnect(returnValue:)), isNeedScanList: true)
+    }
+    
+    @objc func callbackInitTracking(returnValue: NSDictionary) {
+        print("callback initTracking : \(returnValue)")
+        if let retJson: String = returnValue.object(forKey: "JsonData") as? String {
+            let jsonData: Data = retJson.data(using: .utf8)!
+            print("init activity callback json \(retJson)")
+            
+            let parsedActivityData = try! JSONDecoder().decode(BandActivityRawModel.self, from: jsonData)
+            self.firstActivity = parsedActivityData
+            if parsedActivityData.IsComplete == 1 {
+                sendBeginRequest()
+            }
+        }
+        
+        
+    }
+    
     @objc func callbackGetTracking(returnValue: NSDictionary) {
         print("callback getTracking : \(returnValue)")
         handleActivityData(returnValue: returnValue, isEnd: false)
@@ -205,21 +244,48 @@ class BandActViewModel: NSObject, ObservableObject {
             let jsonData: Data = retJson.data(using: .utf8)!
             print("activity callback json \(retJson)")
             
-            let parsedActivityData = try! JSONDecoder().decode(BandActivityRawModel.self, from: jsonData)
+            var parsedActivityData = try! JSONDecoder().decode(BandActivityRawModel.self, from: jsonData)
             if parsedActivityData.IsComplete == 1 {
-                DispatchQueue.main.async {
-                    self.status = "Act 조회 완료"
-                    self.isLoading = false
+                // 현재
+                if completeActivity == nil {
+                    // minus first
+                    parsedActivityData.minus(act: firstActivity!)
                 }
+                
+                tempActivity = parsedActivityData
+                calculateAllActivity()
+            } else {
+                // 과거
+                if completeActivity == nil {
+                    // minus first
+                    parsedActivityData.minus(act: firstActivity!)
+                    completeActivity = parsedActivityData
+                }
+                
+                completeActivity!.add(act: parsedActivityData)
             }
             
-            self.trackingTime += (parsedActivityData.RunTime + parsedActivityData.WalkTime)
-            self.trackingCount += (parsedActivityData.Run + parsedActivityData.Walk)
-            self.trackingDistance += (parsedActivityData.RunDistance + parsedActivityData.WalkDistance)
-            self.trackingCalories += (parsedActivityData.RunCalories + parsedActivityData.WalkCalories)
-            
-            sendTrackingRequest(exerciseNo: BandMainViewModel.shared.exerciseId, trackingData: parsedActivityData, isEnd: isEnd)
+            sendTrackingRequest(trackingData: parsedActivityData, isEnd: isEnd)
         }
+    }
+    
+    func calculateAllActivity() {
+        var trackingTime = tempActivity!.WalkTime + tempActivity!.RunTime
+        var trackingCount = tempActivity!.Walk + tempActivity!.Run
+        var trackingDistance = tempActivity!.WalkDistance + tempActivity!.RunDistance
+        var trackingCalories = tempActivity!.WalkCalories + tempActivity!.RunCalories
+        
+        if completeActivity != nil {
+            trackingTime += (completeActivity!.WalkTime + completeActivity!.RunTime)
+            trackingCount += (completeActivity!.Walk + completeActivity!.Run)
+            trackingDistance += (completeActivity!.WalkDistance + completeActivity!.RunDistance)
+            trackingCalories += (completeActivity!.WalkCalories + completeActivity!.RunCalories)
+        }
+        
+        self.trackingTime = trackingTime
+        self.trackingCount = trackingCount
+        self.trackingDistance = trackingDistance
+        self.trackingCalories = trackingCalories
     }
     
     @objc func callbackConnected(returnValue:NSDictionary) {
@@ -237,14 +303,17 @@ class BandActViewModel: NSObject, ObservableObject {
         
         if (errorCode == -3 || errorCode == -1) {
             self.status = "기기접근불가 (Timeout)"
+            self.showingPopup = true
             self.isLoading = false
             return
         } else if (errorCode == 6) {
             self.status = "기기접근불가 (Abnormal Disconnected with BLE Errorcode)"
+            self.showingPopup = true
             self.isLoading = false
             return
         } else if (errorCode == 0 && bleState == 0) {
-            self.status = "접속종료(정상)"
+            self.status = "기기접근불가 (Busy)"
+            self.showingPopup = true
             self.isLoading = false
             return
         }
@@ -256,10 +325,12 @@ class BandActViewModel: NSObject, ObservableObject {
             print("callback - connected")
             if toRunFunc == BandFunction.GET_HR {
                 manager.getHRData(withCallback: #selector(callbackGetHR(returnValue:)), clearData: false)
+            } else if toRunFunc == BandFunction.INIT_ACTIVITY {
+                manager.getActivityData(withCallback: #selector(callbackInitTracking(returnValue:)), clearData: true)
             } else if toRunFunc == BandFunction.GET_ACTIVITY {
-                manager.getActivityData(withCallback: #selector(callbackGetTracking(returnValue:)), clearData: false)
+                manager.getActivityData(withCallback: #selector(callbackGetTracking(returnValue:)), clearData: true)
             } else if toRunFunc == BandFunction.END_ACTIVITY {
-                manager.getActivityData(withCallback: #selector(callbackEndTracking(returnValue:)), clearData: false)
+                manager.getActivityData(withCallback: #selector(callbackEndTracking(returnValue:)), clearData: true)
             } else if toRunFunc == BandFunction.GET_BCA {
                 manager.getBcaData(withCallback: #selector(callbackGetBCA(returnValue:)), clearData: false)
             } else if toRunFunc == BandFunction.RUN_HR {
@@ -288,7 +359,10 @@ class BandActViewModel: NSObject, ObservableObject {
 
 extension BandActViewModel {
     func sendBeginRequest() {
-        let jsonDict:[String: Any] = ["exerType": "Tracking", "bodyComposition": ["timestamp": DateUtils.currentDateString()]]
+        let userNo = UserDefaults.standard.string(forKey: "userNo")
+        let targetNo = UserDefaults.standard.integer(forKey: "targetNo")
+        
+        let jsonDict:[String: Any] = ["exerType": "Tracking", "userNo": userNo!, "targetNo": targetNo, "bodyComposition": ["timestamp": DateUtils.currentDateString()]]
 
         let url = URL(string: "http://www.kbostat.co.kr/resource/tracking/begin")!
         let serializedData = try! JSONSerialization.data(withJSONObject: jsonDict, options: [])
@@ -305,17 +379,20 @@ extension BandActViewModel {
                 print("requestError :", error)
                 self.isLoading = false
                 self.isRunning = false
+                self.status = "운동시작실패"
                 return
             }
 
             do {
                 guard let data = data else { return }
                 guard let resultData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else { return }
-
+                
                 self.exerciseId = resultData["targetExercises"]!["targetExerNo"] as! Int
                 print("exerciseNumber = \(self.exerciseId)")
                 DispatchQueue.main.async {
+                    self.status = "운동시작"
                     self.isLoading = false
+                    self.showingPopup = true
                     self.isRunning = true
                 }
             } catch {
@@ -326,8 +403,11 @@ extension BandActViewModel {
         task.resume()
     }
     
-    func sendTrackingRequest(exerciseNo:Int, trackingData: BandActivityRawModel, isEnd:Bool) {
-        let jsonDict:[String: Any] = ["exerType": "Tracking", "tracking": ["timestamp": trackingData.Date + " " + trackingData.Time,
+    func sendTrackingRequest(trackingData: BandActivityRawModel, isEnd:Bool) {
+        let userNo = UserDefaults.standard.string(forKey: "userNo")
+        let targetNo = UserDefaults.standard.integer(forKey: "targetNo")
+        
+        let jsonDict:[String: Any] = ["exerType": "Tracking", "userNo": userNo!, "targetNo": targetNo, "targetExerNo": self.exerciseId, "tracking": ["timestamp": trackingData.Date + " " + trackingData.Time,
                                                                            "walk": trackingData.Walk, "walkTime": trackingData.WalkTime, "walkCalories": trackingData.WalkCalories,
                                                                            "walkDistance": trackingData.WalkDistance, "run": trackingData.Run, "runTime": trackingData.RunTime,
                                                                            "runCalories": trackingData.RunCalories, "runDistance": trackingData.RunDistance, "isComplete": trackingData.IsComplete]]
@@ -349,8 +429,55 @@ extension BandActViewModel {
                 return
             }
             
+            if isEnd {
+                DispatchQueue.main.async {
+                    self.isFinished = true
+                    self.isRunning = false
+                    self.status = "운동 종료"
+                    self.isLoading = false
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.isFinished = false
+                    self.isRunning = true
+                    self.status = "트래킹 데이터 조회성공"
+                    self.isLoading = false
+                }
+            }
+            
+        }
+        
+        task.resume()
+    }
+    
+    func sendHeartBeatRequest(heartRateData: BandHrRawModel) {
+        let userNo = UserDefaults.standard.string(forKey: "userNo")
+        let targetNo = UserDefaults.standard.integer(forKey: "targetNo")
+        
+        let jsonDict:[String: Any] = ["exerType": "Tracking", "userNo": userNo!, "targetNo": targetNo, "targetExerNo": self.exerciseId, "heartRate": ["timestamp": heartRateData.Date! + " " + heartRateData.Time!,
+                                                                                                                     "hr": heartRateData.HR!]]
+        
+        
+        let url = URL(string: "http://www.kbostat.co.kr/resource/tracking/exercise")!
+        let serializedData = try! JSONSerialization.data(withJSONObject: jsonDict, options: [])
+        let toRequestjsonText = String(decoding: serializedData, as: UTF8.self)
+        print("requestBody : \(toRequestjsonText)")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "post"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = serializedData
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("requestError :", error)
+                return
+            }
+            
             DispatchQueue.main.async {
-                self.isFinished = true
+                self.status = "측정완료 (심박)"
+                self.showingPopup = true
+                self.isLoading = false
             }
         }
         

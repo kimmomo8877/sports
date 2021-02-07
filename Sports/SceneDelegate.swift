@@ -24,12 +24,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-        var infraViewModel = InfraViewModel()
-        var infraCategoryViewModel = InfraCategoryViewModel()
-        var favoriteViewModel = FavoriteViewModel()
-        var searchViewModel = SearchViewModel()
-        var codeViewModel = CodeViewModel()
-        var teamViewModel = TeamViewModel()
+        let infraViewModel = InfraViewModel()
+        let infraCategoryViewModel = InfraCategoryViewModel()
+        let favoriteViewModel = FavoriteViewModel()
+        let searchViewModel = SearchViewModel()
+        let codeViewModel = CodeViewModel()
+        let teamViewModel = TeamViewModel()
+//        let loginViewModel = LoginViewModel()
         
         let mainView = MainTabView()
             .environment(\.managedObjectContext, context)
@@ -40,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(searchViewModel)
             .environmentObject(codeViewModel)
             .environmentObject(teamViewModel)
+//            .environmentObject(loginViewModel)
         
 //        let mainView = MainTabView()
 //            .environment(\.managedObjectContext, context)

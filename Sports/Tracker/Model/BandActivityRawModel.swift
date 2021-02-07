@@ -8,16 +8,23 @@
 import Foundation
 
 struct BandActivityRawModel: Decodable, Hashable {
-//    mutating func add(act: BandActivityRawModel) {
-//        self.Date = act.Date
-//        self.Time = act.Time
-//        self.Walk += act.Walk
-//        self.WalkTime += act.WalkTime
-//        self.WalkCalories += act.WalkCalories
-//        self.WalkDistance += act.WalkDistance
-//        self.RunCalories += act.RunCalories
-//        self.RunDistance += act.RunDistance
-//    }
+    mutating func add(act: BandActivityRawModel) {
+        self.Walk += act.Walk
+        self.WalkTime += act.WalkTime
+        self.WalkCalories += act.WalkCalories
+        self.WalkDistance += act.WalkDistance
+        self.RunCalories += act.RunCalories
+        self.RunDistance += act.RunDistance
+    }
+    
+    mutating func minus(act: BandActivityRawModel) {
+        self.Walk -= act.Walk
+        self.WalkTime -= act.WalkTime
+        self.WalkCalories -= act.WalkCalories
+        self.WalkDistance -= act.WalkDistance
+        self.RunCalories -= act.RunCalories
+        self.RunDistance -= act.RunDistance
+    }
     
     var Date: String
     var Time: String

@@ -58,6 +58,12 @@
 		14F969D625BD6C4C0002D5F0 /* InBodySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D499E2925BD5F4D0031A614 /* InBodySDK.a */; };
 		14F969E225BD6EE00002D5F0 /* HomeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F969E125BD6EE00002D5F0 /* HomeImageView.swift */; };
 		4D1C20E525AA0789007DCDB9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C20E425AA0789007DCDB9 /* DetailView.swift */; };
+		4D274F7C25CBFBDC00DA2052 /* TargetInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D274F7B25CBFBDC00DA2052 /* TargetInfoModel.swift */; };
+		4D274F8025CC078D00DA2052 /* TargetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D274F7F25CC078D00DA2052 /* TargetModel.swift */; };
+		4D274F8525CC457E00DA2052 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 4D274F8425CC457E00DA2052 /* Introspect */; };
+		4D274F8925CCCF0E00DA2052 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 4D274F8825CCCF0E00DA2052 /* PopupView */; };
+		4D274F8D25CCFFF200DA2052 /* TargetInfraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D274F8C25CCFFF200DA2052 /* TargetInfraModel.swift */; };
+		4D32B79F25CD79970008C5CE /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D32B79E25CD79970008C5CE /* MyView.swift */; };
 		4D3D4BD225A9AB1E00C3F78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D4BD125A9AB1E00C3F78F /* AppDelegate.swift */; };
 		4D3D4BD425A9AB1E00C3F78F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D4BD325A9AB1E00C3F78F /* SceneDelegate.swift */; };
 		4D3D4BD925A9AB1E00C3F78F /* Sports.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D4BD725A9AB1E00C3F78F /* Sports.xcdatamodeld */; };
@@ -81,6 +87,8 @@
 		4D53C3E825C967A700117D5D /* BandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53C3E725C967A700117D5D /* BandManager.swift */; };
 		4DB784F225A9B3C900725E6C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB784F125A9B3C900725E6C /* HomeView.swift */; };
 		4DB784FC25A9BE0100725E6C /* ImageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB784FB25A9BE0100725E6C /* ImageCellView.swift */; };
+		4DF1B3EC25CBB47B0070D637 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1B3EB25CBB47B0070D637 /* LoginViewModel.swift */; };
+		4DF1B3F125CBBFC00070D637 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1B3F025CBBFC00070D637 /* LoginView.swift */; };
 		4DF55A8025C98CB400BC06C7 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF55A7F25C98CB400BC06C7 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +153,10 @@
 		144B696A25C199BD00E915AE /* HomeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScrollView.swift; sourceTree = "<group>"; };
 		14F969E125BD6EE00002D5F0 /* HomeImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeImageView.swift; sourceTree = "<group>"; };
 		4D1C20E425AA0789007DCDB9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4D274F7B25CBFBDC00DA2052 /* TargetInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetInfoModel.swift; sourceTree = "<group>"; };
+		4D274F7F25CC078D00DA2052 /* TargetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetModel.swift; sourceTree = "<group>"; };
+		4D274F8C25CCFFF200DA2052 /* TargetInfraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetInfraModel.swift; sourceTree = "<group>"; };
+		4D32B79E25CD79970008C5CE /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		4D3D4BCE25A9AB1E00C3F78F /* Sports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D3D4BD125A9AB1E00C3F78F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D3D4BD325A9AB1E00C3F78F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +191,8 @@
 		4D53C3E725C967A700117D5D /* BandManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandManager.swift; sourceTree = "<group>"; };
 		4DB784F125A9B3C900725E6C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4DB784FB25A9BE0100725E6C /* ImageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellView.swift; sourceTree = "<group>"; };
+		4DF1B3EB25CBB47B0070D637 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		4DF1B3F025CBBFC00070D637 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4DF55A7F25C98CB400BC06C7 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,6 +202,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				143AEEDF25C3026D0098C95C /* PartialSheet in Frameworks */,
+				4D274F8525CC457E00DA2052 /* Introspect in Frameworks */,
+				4D274F8925CCCF0E00DA2052 /* PopupView in Frameworks */,
 				14F969D625BD6C4C0002D5F0 /* InBodySDK.a in Frameworks */,
 				147FC7EB25BD6730000CD83F /* Kingfisher in Frameworks */,
 			);
@@ -262,6 +278,14 @@
 			path = Sport;
 			sourceTree = "<group>";
 		};
+		4D32B79D25CD79790008C5CE /* My */ = {
+			isa = PBXGroup;
+			children = (
+				4D32B79E25CD79970008C5CE /* MyView.swift */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
 		4D3D4BC525A9AB1E00C3F78F = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +306,7 @@
 		4D3D4BD025A9AB1E00C3F78F /* Sports */ = {
 			isa = PBXGroup;
 			children = (
+				4D32B79D25CD79790008C5CE /* My */,
 				143AEEDB25C2E88A0098C95C /* Touring */,
 				143D52C725BF1F8A00C78030 /* Sport */,
 				1429BA1A25BD7EC70001CA95 /* Common */,
@@ -361,9 +386,10 @@
 				4D499E0525BBED8E0031A614 /* Model */,
 				4D499DF925BBCEEC0031A614 /* ActivityDataManager.swift */,
 				4D499DE525B996F40031A614 /* TrackingConfigView.swift */,
-				4D499DE825BA8E110031A614 /* TrackerMainView.swift */,
-				4DF55A7F25C98CB400BC06C7 /* TestView.swift */,
 				4D53C3C025C664ED00117D5D /* TrackingActView.swift */,
+				4D499DE825BA8E110031A614 /* TrackerMainView.swift */,
+				4DF1B3F025CBBFC00070D637 /* LoginView.swift */,
+				4DF55A7F25C98CB400BC06C7 /* TestView.swift */,
 			);
 			path = Tracker;
 			sourceTree = "<group>";
@@ -377,6 +403,9 @@
 				4D53C3B725C6646B00117D5D /* BandHrRawModel.swift */,
 				4D53C3BA25C6647D00117D5D /* BandInbodyRawModel.swift */,
 				4D53C3DB25C7F3E000117D5D /* BandSyncRawModel.swift */,
+				4D274F7B25CBFBDC00DA2052 /* TargetInfoModel.swift */,
+				4D274F7F25CC078D00DA2052 /* TargetModel.swift */,
+				4D274F8C25CCFFF200DA2052 /* TargetInfraModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -388,6 +417,7 @@
 				4D53C3E325C95C3B00117D5D /* BandMainViewModel.swift */,
 				4D53C3C325C6651800117D5D /* BandHttpHandler.swift */,
 				4D53C3E725C967A700117D5D /* BandManager.swift */,
+				4DF1B3EB25CBB47B0070D637 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -434,6 +464,8 @@
 			packageProductDependencies = (
 				147FC7EA25BD6730000CD83F /* Kingfisher */,
 				143AEEDE25C3026D0098C95C /* PartialSheet */,
+				4D274F8425CC457E00DA2052 /* Introspect */,
+				4D274F8825CCCF0E00DA2052 /* PopupView */,
 			);
 			productName = Sports;
 			productReference = 4D3D4BCE25A9AB1E00C3F78F /* Sports.app */;
@@ -466,6 +498,8 @@
 			packageReferences = (
 				147FC7E925BD6730000CD83F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				143AEEDD25C3026D0098C95C /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				4D274F8325CC457E00DA2052 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				4D274F8725CCCF0E00DA2052 /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 4D3D4BCF25A9AB1E00C3F78F /* Products */;
 			projectDirPath = "";
@@ -508,12 +542,16 @@
 			files = (
 				1429B9F825BD73F30001CA95 /* SearchBarDetailView.swift in Sources */,
 				4D3D4BED25A9AC0B00C3F78F /* MainTabView.swift in Sources */,
+				4D274F8025CC078D00DA2052 /* TargetModel.swift in Sources */,
 				1429B9E425BD73C70001CA95 /* VirtualModel.swift in Sources */,
 				1429B9E825BD73C70001CA95 /* ToDoItem.swift in Sources */,
+				4D274F7C25CBFBDC00DA2052 /* TargetInfoModel.swift in Sources */,
 				143D52C925BF1F9500C78030 /* SportView.swift in Sources */,
 				4D53C3E425C95C3B00117D5D /* BandMainViewModel.swift in Sources */,
 				4D53C3B825C6646B00117D5D /* BandHrRawModel.swift in Sources */,
 				4D53C3BB25C6647D00117D5D /* BandInbodyRawModel.swift in Sources */,
+				4DF1B3F125CBBFC00070D637 /* LoginView.swift in Sources */,
+				4DF1B3EC25CBB47B0070D637 /* LoginViewModel.swift in Sources */,
 				1429B9EA25BD73C70001CA95 /* SearchModel.swift in Sources */,
 				1429B9EB25BD73C70001CA95 /* CodeModel.swift in Sources */,
 				1429B9EF25BD73C70001CA95 /* ChargeModel.swift in Sources */,
@@ -523,12 +561,13 @@
 				4D53C3DC25C7F3E000117D5D /* BandSyncRawModel.swift in Sources */,
 				1429B9EC25BD73C70001CA95 /* FavoriteViewModel.swift in Sources */,
 				1429BA0625BD746E0001CA95 /* TeamDetailFacilityView.swift in Sources */,
+				4D32B79F25CD79970008C5CE /* MyView.swift in Sources */,
 				1429B9E325BD73C70001CA95 /* InfraCategoryModel.swift in Sources */,
 				1429B9E525BD73C70001CA95 /* VirtualViewModel.swift in Sources */,
 				142BE01F25CBE30700CF4C34 /* TeamModel.swift in Sources */,
 				1429BA0225BD746E0001CA95 /* TeamMapView.swift in Sources */,
 				142BE02525CBECD800CF4C34 /* CodeViewModel.swift in Sources */,
-				4D499DDA25B96B720031A614 /* BandViewModel.swift in Sources */,
+				4D499DDA25B96B720031A614 /* BandActViewModel.swift in Sources */,
 				1429B9CC25BD72FA0001CA95 /* HomeIntroView.swift in Sources */,
 				4D499DFA25BBCEEC0031A614 /* ActivityDataManager.swift in Sources */,
 				144B696B25C199BD00E915AE /* HomeScrollView.swift in Sources */,
@@ -541,6 +580,7 @@
 				1429B9E725BD73C70001CA95 /* SportCodeModel.swift in Sources */,
 				4D499E2225BC30E60031A614 /* ActivityModel.swift in Sources */,
 				1429B9E625BD73C70001CA95 /* InfraCategoryViewModel.swift in Sources */,
+				4D274F8D25CCFFF200DA2052 /* TargetInfraModel.swift in Sources */,
 				4D3D4BD225A9AB1E00C3F78F /* AppDelegate.swift in Sources */,
 				1429BA0325BD746E0001CA95 /* TeamView.swift in Sources */,
 				1429B9E225BD73C70001CA95 /* InfraViewModel.swift in Sources */,
@@ -796,6 +836,22 @@
 				minimumVersion = 6.0.1;
 			};
 		};
+		4D274F8325CC457E00DA2052 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
+		4D274F8725CCCF0E00DA2052 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.11;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -808,6 +864,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 147FC7E925BD6730000CD83F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		4D274F8425CC457E00DA2052 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D274F8325CC457E00DA2052 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		4D274F8825CCCF0E00DA2052 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D274F8725CCCF0E00DA2052 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

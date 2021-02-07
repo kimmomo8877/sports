@@ -42,6 +42,7 @@ struct MainTabView: View {
             .accentColor(.primary)
         }
         .edgesIgnoringSafeArea(.top)
+        .addPartialSheet()
     }
 }
 
@@ -104,7 +105,7 @@ private extension MainTabView {
     }
     
     var myPage: some View {
-        Text("MyPageView")
+        MyView()
             .tag(Tabs.myPage)
             .tabItem {
                 VStack() {

@@ -7,11 +7,13 @@
 
 import SwiftUI
 import BackgroundTasks
+import PartialSheet
 
 struct TrackerMainView: View {
     let age:Int
     let weight:Int
 //    @EnvironmentObject private var bandVm: BandActViewModel
+    @EnvironmentObject var partialSheetManager: PartialSheetManager
     
     init(age: Int, weight: Int) {
         self.age = age
@@ -53,6 +55,18 @@ struct TrackerMainView: View {
                                 .font(.title2)
                                 .cornerRadius(10)
                         })
+                    
+//                    Button(action: {
+//                        self.isLogin.toggle()
+//                    }, label: {
+//                        Text("Start")
+//                            .padding()
+//                            .frame(minWidth: 0, maxWidth: .infinity)
+//                            .background(Color.blue)
+//                            .foregroundColor(Color.white)
+//                            .font(.title2)
+//                            .cornerRadius(10)
+//                    })
 
                     
                     Rectangle()
@@ -73,8 +87,6 @@ struct TrackerMainView: View {
 //                }
             }
             .navigationBarTitle("트래커")
-            
-            
         }
     }
     

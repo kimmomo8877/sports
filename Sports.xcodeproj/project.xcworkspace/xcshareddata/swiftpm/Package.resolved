@@ -18,6 +18,24 @@
           "revision": "936465232b6399e402e79d5b031622af9a5e9960",
           "version": "2.1.11"
         }
+      },
+      {
+        "package": "PopupView",
+        "repositoryURL": "https://github.com/exyte/PopupView",
+        "state": {
+          "branch": null,
+          "revision": "7276f92e123969e5ced9212a5f5049d30954106b",
+          "version": "0.0.11"
+        }
+      },
+      {
+        "package": "Introspect",
+        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect",
+        "state": {
+          "branch": null,
+          "revision": "36ecf80429d00a4cd1e81fbfe4655b1d99ebd651",
+          "version": "0.1.2"
+        }
       }
     ]
   },

@@ -6,20 +6,20 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct TrackingActView: View {
     @Environment(\.presentationMode) var presentation
-    @ObservedObject private var bandVm: BandActViewModel
-    @State var counter = 0
+    @ObservedObject private var bandVm: BandActViewModel = BandActViewModel.shared
+    @State var counter: Int = 0
     @State var displayTime = "0"
-    let startTime: Date
+    @State var loadingMessage: String = "밴드에 접근중입니다..."
+    @State var showingPopup = false
+
     let secondTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    @State var trackingTime = 0
+//    let minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     
     init(startTime: Date) {
-        self.startTime = startTime
-        self.bandVm = BandActViewModel.shared
         print("init : \(startTime)")
     }
     
@@ -27,22 +27,23 @@ struct TrackingActView: View {
         ZStack {
             VStack {
                 infoGroup
-                    .onReceive(minuteTimer) { input in
-                        print("onMinuteTimer : \(input)")
-                        if (bandVm.isLoading == false && bandVm.isRunning) {
-                            bandVm.getActivity(isEnd: false)
-                        }
-                    }
                 Text("Time")
                 Text("\(self.displayTime)")
                     .font(.title)
                     .bold()
                     .onReceive(secondTimer) { input in
                         if bandVm.isRunning {
-                            let min = Int(trackingTime / 60)
-                            let second = Int(trackingTime % 60)
+                            let min = Int(counter / 60)
+                            let second = Int(counter % 60)
                             self.displayTime = String(min) + "." + String(second)
-                            trackingTime += 1
+                            
+                            if second == 59 {
+                                bandVm.getActivity(isEnd: false)
+                            }
+                            
+                            self.counter += 1
+                            
+                            
                         }
                     }
                 Spacer()
@@ -66,13 +67,22 @@ struct TrackingActView: View {
                 
             }
         }
+//        .popup(isPresented: $bandVm.showingPopup, type: .floater(verticalPadding: 100), position: .bottom,
+//               animation: .easeInOut, closeOnTap: true, closeOnTapOutside: true) {
+//            HStack {
+//                Text("\(bandVm.status)")
+//            }
+//            .frame(width: 200, height: 60)
+//            .background(Color(red: 0.85, green: 0.8, blue: 0.95))
+//            .cornerRadius(30.0)
+//        }
     }
 }
 
 private extension TrackingActView {
     func endTracking() {
-        self.bandVm.getActivity(isEnd: false)
-        self.presentation.wrappedValue.dismiss()
+        self.bandVm.getActivity(isEnd: true)
+        //        self.presentation.wrappedValue.dismiss()
     }
     
     func togglePause() {
@@ -81,28 +91,34 @@ private extension TrackingActView {
     
     var firstButtonGroup: some View {
         Group {
-            HStack(spacing: 20) {
-                Button(action: { bandVm.getActivity(isEnd: false) }, label: {
-                    Text("Refresh ACT")
-                        .frame(width: 120, height: 40, alignment: .center)
+            HStack(spacing: 25) {
+                //                Button(action: { bandVm.getActivity(isEnd: false) }, label: {
+                //                    Text("Refresh ACT")
+                //                        .frame(width: 120, height: 40, alignment: .center)
+                //                        .background(bandVm.isRunning ? Color.blue : Color.gray)
+                //                        .foregroundColor(Color.white)
+                //                        .cornerRadius(8)
+                //                })
+                //                .disabled(!bandVm.isRunning)
+                
+                Button(action: {
+                    loadingMessage = "밴드에 손가락을 올려주세요..."
+                    bandVm.runHR()
+                }, label: {
+                    Text("심박 측정")
+                        .frame(width: 150, height: 40, alignment: .center)
                         .background(bandVm.isRunning ? Color.blue : Color.gray)
                         .foregroundColor(Color.white)
                         .cornerRadius(8)
                 })
                 .disabled(!bandVm.isRunning)
                 
-                Button(action: { bandVm.runHR() }, label: {
-                    Text("Start HR")
-                        .frame(width: 80, height: 40, alignment: .center)
-                        .background(bandVm.isRunning ? Color.blue : Color.gray)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(8)
-                })
-                .disabled(!bandVm.isRunning)
-                
-                Button(action: { bandVm.runInBody() }, label: {
-                    Text("Start BCA")
-                        .frame(width: 120, height: 40, alignment: .center)
+                Button(action: {
+                    loadingMessage = "밴드에 손가락을 올려주세요..."
+                    bandVm.runInBody()
+                }, label: {
+                    Text("인바디 측정")
+                        .frame(width: 150, height: 40, alignment: .center)
                         .background(bandVm.isRunning ? Color.blue : Color.gray)
                         .foregroundColor(Color.white)
                         .cornerRadius(8)
@@ -115,27 +131,34 @@ private extension TrackingActView {
     var secondButtonGroup: some View {
         Group {
             HStack(spacing: 25) {
-                Button(action: { togglePause() }, label: {
-                    Text("Pause")
-                        .frame(width: 80, height: 40, alignment: .center)
-                        .background(bandVm.isRunning ? Color.blue : Color.gray)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(8)
-                })
-                .disabled(!bandVm.isRunning)
+                //                Button(action: { togglePause() }, label: {
+                //                    Text("Pause")
+                //                        .frame(width: 80, height: 40, alignment: .center)
+                //                        .background(bandVm.isRunning ? Color.blue : Color.gray)
+                //                        .foregroundColor(Color.white)
+                //                        .cornerRadius(8)
+                //                })
+                //                .disabled(!bandVm.isRunning)
                 
-                Button(action: { bandVm.setProfileSync() }, label: {
-                    Text("Start")
-                        .frame(width: 80, height: 40, alignment: .center)
+                Button(action: {
+                    bandVm.initActivity()
+                    bandVm.initTrackingData()
+                    self.counter = 0
+//                    bandVm.setFactoryReset()
+                }, label: {
+                    Text("운동 시작")
+                        .frame(width: 150, height: 40, alignment: .center)
                         .background(!bandVm.isRunning ? Color.blue : Color.gray)
                         .foregroundColor(Color.white)
                         .cornerRadius(8)
                 })
                 .disabled(bandVm.isRunning)
                 
-                Button(action: { endTracking() }, label: {
-                    Text("Stop")
-                        .frame(width: 80, height: 40, alignment: .center)
+                Button(action: {
+                    endTracking()
+                }, label: {
+                    Text("운동 종료")
+                        .frame(width: 150, height: 40, alignment: .center)
                         .background(bandVm.isRunning ? Color.blue : Color.gray)
                         .foregroundColor(Color.white)
                         .cornerRadius(8)
@@ -147,7 +170,7 @@ private extension TrackingActView {
     
     var infoGroup: some View {
         Group {
-            HStack(spacing: 80) {
+            HStack(spacing: 30) {
                 VStack(alignment: .leading) {
                     Text("보행수").foregroundColor(.gray)
                     HStack {
@@ -156,7 +179,7 @@ private extension TrackingActView {
                         Text("걸음").foregroundColor(.gray)
                     }
                 }
-                .frame(width: 130, height: 100, alignment: .center)
+                .frame(width: 150, height: 100, alignment: .center)
                 .background(Color(hue: 0.562, saturation: 0.193, brightness: 0.936))
                 .cornerRadius(10)
                 
@@ -168,13 +191,13 @@ private extension TrackingActView {
                         Text("m").foregroundColor(.gray)
                     }
                 }
-                .frame(width: 130, height: 100, alignment: .center)
+                .frame(width: 150, height: 100, alignment: .center)
                 .background(Color(hue: 0.562, saturation: 0.193, brightness: 0.936))
                 .cornerRadius(10)
             }
             .padding()
             
-            HStack(spacing: 80) {
+            HStack(spacing: 30) {
                 VStack (alignment: .leading) {
                     Text("칼로리").foregroundColor(.gray)
                     HStack {
@@ -183,7 +206,7 @@ private extension TrackingActView {
                         Text("kcal").foregroundColor(.gray)
                     }
                 }
-                .frame(width: 130, height: 100, alignment: .center)
+                .frame(width: 150, height: 100, alignment: .center)
                 .background(Color(hue: 0.562, saturation: 0.193, brightness: 0.936))
                 .cornerRadius(10)
                 
@@ -195,7 +218,7 @@ private extension TrackingActView {
                         Text("min").foregroundColor(.gray)
                     }
                 }
-                .frame(width: 130, height: 100, alignment: .center)
+                .frame(width: 150, height: 100, alignment: .center)
                 .background(Color(hue: 0.562, saturation: 0.193, brightness: 0.936))
                 .cornerRadius(10)
             }
@@ -207,13 +230,17 @@ private extension TrackingActView {
         Group {
             Text("Status - \(bandVm.status)")
             Text("HR - \(bandVm.lastHR?.HR ?? 0)")
-            Text("Counter - \(counter)")
         }
     }
 }
 
 struct Loader: View {
     @State var animate = false
+    @Binding var loadingMessage: String
+    
+    init(loadingMessage: Binding<String> = .constant("밴드에 접근중입니다..")) {
+        _loadingMessage = loadingMessage
+    }
     
     var body: some View {
         VStack {
@@ -223,7 +250,11 @@ struct Loader: View {
                 .frame(width: 45, height: 45)
                 .rotationEffect(.init(degrees: self.animate ? 360 : 0))
                 .animation(Animation.linear(duration: 0.7).repeatForever(autoreverses: false))
+            Text("\(loadingMessage)").padding(.top)
         }
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(15)
         .onAppear {
             self.animate.toggle()
         }
