@@ -180,12 +180,6 @@ struct TeamSearchView: View {
                             Button(action: {
                                 isTeamShowing = true
                                 self.teamViewModel.set_team(teamObject: searchModel)
-//                                annotation.title = searchModel.name ?? ""
-//                                annotation.subtitle = searchModel.address ?? ""
-//                                annotation.coordinate = CLLocationCoordinate2D(
-//                                    latitude: searchModel.latitude ?? 35.106826,
-//                                    longitude: searchModel.longitude ?? 128.988596)
-//                                self.infraViewModel.set_map(annotation: annotation)
                             }) {
                                 HStack {
 //                                    if searchModel.attachFiles!.count > 0 {
@@ -214,6 +208,13 @@ struct TeamSearchView: View {
 
 
 
+
+//                                annotation.title = searchModel.name ?? ""
+//                                annotation.subtitle = searchModel.address ?? ""
+//                                annotation.coordinate = CLLocationCoordinate2D(
+//                                    latitude: searchModel.latitude ?? 35.106826,
+//                                    longitude: searchModel.longitude ?? 128.988596)
+//                                self.infraViewModel.set_map(annotation: annotation)
 
 //                                self.infraViewModel.search_infra(searchWord: searchModel.searchItemNo!)
 //

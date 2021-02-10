@@ -9,9 +9,14 @@ import SwiftUI
 import PartialSheet
 
 struct TeamDetailFacilityView: View {
-    //    @EnvironmentObject var partialSheet : PartialSheetManager
+    @EnvironmentObject var partialSheetManager: PartialSheetManager
     @EnvironmentObject var infraViewModel:InfraViewModel
+    @ObservedObject var loginViewModel:LoginViewModel = LoginViewModel.shared
     @State private var showingSheet = true
+    @State private var isReservationShowing = false
+    @State private var isCallShowing = false
+    @State private var isSearchShowing = false
+    @State private var isSaveShowing = false
     
     var infraModel: InfraModel
     
@@ -28,11 +33,6 @@ struct TeamDetailFacilityView: View {
                     }
                 }.padding(.bottom, 10)
                 
-                //        }
-                
-                
-                
-                //        GeometryReader { geo in
                 ScrollView() {
                     
                     VStack(alignment: .leading) {
@@ -46,43 +46,110 @@ struct TeamDetailFacilityView: View {
                         Group {
                             HStack(spacing:0) {
                                 
-                                Button(action: {
-                                    
-                                }){
-                                    VStack() {
-                                        Image(systemName: "book.fill")
-                                        Text("예약").font(Font.system(size:15))
-                                    }.frame(width: geo.size.width / 5 , height: 60)
-                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                NavigationLink(destination: ReservationView(), isActive: $isReservationShowing) {
+                                    Button(action: {
+                                        if (self.loginViewModel.isLogined) {
+                                            isReservationShowing = true
+                                        } else {
+                                            
+                                            self.partialSheetManager.showPartialSheet({
+                                                let userNoData: String? = UserDefaults.standard.string(forKey: "userNo")
+                                                guard let userNo = userNoData else { return }
+                                                self.loginViewModel.getTargetList(userNo: userNo)
+                                            }) {
+                                                LoginView()
+                                            }
+                                        }
+                                
+                                    }) {
+                                        VStack() {
+                                            Image(systemName: "book.fill")
+                                            Text("예약").font(Font.system(size:15))
+                                        }.frame(width: geo.size.width / 5 , height: 60)
+                                        .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                    }
                                 }
-                                Button(action: {
-                                    
-                                }){
-                                    VStack() {
-                                        Image(systemName: "phone.fill")
-                                        Text("문의").font(Font.system(size:15))
-                                    }.frame(width: geo.size.width /  5, height: 60)
-                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                
+                                NavigationLink(destination: TeamMapView(), isActive: $isCallShowing) {
+                                    Button(action: {
+                                        isCallShowing = true
+                                    }) {
+                                        VStack() {
+                                            Image(systemName: "phone.fill")
+                                            Text("문의").font(Font.system(size:15))
+                                        }.frame(width: geo.size.width /  5, height: 60)
+                                        .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                    }
                                 }
-                                Button(action: {
-                                    
-                                }){
-                                    VStack() {
-                                        Image(systemName: "map.fill")
-                                        Text("길찾기").font(Font.system(size:15))
-                                    }.frame(width: geo.size.width / 5, height: 60)
-                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                
+                                NavigationLink(destination: TeamMapView(), isActive: $isSearchShowing) {
+                                    Button(action: {
+                                        isSearchShowing = true
+                                    }) {
+                                        VStack() {
+                                            Image(systemName: "map.fill")
+                                            Text("길찾기").font(Font.system(size:15))
+                                        }.frame(width: geo.size.width / 5, height: 60)
+                                        .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                    }
                                 }
-                                Button(action: {
-                                    
-                                }){
-                                    VStack() {
-                                        Image(systemName: "square.and.arrow.down.fill")
-                                        Text("저장").font(Font.system(size:15))
-                                    }.frame(width: geo.size.width / 5, height: 60)
-                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                
+                                NavigationLink(destination: TeamMapView(), isActive: $isSaveShowing) {
+                                    Button(action: {
+                                        isSaveShowing = true
+                                    }) {
+                                        VStack() {
+                                            Image(systemName: "square.and.arrow.down.fill")
+                                            Text("저장").font(Font.system(size:15))
+                                        }.frame(width: geo.size.width / 5, height: 60)
+                                        .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                    }
                                 }
-                                Spacer()
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                //                                Button(action: {
+                                //
+                                //                                }){
+                                //                                    VStack() {
+                                //                                        Image(systemName: "book.fill")
+                                //                                        Text("예약").font(Font.system(size:15))
+                                //                                    }.frame(width: geo.size.width / 5 , height: 60)
+                                //                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                //                                }
+                                //
+                                //                                Button(action: {
+                                //
+                                //                                }){
+                                //                                    VStack() {
+                                //                                        Image(systemName: "phone.fill")
+                                //                                        Text("문의").font(Font.system(size:15))
+                                //                                    }.frame(width: geo.size.width /  5, height: 60)
+                                //                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                //                                }
+                                //                                Button(action: {
+                                //
+                                //                                }){
+                                //                                    VStack() {
+                                //                                        Image(systemName: "map.fill")
+                                //                                        Text("길찾기").font(Font.system(size:15))
+                                //                                    }.frame(width: geo.size.width / 5, height: 60)
+                                //                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                //                                }
+                                //                                Button(action: {
+                                //
+                                //                                }){
+                                //                                    VStack() {
+                                //                                        Image(systemName: "square.and.arrow.down.fill")
+                                //                                        Text("저장").font(Font.system(size:15))
+                                //                                    }.frame(width: geo.size.width / 5, height: 60)
+                                //                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                //                                }
+                                //                                Spacer()
                                 
                             }.padding(.bottom,10).padding(.leading,40)
                             
