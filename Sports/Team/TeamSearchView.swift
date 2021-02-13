@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import PartialSheet
 
 struct TeamSearchView: View {
     
@@ -14,6 +15,7 @@ struct TeamSearchView: View {
     @EnvironmentObject var infraViewModel: InfraViewModel
     @EnvironmentObject var codeViewModel: CodeViewModel
     @EnvironmentObject var teamViewModel: TeamViewModel
+    @EnvironmentObject var partialSheetManager: PartialSheetManager
     @State private var centerCoordinate = CLLocationCoordinate2D()
     @State private var selectedPlace: MKPointAnnotation?
     @State private var showingPlaceDetails = false
@@ -62,70 +64,81 @@ struct TeamSearchView: View {
         
         HStack(alignment:.top) {
             
-            VStack() {
-                VStack(spacing: 5) {
-                    HStack() {
-                        Text("종목")
-                        Image(systemName: expand1 ? "chevron.up" : "chevron.down")
-                            .resizable()
-                            .frame(width: 13, height: 6)
-                    }
-                    .frame(width:80, height:30)
-                    .background(Color.white)
-                    .overlay(Rectangle()
-                                .stroke(lineWidth: 0.5))
-                    .onTapGesture {
-                        self.expand1.toggle()
-                    }
-                    if expand1 {
-                        Button(action: {
-                            self.expand1.toggle()
-                        }) {
-                            Text("축구").padding(5)
-                        }
-                        Button(action: {
-                            self.expand1.toggle()
-                        }) {
-                            Text("야구").padding(5)
-                        }
-                    }
+            Button(action: {
+
+                self.partialSheetManager.showPartialSheet({
+                    self.searchViewModel.isSportFilter(codes: self.codeViewModel.codeSport)
+                }) {
+                    SportFilterView()
                 }
-                
+            }) {
+                HStack() {
+                    Text("종목")
+                    Image(systemName: expand1 ? "chevron.up" : "chevron.down")
+                        .resizable()
+                        .frame(width: 13, height: 6)
+                }
+                .frame(width:80, height:30)
+                .background(Color.white)
+                .overlay(Rectangle()
+                            .stroke(lineWidth: 0.5))
+            }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
+          
+            
+            Button(action: {
+
+                self.partialSheetManager.showPartialSheet({
+                    self.searchViewModel.isRegionFilter(codes: self.codeViewModel.codeRegion)
+                }) {
+                    RegionFilterView()
+                }
+            }) {
+                HStack() {
+                    Text("지역")
+                    Image(systemName: expand1 ? "chevron.up" : "chevron.down")
+                        .resizable()
+                        .frame(width: 13, height: 6)
+                }
+                .frame(width:80, height:30)
+                .background(Color.white)
+                .overlay(Rectangle()
+                            .stroke(lineWidth: 0.5))
             }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
             
-            VStack() {
-                VStack(spacing: 5) {
-                    HStack() {
-                        Text("지역")
-                        Image(systemName: expand2 ? "chevron.up" : "chevron.down")
-                            .resizable()
-                            .frame(width: 13, height: 6)
-                    }
-                    .frame(width:80, height:30)
-                    .background(Color.white)
-                    .overlay(Rectangle()
-                                .stroke(lineWidth: 0.5)
-                             
-                    )
-                    //                    .cornerRadius(5)
-                    .onTapGesture {
-                        self.expand2.toggle()
-                    }
-                    if expand2 {
-                        Button(action: {
-                            self.expand2.toggle()
-                        }) {
-                            Text("창원").padding(5)
-                        }
-                        Button(action: {
-                            self.expand2.toggle()
-                        }) {
-                            Text("거제도").padding(5)
-                        }
-                    }
-                }
-                
-            }.padding(.leading, 10).padding(.top,8).padding(.bottom,8)
+            
+//            VStack() {
+//                VStack(spacing: 5) {
+//                    HStack() {
+//                        Text("지역")
+//                        Image(systemName: expand2 ? "chevron.up" : "chevron.down")
+//                            .resizable()
+//                            .frame(width: 13, height: 6)
+//                    }
+//                    .frame(width:80, height:30)
+//                    .background(Color.white)
+//                    .overlay(Rectangle()
+//                                .stroke(lineWidth: 0.5)
+//
+//                    )
+//                    //                    .cornerRadius(5)
+//                    .onTapGesture {
+//                        self.expand2.toggle()
+//                    }
+//                    if expand2 {
+//                        Button(action: {
+//                            self.expand2.toggle()
+//                        }) {
+//                            Text("창원").padding(5)
+//                        }
+//                        Button(action: {
+//                            self.expand2.toggle()
+//                        }) {
+//                            Text("거제도").padding(5)
+//                        }
+//                    }
+//                }
+//
+//            }.padding(.leading, 10).padding(.top,8).padding(.bottom,8)
             Spacer()
         }
         //        .frame(height:50)
@@ -171,32 +184,32 @@ struct TeamSearchView: View {
                     
                 }
                 else {
-
-
+                    
+                    
                     ForEach(self.searchViewModel.searchTeam, id: \.self) { searchModel in
-
+                        
                         NavigationLink(destination: TeamMapView(), isActive: $isTeamShowing) {
-//
+                            //
                             Button(action: {
                                 isTeamShowing = true
                                 self.teamViewModel.set_team(teamObject: searchModel)
                             }) {
                                 HStack {
-//                                    if searchModel.attachFiles!.count > 0 {
-//                                        ImageCellSearch(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + searchModel.attachFiles![0].saveFilePath!, title: "")
-//                                    } else {
-                                        Image("search_default_image")
-                                            .resizable()
-                                            .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                                    }
+                                    //                                    if searchModel.attachFiles!.count > 0 {
+                                    //                                        ImageCellSearch(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + searchModel.attachFiles![0].saveFilePath!, title: "")
+                                    //                                    } else {
+                                    Image("search_default_image")
+                                        .resizable()
+                                        .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    //                                    }
                                     VStack {
                                         Text("\(searchModel.name ?? "")")
-//                                        Text("\(searchModel.name ?? "")").foregroundColor(.secondary)
+                                        //                                        Text("\(searchModel.name ?? "")").foregroundColor(.secondary)
                                     }
                                 }.padding(.leading, 10)
                                 Spacer()
                             }
-
+                            
                         }
                         
                     }
@@ -206,6 +219,16 @@ struct TeamSearchView: View {
     }
 }
 
+
+
+//                    .onTapGesture {
+//                                            if self.selectedPlatforms.contains(platform.id) {
+//                                                self.selectedPlatforms.removeAll(where: { $0 == platform.id })
+//                                            }
+//                                            else {
+//                                                self.selectedPlatforms.append(platform.id)
+//                                            }
+//                                    }
 
 
 
@@ -275,3 +298,36 @@ struct TeamSearchView: View {
 //                Text("지역")
 //            })
 //        }
+
+
+
+//            VStack() {
+//                VStack(spacing: 5) {
+//                    HStack() {
+//                        Text("종목")
+//                        Image(systemName: expand1 ? "chevron.up" : "chevron.down")
+//                            .resizable()
+//                            .frame(width: 13, height: 6)
+//                    }
+//                    .frame(width:80, height:30)
+//                    .background(Color.white)
+//                    .overlay(Rectangle()
+//                                .stroke(lineWidth: 0.5))
+//                    .onTapGesture {
+//                        self.expand1.toggle()
+//                    }
+//                    if expand1 {
+//                        Button(action: {
+//                            self.expand1.toggle()
+//                        }) {
+//                            Text("축구").padding(5)
+//                        }
+//                        Button(action: {
+//                            self.expand1.toggle()
+//                        }) {
+//                            Text("야구").padding(5)
+//                        }
+//                    }
+//                }
+//
+//            }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)

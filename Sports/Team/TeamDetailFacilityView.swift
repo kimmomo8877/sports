@@ -70,9 +70,20 @@ struct TeamDetailFacilityView: View {
                                     }
                                 }
                                 
-                                NavigationLink(destination: TeamMapView(), isActive: $isCallShowing) {
+//                                NavigationLink(destination: TeamMapView(), isActive: $isCallShowing) {
                                     Button(action: {
-                                        isCallShowing = true
+//                                        isCallShowing = true
+                                        if infraViewModel.infraObject[0].phoneNumber != nil {
+//                                            let numberString = "010-9898-4729"
+                                            let telephone = "tel://"
+                                            let formattedString = telephone + infraViewModel.infraObject[0].phoneNumber!
+                                            guard let url = URL(string: formattedString) else { return }
+                                            UIApplication.shared.open(url)
+                                        } else {
+                                            
+                                        }
+                                            
+                                         
                                     }) {
                                         VStack() {
                                             Image(systemName: "phone.fill")
@@ -80,7 +91,7 @@ struct TeamDetailFacilityView: View {
                                         }.frame(width: geo.size.width /  5, height: 60)
                                         .overlay(Rectangle().stroke(lineWidth: 0.5))
                                     }
-                                }
+//                                }
                                 
                                 NavigationLink(destination: TeamMapView(), isActive: $isSearchShowing) {
                                     Button(action: {

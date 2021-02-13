@@ -43,6 +43,9 @@ class TeamViewModel: ObservableObject {
         self.locations.append(annotation)
     }
     
+    
+    
+    
 }
 
 

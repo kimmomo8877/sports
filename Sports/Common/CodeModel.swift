@@ -11,4 +11,5 @@ struct CodeModel: Decodable, Hashable {
     var indexCodeId: Int?
     var parentCodeId: Int?
     var name: String?
+    var isCheck: Bool? = true
 }

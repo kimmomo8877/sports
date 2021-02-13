@@ -30,6 +30,7 @@ struct InfraModel: Decodable, Hashable {
     var longitude: Double?
     var charges: Array<ChargeModel>?
     var reservationCnt: Int?
+    var regionCode: CodeModel?
 //    var registeDate: Date?
 //    var modifyDate: Date?
 //    var deleteDate: Date?
