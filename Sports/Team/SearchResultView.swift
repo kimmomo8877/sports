@@ -1,15 +1,16 @@
 //
-//  TeamSearch.swift
+//  SearchResultView.swift
 //  Sports
 //
-//  Created by Jinsang Jeong on 2021/01/16.
+//  Created by Jinsang Jeong on 2021/02/13.
 //
+
 
 import SwiftUI
 import MapKit
 import PartialSheet
 
-struct TeamSearchView: View {
+struct SearchResultView: View {
     
     @EnvironmentObject var searchViewModel: SearchViewModel
     @EnvironmentObject var infraViewModel: InfraViewModel
@@ -27,6 +28,7 @@ struct TeamSearchView: View {
     @State private var expand1 = false
     @State private var expand2 = false
     @State private var changeList = false
+    @State private var isMapShowing = false
     
     var body: some View {
         
@@ -59,13 +61,83 @@ struct TeamSearchView: View {
             }) {
                 Text("스포츠팀\(self.searchViewModel.searchTeam.count)").font(.system(size:20)).fontWeight(.bold)
             }.padding(.leading, 20)
+            
+                        NavigationLink(destination: SearchResultMapView(), isActive: $isMapShowing) {
+                            Button(action: {
+                                isMapShowing = true
+                                var infras = [InfraModel]()
+                                var locations = [MKPointAnnotation]()
+                                
+//                                ForEach(self.searchViewModel.searchInfra, id: \.self) { searchModel in
+//                                    self.infraViewModel.setInfras(infraObject: searchModel)
+//                                    self.infraViewModel.setInfras(infraObject: searchModel)
+//                                }
+                                
+//                                ForEach(self.searchViewModel.searchInfra.indices) { index in
+//                                    infras.append(self.searchViewModel.searchInfra[index])
+//                                }
+                                
+                                for (infra) in self.searchViewModel.searchInfra {
+                                    infras.append(infra)
+                                    annotation.title = infra.name ?? ""
+                                    annotation.subtitle = infra.address ?? ""
+                                    annotation.coordinate = CLLocationCoordinate2D(
+                                    latitude: infra.latitude ?? infra.latitude ?? 0,
+                                    longitude: infra.longitude ?? infra.longitude ?? 0)
+                                    locations.append(annotation)
+                                }
+                                
+                                self.infraViewModel.setInfras(infraObject: infras)
+                                self.infraViewModel.setMaps(locations: locations)
+                                
+                                
+//
+//                                self.infraViewModel.setInfra(infraObject: searchModel)
+//                                annotation.title = searchModel.name ?? ""
+//                                annotation.subtitle = searchModel.address ?? ""
+//                                annotation.coordinate = CLLocationCoordinate2D(
+//                                    latitude: searchModel.latitude ?? searchModel.latitude ?? 0,
+//                                    longitude: searchModel.longitude ?? searchModel.longitude ?? 0)
+//                                self.infraViewModel.setMap(annotation: annotation)
+                            }) {
+                                Image(systemName: "map")
+                                Text("지도보기")
+                            }
+                            .padding(.trailing, 10)
+                            .transition(.move(edge: .trailing))
+                            .animation(.default)
+                        }.padding(.trailing, 30)
+            
             Spacer()
         }
         
         HStack(alignment:.top) {
             
+            if changeList {
+                
+                Button(action: {
+                    
+                    self.partialSheetManager.showPartialSheet({
+                        self.searchViewModel.isRegionFilter(codes: self.codeViewModel.codeRegion)
+                    }) {
+                        ClassificationFilterView()
+                    }
+                }) {
+                    HStack() {
+                        Text("구분")
+                        Image(systemName: expand1 ? "chevron.up" : "chevron.down")
+                            .resizable()
+                            .frame(width: 13, height: 6)
+                    }
+                    .frame(width:80, height:30)
+                    .background(Color.white)
+                    .overlay(Rectangle()
+                                .stroke(lineWidth: 0.5))
+                }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
+            }
+            
             Button(action: {
-
+                
                 self.partialSheetManager.showPartialSheet({
                     self.searchViewModel.isSportFilter(codes: self.codeViewModel.codeSport)
                 }) {
@@ -83,10 +155,10 @@ struct TeamSearchView: View {
                 .overlay(Rectangle()
                             .stroke(lineWidth: 0.5))
             }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
-          
+            
             
             Button(action: {
-
+                
                 self.partialSheetManager.showPartialSheet({
                     self.searchViewModel.isRegionFilter(codes: self.codeViewModel.codeRegion)
                 }) {
@@ -106,42 +178,8 @@ struct TeamSearchView: View {
             }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
             
             
-//            VStack() {
-//                VStack(spacing: 5) {
-//                    HStack() {
-//                        Text("지역")
-//                        Image(systemName: expand2 ? "chevron.up" : "chevron.down")
-//                            .resizable()
-//                            .frame(width: 13, height: 6)
-//                    }
-//                    .frame(width:80, height:30)
-//                    .background(Color.white)
-//                    .overlay(Rectangle()
-//                                .stroke(lineWidth: 0.5)
-//
-//                    )
-//                    //                    .cornerRadius(5)
-//                    .onTapGesture {
-//                        self.expand2.toggle()
-//                    }
-//                    if expand2 {
-//                        Button(action: {
-//                            self.expand2.toggle()
-//                        }) {
-//                            Text("창원").padding(5)
-//                        }
-//                        Button(action: {
-//                            self.expand2.toggle()
-//                        }) {
-//                            Text("거제도").padding(5)
-//                        }
-//                    }
-//                }
-//
-//            }.padding(.leading, 10).padding(.top,8).padding(.bottom,8)
             Spacer()
         }
-        //        .frame(height:50)
         .background(Color.gray).brightness(0.4)
         
         
@@ -151,17 +189,17 @@ struct TeamSearchView: View {
                 if !changeList {
                     ForEach(self.searchViewModel.searchInfra, id: \.self) { searchModel in
                         
-                        NavigationLink(destination: TeamMapView(), isActive: $isInfraShowing) {
+                        NavigationLink(destination: FacilityMapView(), isActive: $isInfraShowing) {
                             
                             Button(action: {
                                 isInfraShowing = true
-                                self.infraViewModel.set_infra(infraObject: searchModel)
+                                self.infraViewModel.setInfra(infraObject: searchModel)
                                 annotation.title = searchModel.name ?? ""
                                 annotation.subtitle = searchModel.address ?? ""
                                 annotation.coordinate = CLLocationCoordinate2D(
-                                    latitude: searchModel.latitude ?? 35.106826,
-                                    longitude: searchModel.longitude ?? 128.988596)
-                                self.infraViewModel.set_map(annotation: annotation)
+                                    latitude: searchModel.latitude ?? searchModel.latitude ?? 0,
+                                    longitude: searchModel.longitude ?? searchModel.longitude ?? 0)
+                                self.infraViewModel.setMap(annotation: annotation)
                             }) {
                                 HStack {
                                     if searchModel.attachFiles!.count > 0 {
@@ -184,15 +222,13 @@ struct TeamSearchView: View {
                     
                 }
                 else {
-                    
-                    
                     ForEach(self.searchViewModel.searchTeam, id: \.self) { searchModel in
                         
-                        NavigationLink(destination: TeamMapView(), isActive: $isTeamShowing) {
+                        NavigationLink(destination: TeamDetailView(infraModel: self.infraViewModel.infraObject[0]), isActive: $isTeamShowing) {
                             //
                             Button(action: {
                                 isTeamShowing = true
-                                self.teamViewModel.set_team(teamObject: searchModel)
+                                self.teamViewModel.setTeam(teamObject: searchModel)
                             }) {
                                 HStack {
                                     //                                    if searchModel.attachFiles!.count > 0 {
@@ -209,9 +245,7 @@ struct TeamSearchView: View {
                                 }.padding(.leading, 10)
                                 Spacer()
                             }
-                            
                         }
-                        
                     }
                 }
             }
@@ -331,3 +365,4 @@ struct TeamSearchView: View {
 //                }
 //
 //            }.padding(.leading, 20).padding(.top,8).padding(.bottom,8)
+

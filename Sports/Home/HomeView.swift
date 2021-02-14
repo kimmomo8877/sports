@@ -95,10 +95,10 @@ struct HomeView: View {
                                     HStack {
                                         ForEach(self.infraViewModel.infraSportRModel, id: \.self) { infraSportModel in
                                             
-                                            NavigationLink(destination: TeamDetailFacilityView(infraModel: infraSportModel), isActive: $isSportShowing) {
+                                            NavigationLink(destination: FacilityDetailView(infraModel: infraSportModel), isActive: $isSportShowing) {
                                                 Button(action: {
                                                     self.isSportShowing = true
-                                                    self.infraViewModel.set_infra(infraObject: infraSportModel)
+                                                    self.infraViewModel.setInfra(infraObject: infraSportModel)
                                                 }) {
                                                     if infraSportModel.attachFiles!.count > 0 {
                                                         ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!, width:100, height:100)
@@ -139,9 +139,9 @@ struct HomeView: View {
                                     HStack {
                                         ForEach(self.infraViewModel.infraHotelRModel, id: \.self) { infraHotelModel in
                                             
-                                            NavigationLink(destination: TeamDetailFacilityView(infraModel: infraHotelModel), isActive: $isHotelShowing) {
+                                            NavigationLink(destination: FacilityDetailView(infraModel: infraHotelModel), isActive: $isHotelShowing) {
                                                 Button(action: {
-                                                    self.infraViewModel.set_infra(infraObject: infraHotelModel)
+                                                    self.infraViewModel.setInfra(infraObject: infraHotelModel)
                                                     self.isHotelShowing = true
                                                 }) {
                                                     
@@ -187,10 +187,10 @@ struct HomeView: View {
                                     HStack {
                                         ForEach(self.infraViewModel.infraFoodRModel, id: \.self) { infraFoodModel in
                                             
-                                            NavigationLink(destination: TeamDetailFacilityView(infraModel: infraFoodModel), isActive: $isFoodShowing) {
+                                            NavigationLink(destination: FacilityDetailView(infraModel: infraFoodModel), isActive: $isFoodShowing) {
                                                 Button(action: {
                                                     self.isFoodShowing = true
-                                                    self.infraViewModel.set_infra(infraObject: infraFoodModel)
+                                                    self.infraViewModel.setInfra(infraObject: infraFoodModel)
                                                 }) {
                                                     if infraFoodModel.attachFiles!.count > 0 {
                                                         ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFoodModel.attachFiles![0].saveFilePath!, title: infraFoodModel.name!, width:100, height:100)

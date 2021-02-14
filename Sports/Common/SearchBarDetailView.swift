@@ -44,7 +44,7 @@ struct SearchBarDetailView: View {
             
             if isEditing {
                 
-                NavigationLink(destination: TeamSearchView(), isActive: $isShowing) {
+                NavigationLink(destination: SearchResultView(), isActive: $isShowing) {
                     Button(action: {
                         
                         // Dismiss the keyboard

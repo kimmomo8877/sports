@@ -26,14 +26,14 @@ public struct RKCalendarView: View {
     
     public var body: some View {
         Group {
-            #if os(macOS) || targetEnvironment(macCatalyst)
+//            #if os(macOS) || targetEnvironment(macCatalyst)
                 Button(action: onDone) {
                     HStack {
-                        Text("Done")
+                        Text("완료")
                         Spacer()
                     }.padding(15)
                 }
-            #endif
+//            #endif
             rkManager.isWeeklyView ? AnyView(weeklyBody) : AnyView(monthlyBody)
         }
     }

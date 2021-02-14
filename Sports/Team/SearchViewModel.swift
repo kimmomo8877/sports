@@ -74,6 +74,11 @@ class SearchViewModel: ObservableObject {
     }
     
     func isSportFilter(codes: Array<CodeModel>) {
+        
+//        if codes == nil {
+//            return
+//        }
+        
         self.searchInfra.removeAll()
         self.searchInfra = self.searchInfra_t.filter { infra in
             
@@ -87,23 +92,12 @@ class SearchViewModel: ObservableObject {
     }
     
     func isRegionFilter(codes: Array<CodeModel>) {
+        
+//        if codes == nil {
+//            return
+//        }
+        
         self.searchInfra.removeAll()
-        
-        for (code) in codes {
-            if code.isCheck == true {
-                let test_filter = self.searchInfra_t.filter { infra in
-                    let endIdx: String.Index = (infra.regionCode?.name!.index((infra.regionCode?.name!.startIndex)!, offsetBy: 1))!
-                    print(String((infra.regionCode?.name?[...endIdx])!))
-                    print(code.name!)
-                    return String((infra.regionCode?.name?[...endIdx])!) == code.name
-                }
-                
-                print(test_filter)
-            }
-            
-        }
-
-        
         for (code) in codes {
             if code.isCheck == true {
                 self.searchInfra = self.searchInfra_t.filter { infra in
@@ -116,6 +110,22 @@ class SearchViewModel: ObservableObject {
     }
     
 }
+
+
+
+//        for (code) in codes {
+//            if code.isCheck == true {
+//                let test_filter = self.searchInfra_t.filter { infra in
+//                    let endIdx: String.Index = (infra.regionCode?.name!.index((infra.regionCode?.name!.startIndex)!, offsetBy: 1))!
+//                    print(String((infra.regionCode?.name?[...endIdx])!))
+//                    print(code.name!)
+//                    return String((infra.regionCode?.name?[...endIdx])!) == code.name
+//                }
+//
+////                print(test_filter)
+//            }
+//
+//        }
 
 
 //    init(searchWord: String) {

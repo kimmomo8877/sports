@@ -8,16 +8,16 @@
 import SwiftUI
 import MapKit
 class TeamViewModel: ObservableObject {
-   
+    
     @Published var teamModel = [TeamModel]()
     @Published var teamObject = [TeamModel]()
     @Published var locations = [MKPointAnnotation]()
-
+    
     init() {
         
     }
     
-    func search_team(searchWord: String) {
+    func searchTeam(searchWord: String) {
         
         let url_string = "http://www.kbostat.co.kr/resource/team/" + searchWord
         print(url_string)
@@ -34,17 +34,14 @@ class TeamViewModel: ObservableObject {
         task.resume()
     }
     
-    func set_team(teamObject: TeamModel) {
+    func setTeam(teamObject: TeamModel) {
         self.teamObject.removeAll()
         self.teamObject.append(teamObject)
     }
     
-    func set_map(annotation: MKPointAnnotation) {
+    func setMap(annotation: MKPointAnnotation) {
         self.locations.append(annotation)
     }
-    
-    
-    
     
 }
 

@@ -42,12 +42,16 @@
 		1429B9F625BD73F30001CA95 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9F325BD73F30001CA95 /* MapView.swift */; };
 		1429B9F725BD73F30001CA95 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9F425BD73F30001CA95 /* SearchBarView.swift */; };
 		1429B9F825BD73F30001CA95 /* SearchBarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9F525BD73F30001CA95 /* SearchBarDetailView.swift */; };
-		1429BA0225BD746E0001CA95 /* TeamMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9FD25BD746E0001CA95 /* TeamMapView.swift */; };
 		1429BA0325BD746E0001CA95 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9FE25BD746E0001CA95 /* TeamView.swift */; };
 		1429BA0425BD746E0001CA95 /* TeamDetailSportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9FF25BD746E0001CA95 /* TeamDetailSportView.swift */; };
-		1429BA0525BD746E0001CA95 /* TeamSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429BA0025BD746E0001CA95 /* TeamSearchView.swift */; };
-		1429BA0625BD746E0001CA95 /* TeamDetailFacilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429BA0125BD746E0001CA95 /* TeamDetailFacilityView.swift */; };
 		1429BA0925BD75250001CA95 /* image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1429BA0825BD75250001CA95 /* image.jpeg */; };
+		142BB67425D8D4BA00E71014 /* ReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BB67325D8D4BA00E71014 /* ReservationModel.swift */; };
+		142BB67725D8D63400E71014 /* ReservationModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BB67625D8D63400E71014 /* ReservationModelView.swift */; };
+		142BB67A25D8F31900E71014 /* ClassificationFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BB67925D8F31900E71014 /* ClassificationFilterView.swift */; };
+		142BB67D25D8FB1400E71014 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BB67C25D8FB1400E71014 /* SearchResultView.swift */; };
+		142BB68025D8FBA400E71014 /* FacilityMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BB67F25D8FBA400E71014 /* FacilityMapView.swift */; };
+		142BB68325D8FC1900E71014 /* TeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BB68225D8FC1900E71014 /* TeamDetailView.swift */; };
+		142BB68725D8FC3D00E71014 /* FacilityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BB68625D8FC3D00E71014 /* FacilityDetailView.swift */; };
 		142BE01F25CBE30700CF4C34 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BE01E25CBE30700CF4C34 /* TeamModel.swift */; };
 		142BE02225CBEA6100CF4C34 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BE02125CBEA6100CF4C34 /* UserModel.swift */; };
 		142BE02525CBECD800CF4C34 /* CodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BE02425CBECD800CF4C34 /* CodeViewModel.swift */; };
@@ -56,6 +60,7 @@
 		142BE03325CC097900CF4C34 /* touring_main_visual02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 142BE03225CC097900CF4C34 /* touring_main_visual02.jpg */; };
 		142BE03625CC0A4200CF4C34 /* touring_main_bn01.png in Resources */ = {isa = PBXBuildFile; fileRef = 142BE03525CC0A4200CF4C34 /* touring_main_bn01.png */; };
 		142BE03925CC0A4800CF4C34 /* touring_main_bn02.png in Resources */ = {isa = PBXBuildFile; fileRef = 142BE03825CC0A4800CF4C34 /* touring_main_bn02.png */; };
+		142E0F7025D9199900BB14FA /* SearchResultMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E0F6F25D9199900BB14FA /* SearchResultMapView.swift */; };
 		143A523625D82BB100F5AE5A /* RegionFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143A523525D82BB100F5AE5A /* RegionFilterView.swift */; };
 		143AA51125C69B03004F9B6B /* man-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51025C69B03004F9B6B /* man-1.png */; };
 		143AA51525C69B09004F9B6B /* man-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51325C69B09004F9B6B /* man-2.png */; };
@@ -157,12 +162,16 @@
 		1429B9F325BD73F30001CA95 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1429B9F425BD73F30001CA95 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		1429B9F525BD73F30001CA95 /* SearchBarDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarDetailView.swift; sourceTree = "<group>"; };
-		1429B9FD25BD746E0001CA95 /* TeamMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMapView.swift; sourceTree = "<group>"; };
 		1429B9FE25BD746E0001CA95 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		1429B9FF25BD746E0001CA95 /* TeamDetailSportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailSportView.swift; sourceTree = "<group>"; };
-		1429BA0025BD746E0001CA95 /* TeamSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamSearchView.swift; sourceTree = "<group>"; };
-		1429BA0125BD746E0001CA95 /* TeamDetailFacilityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailFacilityView.swift; sourceTree = "<group>"; };
 		1429BA0825BD75250001CA95 /* image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpeg; sourceTree = "<group>"; };
+		142BB67325D8D4BA00E71014 /* ReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationModel.swift; sourceTree = "<group>"; };
+		142BB67625D8D63400E71014 /* ReservationModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationModelView.swift; sourceTree = "<group>"; };
+		142BB67925D8F31900E71014 /* ClassificationFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationFilterView.swift; sourceTree = "<group>"; };
+		142BB67C25D8FB1400E71014 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		142BB67F25D8FBA400E71014 /* FacilityMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityMapView.swift; sourceTree = "<group>"; };
+		142BB68225D8FC1900E71014 /* TeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailView.swift; sourceTree = "<group>"; };
+		142BB68625D8FC3D00E71014 /* FacilityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailView.swift; sourceTree = "<group>"; };
 		142BE01E25CBE30700CF4C34 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		142BE02125CBEA6100CF4C34 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		142BE02425CBECD800CF4C34 /* CodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewModel.swift; sourceTree = "<group>"; };
@@ -171,6 +180,7 @@
 		142BE03225CC097900CF4C34 /* touring_main_visual02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = touring_main_visual02.jpg; sourceTree = "<group>"; };
 		142BE03525CC0A4200CF4C34 /* touring_main_bn01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touring_main_bn01.png; sourceTree = "<group>"; };
 		142BE03825CC0A4800CF4C34 /* touring_main_bn02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touring_main_bn02.png; sourceTree = "<group>"; };
+		142E0F6F25D9199900BB14FA /* SearchResultMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMapView.swift; sourceTree = "<group>"; };
 		143A523525D82BB100F5AE5A /* RegionFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionFilterView.swift; sourceTree = "<group>"; };
 		143AA51025C69B03004F9B6B /* man-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-1.png"; sourceTree = "<group>"; };
 		143AA51325C69B09004F9B6B /* man-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-2.png"; sourceTree = "<group>"; };
@@ -285,15 +295,20 @@
 				1429B9DD25BD73C70001CA95 /* FavoriteViewModel.swift */,
 				1429B9DE25BD73C70001CA95 /* FavoriteModel.swift */,
 				1429B9FE25BD746E0001CA95 /* TeamView.swift */,
-				1429BA0125BD746E0001CA95 /* TeamDetailFacilityView.swift */,
 				1429B9FF25BD746E0001CA95 /* TeamDetailSportView.swift */,
-				1429B9FD25BD746E0001CA95 /* TeamMapView.swift */,
-				1429BA0025BD746E0001CA95 /* TeamSearchView.swift */,
 				142BE01E25CBE30700CF4C34 /* TeamModel.swift */,
 				142BE02D25CBF76700CF4C34 /* TeamViewModel.swift */,
 				144E6CA325D3DA7C0001C26E /* ReservationView.swift */,
 				141E7E2825D4CE8A00D6947A /* SportFilterView.swift */,
 				143A523525D82BB100F5AE5A /* RegionFilterView.swift */,
+				142BB67325D8D4BA00E71014 /* ReservationModel.swift */,
+				142BB67625D8D63400E71014 /* ReservationModelView.swift */,
+				142BB67925D8F31900E71014 /* ClassificationFilterView.swift */,
+				142BB67C25D8FB1400E71014 /* SearchResultView.swift */,
+				142BB67F25D8FBA400E71014 /* FacilityMapView.swift */,
+				142BB68225D8FC1900E71014 /* TeamDetailView.swift */,
+				142BB68625D8FC3D00E71014 /* FacilityDetailView.swift */,
+				142E0F6F25D9199900BB14FA /* SearchResultMapView.swift */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -608,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1417CDF425D41AD3001DC2AA /* RKPageView.swift in Sources */,
+				142BB67D25D8FB1400E71014 /* SearchResultView.swift in Sources */,
 				1417CDE625D41AD0001DC2AA /* RKWeekdayHeader.swift in Sources */,
 				1429B9F825BD73F30001CA95 /* SearchBarDetailView.swift in Sources */,
 				4D3D4BED25A9AC0B00C3F78F /* MainTabView.swift in Sources */,
@@ -622,6 +638,7 @@
 				4D53C3BB25C6647D00117D5D /* BandInbodyRawModel.swift in Sources */,
 				4DF1B3F125CBBFC00070D637 /* LoginView.swift in Sources */,
 				4DF1B3EC25CBB47B0070D637 /* LoginViewModel.swift in Sources */,
+				142BB67A25D8F31900E71014 /* ClassificationFilterView.swift in Sources */,
 				1429B9EA25BD73C70001CA95 /* SearchModel.swift in Sources */,
 				1429B9EB25BD73C70001CA95 /* CodeModel.swift in Sources */,
 				1429B9EF25BD73C70001CA95 /* ChargeModel.swift in Sources */,
@@ -632,12 +649,13 @@
 				144B696725C193C300E915AE /* TouringImageView.swift in Sources */,
 				4D53C3DC25C7F3E000117D5D /* BandSyncRawModel.swift in Sources */,
 				1429B9EC25BD73C70001CA95 /* FavoriteViewModel.swift in Sources */,
-				1429BA0625BD746E0001CA95 /* TeamDetailFacilityView.swift in Sources */,
 				4D32B79F25CD79970008C5CE /* MyView.swift in Sources */,
 				1429B9E325BD73C70001CA95 /* InfraCategoryModel.swift in Sources */,
+				142BB68325D8FC1900E71014 /* TeamDetailView.swift in Sources */,
+				142E0F7025D9199900BB14FA /* SearchResultMapView.swift in Sources */,
 				1429B9E525BD73C70001CA95 /* VirtualViewModel.swift in Sources */,
 				142BE01F25CBE30700CF4C34 /* TeamModel.swift in Sources */,
-				1429BA0225BD746E0001CA95 /* TeamMapView.swift in Sources */,
+				142BB67725D8D63400E71014 /* ReservationModelView.swift in Sources */,
 				142BE02525CBECD800CF4C34 /* CodeViewModel.swift in Sources */,
 				4D499DDA25B96B720031A614 /* BandActViewModel.swift in Sources */,
 				1429B9CC25BD72FA0001CA95 /* HomeIntroView.swift in Sources */,
@@ -648,9 +666,10 @@
 				1417CDEA25D41AD0001DC2AA /* RKDate.swift in Sources */,
 				4D53C3C125C664ED00117D5D /* TrackingActView.swift in Sources */,
 				1429B9EE25BD73C70001CA95 /* InfraModel.swift in Sources */,
-				1429BA0525BD746E0001CA95 /* TeamSearchView.swift in Sources */,
+				142BB68025D8FBA400E71014 /* FacilityMapView.swift in Sources */,
 				1417CDE825D41AD0001DC2AA /* RKMonth.swift in Sources */,
 				1429B9E125BD73C70001CA95 /* SearchViewModel.swift in Sources */,
+				142BB68725D8FC3D00E71014 /* FacilityDetailView.swift in Sources */,
 				4D53C3E825C967A700117D5D /* BandManager.swift in Sources */,
 				1429B9CF25BD73010001CA95 /* HomeTextView.swift in Sources */,
 				1429B9E725BD73C70001CA95 /* SportCodeModel.swift in Sources */,
@@ -668,6 +687,7 @@
 				4DF55A8025C98CB400BC06C7 /* TestView.swift in Sources */,
 				4DB784F225A9B3C900725E6C /* HomeView.swift in Sources */,
 				4D499E2725BC393E0031A614 /* DateUtils.swift in Sources */,
+				142BB67425D8D4BA00E71014 /* ReservationModel.swift in Sources */,
 				1417CDEC25D41AD0001DC2AA /* RKCalendarView.swift in Sources */,
 				4D53C3C425C6651800117D5D /* BandHttpHandler.swift in Sources */,
 				1429BA0425BD746E0001CA95 /* TeamDetailSportView.swift in Sources */,

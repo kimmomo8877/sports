@@ -11,6 +11,7 @@ class CodeViewModel: ObservableObject {
     
     @Published var codeRegion = [CodeModel]()
     @Published var codeSport  = [CodeModel]()
+    @Published var codeClassification = [CodeModel]()
     
     init () {
         
@@ -49,6 +50,23 @@ class CodeViewModel: ObservableObject {
                 }
             }
         }.resume()
+        
+        guard let url_classification = URL(string: "http://www.kbostat.co.kr/resource/code/classification") else { return }
+        
+        URLSession.shared.dataTask(with: url_classification) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([CodeModel].self, from: data!)
+                        self.codeClassification = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                }
+            }
+        }.resume()
     }
     
     func setSportAll() {
@@ -72,6 +90,18 @@ class CodeViewModel: ObservableObject {
     func setRegionNonAll() {
         for i in 0...self.codeRegion.count - 1 {
             self.codeRegion[i].isCheck = false
+        }
+    }
+    
+    func setClassificationAll() {
+        for i in 0...self.codeClassification.count - 1 {
+            self.codeClassification[i].isCheck = true
+        }
+    }
+    
+    func setClassificationNonAll() {
+        for i in 0...self.codeClassification.count - 1 {
+            self.codeClassification[i].isCheck = false
         }
     }
     //                        for (sportMenuModel) in self.infraSportModel {

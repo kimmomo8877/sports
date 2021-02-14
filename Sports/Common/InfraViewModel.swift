@@ -45,6 +45,7 @@ class InfraViewModel: ObservableObject {
     @Published var festivalCategory:String = "축제"
     
     @Published var infraObject = [InfraModel]()
+    @Published var infraObjects = [InfraModel]()
     
     @Published var locations = [MKPointAnnotation]()
     
@@ -464,14 +465,32 @@ class InfraViewModel: ObservableObject {
         task.resume()
     }
     
-    func set_infra(infraObject: InfraModel) {
+    func setInfra(infraObject: InfraModel) {
         self.infraObject.removeAll()
         self.infraObject.append(infraObject)
     }
+    
+    func setInfras(infraObject: [InfraModel]) {
+        self.infraObjects = infraObject
+    }
+    
+    func deleteInfras(infraObject: [InfraModel]) {
+        self.infraObjects.removeAll()
+    }
 
-    func set_map(annotation: MKPointAnnotation) {
+    func setMap(annotation: MKPointAnnotation) {
+        self.locations.removeAll()
         self.locations.append(annotation)
     }
+    
+    func setMaps(locations: [MKPointAnnotation]) {
+        self.locations = locations
+    }
+    
+    func deleteMaps(locations: [MKPointAnnotation]) {
+        self.locations.removeAll()
+    }
+
     
 }
 

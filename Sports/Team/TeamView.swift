@@ -94,10 +94,10 @@ struct TeamView: View {
                             HStack {
                                 ForEach(self.infraViewModel.infraSportModel, id: \.self) { infraSportModel in
                                     
-                                    NavigationLink(destination: TeamDetailFacilityView(infraModel: infraSportModel), isActive: $isSportShowing) {
+                                    NavigationLink(destination: FacilityDetailView(infraModel: infraSportModel), isActive: $isSportShowing) {
                                         Button(action: {
                                             self.isSportShowing = true
-                                            self.infraViewModel.set_infra(infraObject: infraSportModel)
+                                            self.infraViewModel.setInfra(infraObject: infraSportModel)
                                         }) {
                                             if infraSportModel.attachFiles!.count > 0 {
                                                 ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!, width: 100, height: 100)
@@ -138,10 +138,10 @@ struct TeamView: View {
                             HStack {
                                 ForEach(self.infraViewModel.infraFacilityModel, id: \.self) { infraFacilityModel in
                                     
-                                    NavigationLink(destination: TeamDetailFacilityView(infraModel: infraFacilityModel), isActive: $isFacilityShowing) {
+                                    NavigationLink(destination: FacilityDetailView(infraModel: infraFacilityModel), isActive: $isFacilityShowing) {
                                         Button(action: {
                                             self.isFacilityShowing = true
-                                            self.infraViewModel.set_infra(infraObject: infraFacilityModel)
+                                            self.infraViewModel.setInfra(infraObject: infraFacilityModel)
                                         }) {
                                             if infraFacilityModel.attachFiles!.count > 0 {
                                                 ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFacilityModel.attachFiles![0].saveFilePath!, title: infraFacilityModel.name!, width: 100, height:100)

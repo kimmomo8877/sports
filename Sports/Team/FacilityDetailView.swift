@@ -1,14 +1,16 @@
 //
-//  TeamDetailFacility.swift
+//  FacilityDetailView.swift
 //  Sports
 //
-//  Created by Jinsang Jeong on 2021/01/23.
+//  Created by Jinsang Jeong on 2021/02/13.
 //
+
 
 import SwiftUI
 import PartialSheet
+import MapKit
 
-struct TeamDetailFacilityView: View {
+struct FacilityDetailView: View {
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     @EnvironmentObject var infraViewModel:InfraViewModel
     @ObservedObject var loginViewModel:LoginViewModel = LoginViewModel.shared
@@ -17,7 +19,7 @@ struct TeamDetailFacilityView: View {
     @State private var isCallShowing = false
     @State private var isSearchShowing = false
     @State private var isSaveShowing = false
-    
+    @State private var annotation = MKPointAnnotation()
     var infraModel: InfraModel
     
     var body: some View {
@@ -70,11 +72,8 @@ struct TeamDetailFacilityView: View {
                                     }
                                 }
                                 
-//                                NavigationLink(destination: TeamMapView(), isActive: $isCallShowing) {
                                     Button(action: {
-//                                        isCallShowing = true
                                         if infraViewModel.infraObject[0].phoneNumber != nil {
-//                                            let numberString = "010-9898-4729"
                                             let telephone = "tel://"
                                             let formattedString = telephone + infraViewModel.infraObject[0].phoneNumber!
                                             guard let url = URL(string: formattedString) else { return }
@@ -93,9 +92,17 @@ struct TeamDetailFacilityView: View {
                                     }
 //                                }
                                 
-                                NavigationLink(destination: TeamMapView(), isActive: $isSearchShowing) {
+                                NavigationLink(destination: FacilityMapView(), isActive: $isSearchShowing) {
                                     Button(action: {
                                         isSearchShowing = true
+                                        annotation.title = infraViewModel.infraObject[0].name ?? ""
+                                        annotation.subtitle = infraViewModel.infraObject[0].address ?? ""
+                                        annotation.coordinate = CLLocationCoordinate2D(
+                                            latitude: infraViewModel.infraObject[0].latitude ?? infraViewModel.infraObject[0].latitude ?? 0,
+                                            longitude: infraViewModel.infraObject[0].longitude ?? infraViewModel.infraObject[0].longitude ?? 0)
+        //                                    latitude: searchModel.latitude ?? 35.106826,
+        //                                    longitude: searchModel.longitude ?? 128.988596)
+                                        self.infraViewModel.setMap(annotation: annotation)
                                     }) {
                                         VStack() {
                                             Image(systemName: "map.fill")
@@ -105,7 +112,7 @@ struct TeamDetailFacilityView: View {
                                     }
                                 }
                                 
-                                NavigationLink(destination: TeamMapView(), isActive: $isSaveShowing) {
+                                NavigationLink(destination: FacilityMapView(), isActive: $isSaveShowing) {
                                     Button(action: {
                                         isSaveShowing = true
                                     }) {
@@ -116,52 +123,7 @@ struct TeamDetailFacilityView: View {
                                         .overlay(Rectangle().stroke(lineWidth: 0.5))
                                     }
                                 }
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                //                                Button(action: {
-                                //
-                                //                                }){
-                                //                                    VStack() {
-                                //                                        Image(systemName: "book.fill")
-                                //                                        Text("예약").font(Font.system(size:15))
-                                //                                    }.frame(width: geo.size.width / 5 , height: 60)
-                                //                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
-                                //                                }
-                                //
-                                //                                Button(action: {
-                                //
-                                //                                }){
-                                //                                    VStack() {
-                                //                                        Image(systemName: "phone.fill")
-                                //                                        Text("문의").font(Font.system(size:15))
-                                //                                    }.frame(width: geo.size.width /  5, height: 60)
-                                //                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
-                                //                                }
-                                //                                Button(action: {
-                                //
-                                //                                }){
-                                //                                    VStack() {
-                                //                                        Image(systemName: "map.fill")
-                                //                                        Text("길찾기").font(Font.system(size:15))
-                                //                                    }.frame(width: geo.size.width / 5, height: 60)
-                                //                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
-                                //                                }
-                                //                                Button(action: {
-                                //
-                                //                                }){
-                                //                                    VStack() {
-                                //                                        Image(systemName: "square.and.arrow.down.fill")
-                                //                                        Text("저장").font(Font.system(size:15))
-                                //                                    }.frame(width: geo.size.width / 5, height: 60)
-                                //                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
-                                //                                }
-                                //                                Spacer()
-                                
+
                             }.padding(.bottom,10).padding(.leading,40)
                             
                         }

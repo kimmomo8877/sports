@@ -1,12 +1,12 @@
 //
-//  RegionFilterView.swift
+//  ClassificationFilterView.swift
 //  Sports
 //
 //  Created by Jinsang Jeong on 2021/02/13.
 //
 
 import SwiftUI
-struct ClassificationFilterView: View {
+struct RegionFilterView: View {
     @EnvironmentObject var codeViewModel: CodeViewModel
 
     let columns = [
@@ -18,7 +18,7 @@ struct ClassificationFilterView: View {
             ScrollView {
                 HStack () {
                     Button(action: {
-                        self.codeViewModel.setRegionAll()
+                        self.codeViewModel.setClassificationAll()
                     }) {
                         Text("전체선택")
                             .foregroundColor(.secondary)
@@ -26,7 +26,7 @@ struct ClassificationFilterView: View {
                     Spacer()
                     
                     Button(action: {
-                        self.codeViewModel.setRegionNonAll()
+                        self.codeViewModel.setClassificationNonAll()
                     }) {
                         Text("전체취소")
                             .foregroundColor(.secondary)
@@ -34,15 +34,15 @@ struct ClassificationFilterView: View {
                 }
                 
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(self.codeViewModel.codeRegion.indices) { index in
+                    ForEach(self.codeViewModel.codeClassification.indices) { index in
                         
                         HStack () {
-                            if  self.codeViewModel.codeRegion[index].isCheck == true {
+                            if  self.codeViewModel.codeClassification[index].isCheck == true {
                                 Image(systemName: "checkmark.square.fill")
                             }else{
                                 Image(systemName: "square")
                             }
-                            Text( self.codeViewModel.codeRegion[index].name!).padding(.leading, 5)
+                            Text( self.codeViewModel.codeClassification[index].name!).padding(.leading, 5)
                             Spacer()
                         }
                         //                .frame(width: geo.size.width / 2, height: 20)
@@ -50,11 +50,11 @@ struct ClassificationFilterView: View {
                         .padding(.horizontal)
                         .listRowInsets(EdgeInsets())
                         .onTapGesture {
-                            if  self.codeViewModel.codeRegion[index].isCheck == true {
-                                self.codeViewModel.codeRegion[index].isCheck = false
+                            if  self.codeViewModel.codeClassification[index].isCheck == true {
+                                self.codeViewModel.codeClassification[index].isCheck = false
                             }
                             else {
-                                self.codeViewModel.codeRegion[index].isCheck = true
+                                self.codeViewModel.codeClassification[index].isCheck = true
                             }
                         }
                     }
