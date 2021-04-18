@@ -22,4 +22,6 @@ struct ReservationModel: Decodable, Hashable {
     var endDate: String?
     var approve: Bool?
     var errMsg: String?
+    var registeDate: String?
+    var attachFiles: Array<AttachFileModel>?
 }

@@ -22,10 +22,21 @@ class ReservationViewModel: ObservableObject {
     //endDate: 예약 종료일
     func postReservation(reservation: ReservationModel) {
         
-        let jsonDict:[String: Any] = ["infraNo": reservation.infraNo!, "parentInfraNo": reservation.parentInfraNo!,
+        let jsonDict:[String: Any] = ["infraNo": reservation.infraNo!, "teamNo": reservation.teamNo!,
                                       "registerNo": reservation.registerNo!, "reservaterNo": reservation.reservaterNo!,
                                       "reservationStateCodeId": reservation.reservationStateCodeId!,
                                       "startDate": reservation.startDate!, "endDate": reservation.endDate!]
+        
+//        let jsonDict:[String: Any] = [:]
+        
+        print("infraNo: ", reservation.infraNo!)
+        print("teamNo", reservation.teamNo!)
+        print("registerNo", reservation.registerNo!)
+        print("reservaterNo", reservation.reservaterNo!)
+        print("reservationStateCodeId", reservation.reservationStateCodeId!)
+        print("startDate", reservation.startDate!)
+        print("endDate", reservation.endDate!)
+        
         
         let url = URL(string: "http://www.kbostat.co.kr/resource/reservation")!
         let serializedData = try! JSONSerialization.data(withJSONObject: jsonDict, options: [])

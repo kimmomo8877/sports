@@ -22,7 +22,7 @@ class SearchViewModel: ObservableObject {
     func searchInfra(searchWord: String) {
         self.searchInfra.removeAll()
         self.searchInfra_t.removeAll()
-        let url_string = "http://www.kbostat.co.kr/resource/infra?searchWord=" + searchWord
+        let url_string = "http://www.kbostat.co.kr/resource/infra?searchWord=" + searchWord + "&page=1&size=20"
         print(url_string)
         if searchWord == "" { return }
         let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -49,7 +49,7 @@ class SearchViewModel: ObservableObject {
     func searchTeam(searchWord: String) {
         self.searchTeam.removeAll()
         self.searchTeam_t.removeAll()
-        let url_string = "http://www.kbostat.co.kr/resource/team?searchWord=" + searchWord
+        let url_string = "http://www.kbostat.co.kr/resource/team?searchWord=" + searchWord + "&page=1&size=20"
         print(url_string)
         if searchWord == "" { return }
         let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)

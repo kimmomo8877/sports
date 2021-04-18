@@ -23,6 +23,10 @@ struct HomeIntroView: View {
 //                .fixedSize(horizontal: false, vertical: true)
             Button(action:{
                 
+                if let url = URL(string: "http://www.kbostat.co.kr/pr/system") {
+                    UIApplication.shared.open(url)
+                }
+                
             }){
                 Text(subTitle)
                     .foregroundColor(.secondary)
@@ -35,7 +39,7 @@ struct HomeIntroView: View {
         .background(Color.white)
         .cornerRadius(20)
         .overlay(Rectangle()
-                    .stroke(lineWidth: 0.5)
+                    .stroke(lineWidth: 0.5).cornerRadius(1)
                     
         )
     }

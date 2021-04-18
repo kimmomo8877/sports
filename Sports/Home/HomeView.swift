@@ -19,21 +19,21 @@ struct HomeView: View {
     
     @State private var isLoading = true
     @State private var downloadAmount = 0.0
-    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationView {
             GeometryReader { geo in
-                ZStack() {
+//                ZStack() {
                     ScrollView() {
                         VStack {
                             Group {
-                                ZStack (alignment:.top) {
+//                                ZStack (alignment:.top) {
                                     
-                                    HomeImageView(image: "m-intro_bg", width: geo.size.width, height: 200)
-                                    //                                    .padding(.top,10)
-                                    HomeImageView(image: "logo-intro", width: geo.size.width / 2 , height: 100)
-                                        .padding(.top,50)
+//                                    HomeImageView(image: "m-intro_bg", width: geo.size.width, height: 200)
+                                    HomeImageView(image: "home_main", width: geo.size.width, height: 200)
+//                                    HomeImageView(image: "logo-intro", width: geo.size.width / 2 , height: 100)
+//                                        .padding(.top,50)
                                     
                                     NavigationLink(destination: TrackingConfigView(), isActive: $isTrackerShowing) {
                                         
@@ -103,6 +103,9 @@ struct HomeView: View {
                                                     if infraSportModel.attachFiles!.count > 0 {
                                                         ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!, width:100, height:100)
                                                     }
+                                                    else {
+                                                        HomeImageView(image: "search_default_image", width: 100, height: 100)
+                                                    }
                                                 }
                                             }
                                             .navigationBarTitle("홈", displayMode: .inline)
@@ -147,6 +150,8 @@ struct HomeView: View {
                                                     
                                                     if infraHotelModel.attachFiles!.count > 0 {
                                                         ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraHotelModel.attachFiles![0].saveFilePath!, title: infraHotelModel.name!, width:100, height:100)
+                                                    } else {
+                                                        HomeImageView(image: "search_default_image", width: 100, height: 100)
                                                     }
                                                     
                                                 }
@@ -194,6 +199,8 @@ struct HomeView: View {
                                                 }) {
                                                     if infraFoodModel.attachFiles!.count > 0 {
                                                         ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFoodModel.attachFiles![0].saveFilePath!, title: infraFoodModel.name!, width:100, height:100)
+                                                    } else {
+                                                        HomeImageView(image: "search_default_image", width: 100, height: 100)
                                                     }
                                                 }
                                             }
@@ -221,8 +228,8 @@ struct HomeView: View {
                 }.onReceive(timer) { input in
                     self.isLoading = false
                 }            }
-        }
-    }
+//        }
+//    }
 }
 
 struct Home_Previews: PreviewProvider {
@@ -230,46 +237,3 @@ struct Home_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-
-//   InfraCategory Sample Source
-//                    ScrollView (.horizontal, showsIndicators: false) {
-//                        HStack {
-//                            ForEach(self.infraCViewModel.infraCategoryModel, id: \.self) { infraCModel in
-//                                NavigationLink(destination: Text(verbatim: "dd")) {
-//
-//                                    Text("\(infraCModel.infraCategoryNo ?? 0)")
-//                                }
-//                                .navigationBarTitle("HomeView")
-//                            }
-//                        }
-//                    }
-//                    .frame(height: 100)
-//
-//                    ScrollView (.horizontal, showsIndicators: false) {
-//                        HStack {
-//                            ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
-//                                NavigationLink(destination: Text(verbatim: "dd")) {
-//                                    ForEach(infraFoodModel.childInfras!, id: \.self) {
-//                                        infraModel in
-//                                        Text("\(infraModel.name ?? "")")
-//                                    }
-//                                }
-//                                .navigationBarTitle("HomeView")
-//                            }
-//                        }
-//                    }
-//                    .frame(height: 100)
-
-
-//                            ForEach(self.vm.virtualData) { virtual in
-//                                NavigationLink(destination: Text("dd")) {
-//                                    ImageCell(imageUrl: virtual.thumbnailUrl, title: "virtual.title")
-//                                }
-//                                .navigationBarTitle("HomeView")
-//                            }
-
-//                                                ForEach(infraHotelModel.attachFiles!, id: \.self) {
-//                                                    infraModel in
-//                                                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: infraHotelModel.name!)
-//                                                }

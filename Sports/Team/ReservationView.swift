@@ -14,7 +14,7 @@ struct ReservationView: View {
     @EnvironmentObject var reservationViewModel:ReservationViewModel
     @State var showCalendar1 = false
     @State var showCalendar2 = false
-//    @State private var reservationModel:ReservationModel
+    //    @State private var reservationModel:ReservationModel
     
     @ObservedObject var rkManager1 = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(60*24*60), maximumDate: Date().addingTimeInterval(60*60*24*90), mode: .singleDate)
     @ObservedObject var rkManager2 = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(60*24*60), maximumDate: Date().addingTimeInterval(60*60*24*90), mode: .singleDate)
@@ -24,7 +24,7 @@ struct ReservationView: View {
         VStack() {
             HStack {
                 if infraViewModel.infraObject[0].attachFiles!.count > 0 {
-                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraViewModel.infraObject[0].attachFiles![0].saveFilePath!, title: "", width: 50, height: 50)
+                    ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraViewModel.infraObject[0].attachFiles![0].saveFilePath!, title: "", width: 100, height: 100)
                 } else {
                     Image("search_default_image")
                         .resizable()
@@ -35,38 +35,47 @@ struct ReservationView: View {
                     Text("\(infraViewModel.infraObject[0].address ?? "")").foregroundColor(.secondary)
                         .font(Font.system(size:15))
                 }
-            }.padding(.leading, 10)
+            }.padding(.top, 20)
+            .padding(.leading, 10)
+            .padding(.bottom, 5)
             
+            VStack { Divider().background(Color.gray) }.padding(CGFloat(20)).foregroundColor(.secondary)
             
-            Button(action: { self.showCalendar1.toggle() }) {
-                Text("시작일").foregroundColor(.blue)
-            }
-            .sheet(isPresented: $showCalendar1) {
-                RKCalendarView().environmentObject(rkManager1)
-            }
-            
-            Text(self.getTextFromDate(date: self.rkManager1.selectedDate))
-            
-            Button(action: { self.showCalendar2.toggle() }) {
-                Text("종료일").foregroundColor(.blue)
-            }
-            .sheet(isPresented: $showCalendar2) {
-                RKCalendarView().environmentObject(rkManager2)
-            }
-            
-            Text(self.getTextFromDate(date: self.rkManager2.selectedDate))
-            
-            
+            VStack() {
+                Text("방문희망일")
+                HStack() {
+                    Button(action: { self.showCalendar1.toggle() }) {
+                        Text("시작일").foregroundColor(.blue)
+                    }
+                    .sheet(isPresented: $showCalendar1) {
+                        RKCalendarView().environmentObject(rkManager1)
+                    }
+                    
+                    Text(self.getTextFromDate(date: self.rkManager1.selectedDate))
+                }
+                HStack() {
+                    Button(action: { self.showCalendar2.toggle() }) {
+                        Text("종료일").foregroundColor(.blue)
+                    }
+                    .sheet(isPresented: $showCalendar2) {
+                        RKCalendarView().environmentObject(rkManager2)
+                    }
+                    
+                    Text(self.getTextFromDate(date: self.rkManager2.selectedDate))
+                }
+            }.padding(.top, 5)
             //infraNo : 예약 대상 번호
+            //teamNo
             //parentInfraNo : 예약 대상 시설의 상위 시설
             //registerNo: 예약 등록자
             //reservaterNo: 예약 대상자
             //reservationStateCodeId: 예약 상태 코드 (default :1001)
             //startDate: 예약
             //endDate: 예약 종료일
-               Button(action: {
+            Button(action: {
                 var reservationModel = ReservationModel()
                 reservationModel.infraNo = infraViewModel.infraObject[0].infraNo
+                reservationModel.teamNo = infraViewModel.infraObject[0].infraNo
                 reservationModel.parentInfraNo = infraViewModel.infraObject[0].parentInfraNo
                 reservationModel.registerNo = "test"
                 reservationModel.reservaterNo = "test2"
@@ -77,7 +86,7 @@ struct ReservationView: View {
                 if reservationModel.infraNo == nil {
                     reservationModel.errMsg = "infraNo no input"
                 } else if reservationModel.parentInfraNo == nil {
-//                    reservationModel.errMsg = "parentInfraNo no input"
+                    //                    reservationModel.errMsg = "parentInfraNo no input"
                     reservationModel.parentInfraNo = ""
                 }
                 
@@ -85,18 +94,18 @@ struct ReservationView: View {
                 if reservationModel.errMsg == nil {
                     reservationViewModel.postReservation(reservation: reservationModel)
                 } else {
-//                    self.reservationViewModel.showToast(message: reservationModel.errMsg, seconds: 1.0)
+                    //                    self.reservationViewModel.showToast(message: reservationModel.errMsg, seconds: 1.0)
                 }
-               }, label: {
-                   Text("예약하기")
-                       .padding()
-                       .frame(minWidth: 0, maxWidth: .infinity)
-                       .background(Color.blue)
-                       .foregroundColor(Color.white)
-                       .font(.title2)
-                       .cornerRadius(10)
-               })
-           
+            }, label: {
+                Text("예약하기")
+                    .padding()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
+                    .font(.title2)
+                    .cornerRadius(10)
+            })
+            
             
             Spacer()
         }

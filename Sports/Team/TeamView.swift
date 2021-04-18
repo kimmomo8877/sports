@@ -25,7 +25,7 @@ struct TeamView: View {
                 VStack {
                     
                     Group {
-                        HomeImageView(image: "main_visual", width: geo.size.width, height: 200)
+                        HomeImageView(image: "team_main", width: geo.size.width, height: 200)
                         
                         HStack(){
                             
@@ -101,6 +101,8 @@ struct TeamView: View {
                                         }) {
                                             if infraSportModel.attachFiles!.count > 0 {
                                                 ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!, width: 100, height: 100)
+                                            } else {
+                                                HomeImageView(image: "search_default_image", width: 100, height: 100)
                                             }
                                         }
                                     }
@@ -145,6 +147,8 @@ struct TeamView: View {
                                         }) {
                                             if infraFacilityModel.attachFiles!.count > 0 {
                                                 ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFacilityModel.attachFiles![0].saveFilePath!, title: infraFacilityModel.name!, width: 100, height:100)
+                                            } else {
+                                                HomeImageView(image: "search_default_image", width: 100, height: 100)
                                             }
                                         }
                                     }
@@ -155,33 +159,33 @@ struct TeamView: View {
                         .frame(height: 100)
                         .padding(5).padding(.bottom,30)
                         
-                        HStack(){
-                            Text("전지훈련팀 스토리")
-                                .font(.system(size:20))
-                                .fontWeight(.black)
-                                .frame(height: 20, alignment: .leading)
-                                .padding(.leading, 10)
-                            Spacer()
-                        }
+//                        HStack(){
+//                            Text("전지훈련팀 스토리")
+//                                .font(.system(size:20))
+//                                .fontWeight(.black)
+//                                .frame(height: 20, alignment: .leading)
+//                                .padding(.leading, 10)
+//                            Spacer()
+//                        }
                         
-                        ScrollView (.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
-                                    
-                                    NavigationLink(destination: Text(verbatim: "구현 중")) {
-                                        ForEach(infraFoodModel.attachFiles!, id: \.self) {
-                                            infraModel in
-                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "", width:100, height:100)
-                                        }
-                                    }
-                                    //                                .navigationBarTitle("HomeView")
-                                    
-                                    
-                                }
-                            }
-                        }
-                        .frame(height: 100)
-                        .padding(5).padding(.bottom,20)
+//                        ScrollView (.horizontal, showsIndicators: false) {
+//                            HStack {
+//                                ForEach(self.infraViewModel.infraFoodModel, id: \.self) { infraFoodModel in
+//                                    
+//                                    NavigationLink(destination: Text(verbatim: "구현 중")) {
+//                                        ForEach(infraFoodModel.attachFiles!, id: \.self) {
+//                                            infraModel in
+//                                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "", width:100, height:100)
+//                                        }
+//                                    }
+//                                    //                                .navigationBarTitle("HomeView")
+//
+//
+//                                }
+//                            }
+//                        }
+//                        .frame(height: 100)
+//                        .padding(5).padding(.bottom,20)
                         
                     }
                 }

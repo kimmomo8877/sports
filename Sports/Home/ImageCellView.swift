@@ -35,12 +35,12 @@ struct OverlayText: View {
     let overlayText: String
     
     var body: some View {
-        ZStack {
+        VStack {
             Text(overlayText)
                 .font(.caption)
                 .foregroundColor(.white)
         }
-//        .background(Color.black)
+        .background(Color.black)
         .opacity(0.8)
         .cornerRadius(10.0)
         .padding(6)

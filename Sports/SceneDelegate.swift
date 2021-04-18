@@ -31,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let codeViewModel = CodeViewModel()
         let teamViewModel = TeamViewModel()
         let reservationViewModel = ReservationViewModel()
+        let teamDetailViewModel = TeamDetailViewModel()
 //        let loginViewModel = LoginViewModel()
         
         let mainView = MainTabView()
@@ -43,6 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(codeViewModel)
             .environmentObject(teamViewModel)
             .environmentObject(reservationViewModel)
+            .environmentObject(teamDetailViewModel)
 //            .environmentObject(loginViewModel)
         
 //        let mainView = MainTabView()

@@ -22,6 +22,8 @@
 		1417CDF425D41AD3001DC2AA /* RKPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1417CDF125D41AD3001DC2AA /* RKPageView.swift */; };
 		1417CDF525D41AD3001DC2AA /* RKPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1417CDF025D41AD3001DC2AA /* RKPage.swift */; };
 		141E7E2925D4CE8A00D6947A /* SportFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141E7E2825D4CE8A00D6947A /* SportFilterView.swift */; };
+		141FDCE9262BB25A001081BB /* home_main.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 141FDCE8262BB25A001081BB /* home_main.jpg */; };
+		141FDCEF262BC271001081BB /* team_main.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 141FDCEE262BC271001081BB /* team_main.jpg */; };
 		1429B9CC25BD72FA0001CA95 /* HomeIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9CB25BD72FA0001CA95 /* HomeIntroView.swift */; };
 		1429B9CF25BD73010001CA95 /* HomeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9CE25BD73010001CA95 /* HomeTextView.swift */; };
 		1429B9E125BD73C70001CA95 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1429B9D225BD73C70001CA95 /* SearchViewModel.swift */; };
@@ -61,6 +63,10 @@
 		142BE03625CC0A4200CF4C34 /* touring_main_bn01.png in Resources */ = {isa = PBXBuildFile; fileRef = 142BE03525CC0A4200CF4C34 /* touring_main_bn01.png */; };
 		142BE03925CC0A4800CF4C34 /* touring_main_bn02.png in Resources */ = {isa = PBXBuildFile; fileRef = 142BE03825CC0A4800CF4C34 /* touring_main_bn02.png */; };
 		142E0F7025D9199900BB14FA /* SearchResultMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E0F6F25D9199900BB14FA /* SearchResultMapView.swift */; };
+		14304045262BEBF500D6B033 /* TeamDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14304044262BEBF500D6B033 /* TeamDetailViewModel.swift */; };
+		14304048262BEE6B00D6B033 /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14304047262BEE6B00D6B033 /* BoardModel.swift */; };
+		1430404B262BEEA300D6B033 /* BoardWriterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1430404A262BEEA300D6B033 /* BoardWriterModel.swift */; };
+		1430404E262BF27800D6B033 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1430404D262BF27800D6B033 /* ScheduleModel.swift */; };
 		143A523625D82BB100F5AE5A /* RegionFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143A523525D82BB100F5AE5A /* RegionFilterView.swift */; };
 		143AA51125C69B03004F9B6B /* man-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51025C69B03004F9B6B /* man-1.png */; };
 		143AA51525C69B09004F9B6B /* man-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 143AA51325C69B09004F9B6B /* man-2.png */; };
@@ -142,6 +148,8 @@
 		1417CDF125D41AD3001DC2AA /* RKPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKPageView.swift; sourceTree = "<group>"; };
 		1417CDF225D41AD3001DC2AA /* RKWeeklyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKWeeklyPage.swift; sourceTree = "<group>"; };
 		141E7E2825D4CE8A00D6947A /* SportFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportFilterView.swift; sourceTree = "<group>"; };
+		141FDCE8262BB25A001081BB /* home_main.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = home_main.jpg; sourceTree = "<group>"; };
+		141FDCEE262BC271001081BB /* team_main.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = team_main.jpg; sourceTree = "<group>"; };
 		1429B9CB25BD72FA0001CA95 /* HomeIntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeIntroView.swift; sourceTree = "<group>"; };
 		1429B9CE25BD73010001CA95 /* HomeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTextView.swift; sourceTree = "<group>"; };
 		1429B9D225BD73C70001CA95 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -181,6 +189,10 @@
 		142BE03525CC0A4200CF4C34 /* touring_main_bn01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touring_main_bn01.png; sourceTree = "<group>"; };
 		142BE03825CC0A4800CF4C34 /* touring_main_bn02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touring_main_bn02.png; sourceTree = "<group>"; };
 		142E0F6F25D9199900BB14FA /* SearchResultMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMapView.swift; sourceTree = "<group>"; };
+		14304044262BEBF500D6B033 /* TeamDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailViewModel.swift; sourceTree = "<group>"; };
+		14304047262BEE6B00D6B033 /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		1430404A262BEEA300D6B033 /* BoardWriterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWriterModel.swift; sourceTree = "<group>"; };
+		1430404D262BF27800D6B033 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		143A523525D82BB100F5AE5A /* RegionFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionFilterView.swift; sourceTree = "<group>"; };
 		143AA51025C69B03004F9B6B /* man-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-1.png"; sourceTree = "<group>"; };
 		143AA51325C69B09004F9B6B /* man-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-2.png"; sourceTree = "<group>"; };
@@ -309,6 +321,7 @@
 				142BB68225D8FC1900E71014 /* TeamDetailView.swift */,
 				142BB68625D8FC3D00E71014 /* FacilityDetailView.swift */,
 				142E0F6F25D9199900BB14FA /* SearchResultMapView.swift */,
+				14304044262BEBF500D6B033 /* TeamDetailViewModel.swift */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -330,6 +343,9 @@
 				1429B9DA25BD73C70001CA95 /* AttachFileModel.swift */,
 				142BE02125CBEA6100CF4C34 /* UserModel.swift */,
 				142BE02425CBECD800CF4C34 /* CodeViewModel.swift */,
+				14304047262BEE6B00D6B033 /* BoardModel.swift */,
+				1430404A262BEEA300D6B033 /* BoardWriterModel.swift */,
+				1430404D262BF27800D6B033 /* ScheduleModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -396,6 +412,7 @@
 				4D3D4BDA25A9AB1F00C3F78F /* Assets.xcassets */,
 				143AA51325C69B09004F9B6B /* man-2.png */,
 				143AA52425C69E7F004F9B6B /* logo-intro.png */,
+				141FDCE8262BB25A001081BB /* home_main.jpg */,
 				143AA51425C69B09004F9B6B /* man-3.png */,
 				142BE02725CBF14C00CF4C34 /* search_default_image.png */,
 				142BE03525CC0A4200CF4C34 /* touring_main_bn01.png */,
@@ -403,6 +420,7 @@
 				142BE03825CC0A4800CF4C34 /* touring_main_bn02.png */,
 				143AA52125C69E20004F9B6B /* logo-footer.png */,
 				143AA51025C69B03004F9B6B /* man-1.png */,
+				141FDCEE262BC271001081BB /* team_main.jpg */,
 				143AA52B25C6F870004F9B6B /* m-intro_bg.jpg */,
 				143AA51925C69BD5004F9B6B /* main_visual.jpg */,
 				1429BA0825BD75250001CA95 /* image.jpeg */,
@@ -600,12 +618,14 @@
 				143AA51625C69B09004F9B6B /* man-3.png in Resources */,
 				143AA52525C69E7F004F9B6B /* logo-intro.png in Resources */,
 				143AA51125C69B03004F9B6B /* man-1.png in Resources */,
+				141FDCEF262BC271001081BB /* team_main.jpg in Resources */,
 				4D3D4BE125A9AB1F00C3F78F /* LaunchScreen.storyboard in Resources */,
 				142BE03925CC0A4800CF4C34 /* touring_main_bn02.png in Resources */,
 				1429BA0925BD75250001CA95 /* image.jpeg in Resources */,
 				142BE03325CC097900CF4C34 /* touring_main_visual02.jpg in Resources */,
 				142BE03625CC0A4200CF4C34 /* touring_main_bn01.png in Resources */,
 				4D3D4BDE25A9AB1F00C3F78F /* Preview Assets.xcassets in Resources */,
+				141FDCE9262BB25A001081BB /* home_main.jpg in Resources */,
 				4D3D4BDB25A9AB1F00C3F78F /* Assets.xcassets in Resources */,
 				143AA52C25C6F870004F9B6B /* m-intro_bg.jpg in Resources */,
 				143AA51A25C69BD5004F9B6B /* main_visual.jpg in Resources */,
@@ -637,6 +657,7 @@
 				4D53C3B825C6646B00117D5D /* BandHrRawModel.swift in Sources */,
 				4D53C3BB25C6647D00117D5D /* BandInbodyRawModel.swift in Sources */,
 				4DF1B3F125CBBFC00070D637 /* LoginView.swift in Sources */,
+				14304048262BEE6B00D6B033 /* BoardModel.swift in Sources */,
 				4DF1B3EC25CBB47B0070D637 /* LoginViewModel.swift in Sources */,
 				142BB67A25D8F31900E71014 /* ClassificationFilterView.swift in Sources */,
 				1429B9EA25BD73C70001CA95 /* SearchModel.swift in Sources */,
@@ -684,8 +705,10 @@
 				141E7E2925D4CE8A00D6947A /* SportFilterView.swift in Sources */,
 				4D499DE925BA8E110031A614 /* TrackerMainView.swift in Sources */,
 				1417CDE525D41AD0001DC2AA /* RKColorSettings.swift in Sources */,
+				1430404B262BEEA300D6B033 /* BoardWriterModel.swift in Sources */,
 				4DF55A8025C98CB400BC06C7 /* TestView.swift in Sources */,
 				4DB784F225A9B3C900725E6C /* HomeView.swift in Sources */,
+				14304045262BEBF500D6B033 /* TeamDetailViewModel.swift in Sources */,
 				4D499E2725BC393E0031A614 /* DateUtils.swift in Sources */,
 				142BB67425D8D4BA00E71014 /* ReservationModel.swift in Sources */,
 				1417CDEC25D41AD0001DC2AA /* RKCalendarView.swift in Sources */,
@@ -706,6 +729,7 @@
 				142BE02225CBEA6100CF4C34 /* UserModel.swift in Sources */,
 				1429B9ED25BD73C70001CA95 /* FavoriteModel.swift in Sources */,
 				1417CDE325D41AD0001DC2AA /* RKTimeView.swift in Sources */,
+				1430404E262BF27800D6B033 /* ScheduleModel.swift in Sources */,
 				142BE02E25CBF76700CF4C34 /* TeamViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

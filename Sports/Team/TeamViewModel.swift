@@ -34,6 +34,25 @@ class TeamViewModel: ObservableObject {
         task.resume()
     }
     
+    func callTeam(teamCode: String) {
+        
+        let url_string = "http://www.kbostat.co.kr/resource/team/" + teamCode
+        print(url_string)
+        let encoded = url_string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        guard let url = URL(string: encoded!) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            DispatchQueue.main.sync {
+                let allData = try! JSONDecoder().decode(TeamModel.self, from: data!)
+                self.teamObject.removeAll()
+                self.teamObject.append(allData)
+            } 
+        }
+        task.resume()
+    }
+    
+
+    
     func setTeam(teamObject: TeamModel) {
         self.teamObject.removeAll()
         self.teamObject.append(teamObject)

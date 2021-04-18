@@ -21,7 +21,7 @@ struct InfraModel: Decodable, Hashable {
     var phoneNumber: String?
     var address: String?
     var homepageUrl: String?
-    var facilityDescription: String?
+    var facilityDescription: String?  
     var equipmentDescription: String?
     var etcDescription: String?
     var useRuleDescription: String?
@@ -35,6 +35,10 @@ struct InfraModel: Decodable, Hashable {
 //    var modifyDate: Date?
 //    var deleteDate: Date?
     var deleteYn: Bool?
+    var checkVisiable: Int?
+    var firstPrVideoUrl: String?
+    var secondPrVideoUrl: String?
+    var thirdPrVideoUrl: String?
     
 }
 

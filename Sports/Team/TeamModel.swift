@@ -21,6 +21,7 @@ struct TeamModel: Decodable, Hashable {
     var belongCode: CodeModel?
     var genderCode: CodeModel?
     var regionCode: CodeModel?
-    var psortCode: CodeModel?
+    var sportCode: CodeModel?
     var deleteYn: Bool?
+    var attachFiles: Array<AttachFileModel>?
 }
