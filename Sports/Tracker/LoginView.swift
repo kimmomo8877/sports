@@ -13,8 +13,8 @@ struct LoginView: View {
     @ObservedObject var loginViewModel:LoginViewModel = LoginViewModel.shared
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     @State var isFinish: Bool = false;
-    @State var email: String = ""
-    @State var password: String = ""
+    @State var email: String = "teamadmin@kbostat.co.kr"
+    @State var password: String = "test1234!!"
     
     
     var body: some View {

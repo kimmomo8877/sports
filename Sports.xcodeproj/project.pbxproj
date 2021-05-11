@@ -21,6 +21,14 @@
 		1417CDF325D41AD3001DC2AA /* RKWeeklyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1417CDF225D41AD3001DC2AA /* RKWeeklyPage.swift */; };
 		1417CDF425D41AD3001DC2AA /* RKPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1417CDF125D41AD3001DC2AA /* RKPageView.swift */; };
 		1417CDF525D41AD3001DC2AA /* RKPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1417CDF025D41AD3001DC2AA /* RKPage.swift */; };
+		1419F699262F170400796806 /* sport_sub1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1419F695262F170300796806 /* sport_sub1.png */; };
+		1419F69A262F170400796806 /* sport_main.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1419F696262F170300796806 /* sport_main.jpg */; };
+		1419F69B262F170400796806 /* sport_sub3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1419F697262F170400796806 /* sport_sub3.png */; };
+		1419F69C262F170400796806 /* sport_sub2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1419F698262F170400796806 /* sport_sub2.png */; };
+		141B39EF2635A229002617BF /* TeamNoticeBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141B39EE2635A229002617BF /* TeamNoticeBoardView.swift */; };
+		141B39F22635B57B002617BF /* TeamStoryBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141B39F12635B57B002617BF /* TeamStoryBoardView.swift */; };
+		141B39F52635B58B002617BF /* TeamScheduleBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141B39F42635B58B002617BF /* TeamScheduleBoardView.swift */; };
+		141B39F82635B6AE002617BF /* TeamReservationBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141B39F72635B6AE002617BF /* TeamReservationBoardView.swift */; };
 		141E7E2925D4CE8A00D6947A /* SportFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141E7E2825D4CE8A00D6947A /* SportFilterView.swift */; };
 		141FDCE9262BB25A001081BB /* home_main.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 141FDCE8262BB25A001081BB /* home_main.jpg */; };
 		141FDCEF262BC271001081BB /* team_main.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 141FDCEE262BC271001081BB /* team_main.jpg */; };
@@ -147,6 +155,14 @@
 		1417CDF025D41AD3001DC2AA /* RKPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKPage.swift; sourceTree = "<group>"; };
 		1417CDF125D41AD3001DC2AA /* RKPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKPageView.swift; sourceTree = "<group>"; };
 		1417CDF225D41AD3001DC2AA /* RKWeeklyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKWeeklyPage.swift; sourceTree = "<group>"; };
+		1419F695262F170300796806 /* sport_sub1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sport_sub1.png; sourceTree = "<group>"; };
+		1419F696262F170300796806 /* sport_main.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sport_main.jpg; sourceTree = "<group>"; };
+		1419F697262F170400796806 /* sport_sub3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sport_sub3.png; sourceTree = "<group>"; };
+		1419F698262F170400796806 /* sport_sub2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sport_sub2.png; sourceTree = "<group>"; };
+		141B39EE2635A229002617BF /* TeamNoticeBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNoticeBoardView.swift; sourceTree = "<group>"; };
+		141B39F12635B57B002617BF /* TeamStoryBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStoryBoardView.swift; sourceTree = "<group>"; };
+		141B39F42635B58B002617BF /* TeamScheduleBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamScheduleBoardView.swift; sourceTree = "<group>"; };
+		141B39F72635B6AE002617BF /* TeamReservationBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamReservationBoardView.swift; sourceTree = "<group>"; };
 		141E7E2825D4CE8A00D6947A /* SportFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportFilterView.swift; sourceTree = "<group>"; };
 		141FDCE8262BB25A001081BB /* home_main.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = home_main.jpg; sourceTree = "<group>"; };
 		141FDCEE262BC271001081BB /* team_main.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = team_main.jpg; sourceTree = "<group>"; };
@@ -322,6 +338,10 @@
 				142BB68625D8FC3D00E71014 /* FacilityDetailView.swift */,
 				142E0F6F25D9199900BB14FA /* SearchResultMapView.swift */,
 				14304044262BEBF500D6B033 /* TeamDetailViewModel.swift */,
+				141B39EE2635A229002617BF /* TeamNoticeBoardView.swift */,
+				141B39F12635B57B002617BF /* TeamStoryBoardView.swift */,
+				141B39F42635B58B002617BF /* TeamScheduleBoardView.swift */,
+				141B39F72635B6AE002617BF /* TeamReservationBoardView.swift */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -416,6 +436,10 @@
 				143AA51425C69B09004F9B6B /* man-3.png */,
 				142BE02725CBF14C00CF4C34 /* search_default_image.png */,
 				142BE03525CC0A4200CF4C34 /* touring_main_bn01.png */,
+				1419F696262F170300796806 /* sport_main.jpg */,
+				1419F695262F170300796806 /* sport_sub1.png */,
+				1419F698262F170400796806 /* sport_sub2.png */,
+				1419F697262F170400796806 /* sport_sub3.png */,
 				142BE03225CC097900CF4C34 /* touring_main_visual02.jpg */,
 				142BE03825CC0A4800CF4C34 /* touring_main_bn02.png */,
 				143AA52125C69E20004F9B6B /* logo-footer.png */,
@@ -617,12 +641,15 @@
 			files = (
 				143AA51625C69B09004F9B6B /* man-3.png in Resources */,
 				143AA52525C69E7F004F9B6B /* logo-intro.png in Resources */,
+				1419F69C262F170400796806 /* sport_sub2.png in Resources */,
 				143AA51125C69B03004F9B6B /* man-1.png in Resources */,
 				141FDCEF262BC271001081BB /* team_main.jpg in Resources */,
 				4D3D4BE125A9AB1F00C3F78F /* LaunchScreen.storyboard in Resources */,
 				142BE03925CC0A4800CF4C34 /* touring_main_bn02.png in Resources */,
+				1419F69A262F170400796806 /* sport_main.jpg in Resources */,
 				1429BA0925BD75250001CA95 /* image.jpeg in Resources */,
 				142BE03325CC097900CF4C34 /* touring_main_visual02.jpg in Resources */,
+				1419F69B262F170400796806 /* sport_sub3.png in Resources */,
 				142BE03625CC0A4200CF4C34 /* touring_main_bn01.png in Resources */,
 				4D3D4BDE25A9AB1F00C3F78F /* Preview Assets.xcassets in Resources */,
 				141FDCE9262BB25A001081BB /* home_main.jpg in Resources */,
@@ -630,6 +657,7 @@
 				143AA52C25C6F870004F9B6B /* m-intro_bg.jpg in Resources */,
 				143AA51A25C69BD5004F9B6B /* main_visual.jpg in Resources */,
 				143AA51525C69B09004F9B6B /* man-2.png in Resources */,
+				1419F699262F170400796806 /* sport_sub1.png in Resources */,
 				143AA52225C69E20004F9B6B /* logo-footer.png in Resources */,
 				142BE02825CBF14C00CF4C34 /* search_default_image.png in Resources */,
 			);
@@ -651,6 +679,7 @@
 				1429B9E425BD73C70001CA95 /* VirtualModel.swift in Sources */,
 				1429B9E825BD73C70001CA95 /* ToDoItem.swift in Sources */,
 				4D274F7C25CBFBDC00DA2052 /* TargetInfoModel.swift in Sources */,
+				141B39F52635B58B002617BF /* TeamScheduleBoardView.swift in Sources */,
 				1417CDEE25D41AD0001DC2AA /* RKMonthHeader.swift in Sources */,
 				143D52C925BF1F9500C78030 /* SportView.swift in Sources */,
 				4D53C3E425C95C3B00117D5D /* BandMainViewModel.swift in Sources */,
@@ -716,10 +745,12 @@
 				1429BA0425BD746E0001CA95 /* TeamDetailSportView.swift in Sources */,
 				143D52CC25BF1FC600C78030 /* SportMenuView.swift in Sources */,
 				4D499DF125BAD8D60031A614 /* BandActivityRawModel.swift in Sources */,
+				141B39EF2635A229002617BF /* TeamNoticeBoardView.swift in Sources */,
 				4D499DE625B996F40031A614 /* TrackingConfigView.swift in Sources */,
 				1429B9F725BD73F30001CA95 /* SearchBarView.swift in Sources */,
 				1417CDE925D41AD0001DC2AA /* RKHoursMinutesPicker.swift in Sources */,
 				4D3D4BD425A9AB1E00C3F78F /* SceneDelegate.swift in Sources */,
+				141B39F22635B57B002617BF /* TeamStoryBoardView.swift in Sources */,
 				1429B9E925BD73C70001CA95 /* AttachFileModel.swift in Sources */,
 				1417CDF525D41AD3001DC2AA /* RKPage.swift in Sources */,
 				144B696325C1914600E915AE /* TouringView.swift in Sources */,
@@ -727,6 +758,7 @@
 				4DB784FC25A9BE0100725E6C /* ImageCellView.swift in Sources */,
 				14F969E225BD6EE00002D5F0 /* HomeImageView.swift in Sources */,
 				142BE02225CBEA6100CF4C34 /* UserModel.swift in Sources */,
+				141B39F82635B6AE002617BF /* TeamReservationBoardView.swift in Sources */,
 				1429B9ED25BD73C70001CA95 /* FavoriteModel.swift in Sources */,
 				1417CDE325D41AD0001DC2AA /* RKTimeView.swift in Sources */,
 				1430404E262BF27800D6B033 /* ScheduleModel.swift in Sources */,

@@ -22,17 +22,27 @@ struct ImageCell: View {
     }
     
     var body: some View {
+//        VStack() {
         KFImage(URL(string: self.imageUrl))
             .resizable()
             .frame(width: self.width, height: self.height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            .overlay(OverlayText(overlayText: self.title), alignment: .bottom)
+//            OverlayText(overlayText: self.title, width: self.width)
+//        }
     }
+    
+//    var body: some View {
+//        KFImage(URL(string: self.imageUrl))
+//            .resizable()
+//            .frame(width: self.width, height: self.height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//            .overlay(OverlayText(overlayText: self.title), alignment: .bottom)
+//    }
     
     static let defaultImage = UIImage(named: "TestSports")
 }
 
 struct OverlayText: View {
     let overlayText: String
+    let width: CGFloat
     
     var body: some View {
         VStack {
@@ -42,8 +52,9 @@ struct OverlayText: View {
         }
         .background(Color.black)
         .opacity(0.8)
-        .cornerRadius(10.0)
-        .padding(6)
+        .frame(width: self.width)
+//        .cornerRadius(10.0)
+//        .padding(6)
     }
 }
 

@@ -99,8 +99,18 @@ struct TouringView: View {
                                                 self.isSportShowing = true
                                                 self.infraViewModel.setInfra(infraObject: infraSportModel)
                                             }) {
+                                                VStack(spacing:0) {
                                                 if infraSportModel.attachFiles!.count > 0 {
                                                     ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraSportModel.attachFiles![0].saveFilePath!, title: infraSportModel.name!, width:100, height:100)
+                                                } else {
+                                                    HomeImageView(image: "search_default_image", width: 100, height: 100)
+                                                }
+                                                    Text(infraSportModel.name!)
+                                                        .frame(width: 100, height: 15)
+                                                        .font(.system(size:12))
+                                                        .foregroundColor(.white)
+                                                        .background(Color.black)
+                                                        .opacity(0.8)
                                                 }
                                             }
                                         }
@@ -143,8 +153,18 @@ struct TouringView: View {
                                                 self.isFestivalShowing = true
                                                 self.infraViewModel.setInfra(infraObject: infraFestivalModel)
                                             }) {
+                                                VStack(spacing:0) {
                                                 if infraFestivalModel.attachFiles!.count > 0 {
                                                     ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFestivalModel.attachFiles![0].saveFilePath!, title: infraFestivalModel.name!, width:100, height:100)
+                                                } else {
+                                                    HomeImageView(image: "search_default_image", width: 100, height: 100)
+                                                }
+                                                    Text(infraFestivalModel.name!)
+                                                        .frame(width: 100, height: 15)
+                                                        .font(.system(size:12))
+                                                        .foregroundColor(.white)
+                                                        .background(Color.black)
+                                                        .opacity(0.8)
                                                 }
                                             }
                                         }
@@ -187,8 +207,18 @@ struct TouringView: View {
                                                 self.isTravelShowing = true
                                                 self.infraViewModel.setInfra(infraObject: infraTravelModel)
                                             }) {
+                                                VStack(spacing:0) {
                                                 if infraTravelModel.attachFiles!.count > 0 {
                                                     ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraTravelModel.attachFiles![0].saveFilePath!, title: infraTravelModel.name!, width:100, height:100)
+                                                } else {
+                                                    HomeImageView(image: "search_default_image", width: 100, height: 100)
+                                                }
+                                                    Text(infraTravelModel.name!)
+                                                        .frame(width: 100, height: 15)
+                                                        .font(.system(size:12))
+                                                        .foregroundColor(.white)
+                                                        .background(Color.black)
+                                                        .opacity(0.8)
                                                 }
                                             }
                                         }
@@ -231,11 +261,19 @@ struct TouringView: View {
                                                 self.infraViewModel.setInfra(infraObject: infraHotelModel)
                                                 self.isHotelShowing = true
                                             }) {
-                                                
+                                                VStack(spacing:0) {
                                                 if infraHotelModel.attachFiles!.count > 0 {
                                                     ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraHotelModel.attachFiles![0].saveFilePath!, title: infraHotelModel.name!, width:100, height:100)
+                                                } else {
+                                                    HomeImageView(image: "search_default_image", width: 100, height: 100)
                                                 }
-                                                
+                                                    Text(infraHotelModel.name!)
+                                                        .frame(width: 100, height: 15)
+                                                        .font(.system(size:12))
+                                                        .foregroundColor(.white)
+                                                        .background(Color.black)
+                                                        .opacity(0.8)
+                                                }
                                             }
                                         }
                                         //                                .navigationBarTitle("HomeView")
@@ -279,8 +317,18 @@ struct TouringView: View {
                                                 self.isFoodShowing = true
                                                 self.infraViewModel.setInfra(infraObject: infraFoodModel)
                                             }) {
+                                                VStack(spacing:0) {
                                                 if infraFoodModel.attachFiles!.count > 0 {
                                                     ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraFoodModel.attachFiles![0].saveFilePath!, title: infraFoodModel.name!, width:100, height:100)
+                                                } else {
+                                                    HomeImageView(image: "search_default_image", width: 100, height: 100)
+                                                }
+                                                    Text(infraFoodModel.name!)
+                                                        .frame(width: 100, height: 15)
+                                                        .font(.system(size:12))
+                                                        .foregroundColor(.white)
+                                                        .background(Color.black)
+                                                        .opacity(0.8)
                                                 }
                                             }
                                         }

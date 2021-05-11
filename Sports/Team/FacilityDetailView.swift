@@ -28,10 +28,15 @@ struct FacilityDetailView: View {
                 ScrollView (.horizontal, showsIndicators: false) {
                     
                     HStack {
-                        ForEach(infraViewModel.infraObject[0].attachFiles!, id: \.self) {
-                            infraModel in
-                            ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "", width: geo.size.width, height:150)
+                        if (infraViewModel.infraObject[0].attachFiles!.count > 0) {
+                            ForEach(infraViewModel.infraObject[0].attachFiles!, id: \.self) {
+                                infraModel in
+                                ImageCell(imageUrl: "http://www.kbostat.co.kr/resource/static-file" + infraModel.saveFilePath!, title: "", width: geo.size.width, height:150)
+                            }
+                        } else {
+                            HomeImageView(image: "search_default_image", width: geo.size.width, height:150)
                         }
+                        
                     }
                 }.padding(.bottom, 10)
                 
@@ -62,7 +67,7 @@ struct FacilityDetailView: View {
                                                 LoginView()
                                             }
                                         }
-                                
+                                        
                                     }) {
                                         VStack() {
                                             Image(systemName: "book.fill")
@@ -72,25 +77,25 @@ struct FacilityDetailView: View {
                                     }
                                 }
                                 
-                                    Button(action: {
-                                        if infraViewModel.infraObject[0].phoneNumber != nil {
-                                            let telephone = "tel://"
-                                            let formattedString = telephone + infraViewModel.infraObject[0].phoneNumber!
-                                            guard let url = URL(string: formattedString) else { return }
-                                            UIApplication.shared.open(url)
-                                        } else {
-                                            
-                                        }
-                                            
-                                         
-                                    }) {
-                                        VStack() {
-                                            Image(systemName: "phone.fill")
-                                            Text("문의").font(Font.system(size:15))
-                                        }.frame(width: geo.size.width /  5, height: 60)
-                                        .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                Button(action: {
+                                    if infraViewModel.infraObject[0].phoneNumber != nil {
+                                        let telephone = "tel://"
+                                        let formattedString = telephone + infraViewModel.infraObject[0].phoneNumber!
+                                        guard let url = URL(string: formattedString) else { return }
+                                        UIApplication.shared.open(url)
+                                    } else {
+                                        
                                     }
-//                                }
+                                    
+                                    
+                                }) {
+                                    VStack() {
+                                        Image(systemName: "phone.fill")
+                                        Text("문의").font(Font.system(size:15))
+                                    }.frame(width: geo.size.width /  5, height: 60)
+                                    .overlay(Rectangle().stroke(lineWidth: 0.5))
+                                }
+                                //                                }
                                 
                                 NavigationLink(destination: FacilityMapView(), isActive: $isSearchShowing) {
                                     Button(action: {
@@ -100,8 +105,8 @@ struct FacilityDetailView: View {
                                         annotation.coordinate = CLLocationCoordinate2D(
                                             latitude: infraViewModel.infraObject[0].latitude ?? infraViewModel.infraObject[0].latitude ?? 0,
                                             longitude: infraViewModel.infraObject[0].longitude ?? infraViewModel.infraObject[0].longitude ?? 0)
-        //                                    latitude: searchModel.latitude ?? 35.106826,
-        //                                    longitude: searchModel.longitude ?? 128.988596)
+                                        //                                    latitude: searchModel.latitude ?? 35.106826,
+                                        //                                    longitude: searchModel.longitude ?? 128.988596)
                                         self.infraViewModel.setMap(annotation: annotation)
                                     }) {
                                         VStack() {
@@ -118,12 +123,12 @@ struct FacilityDetailView: View {
                                     }) {
                                         VStack() {
                                             Image(systemName: "square.and.arrow.down.fill")
-                                            Text("저장").font(Font.system(size:15))
+                                            Text("영상").font(Font.system(size:15))
                                         }.frame(width: geo.size.width / 5, height: 60)
                                         .overlay(Rectangle().stroke(lineWidth: 0.5))
                                     }
                                 }
-
+                                
                             }.padding(.bottom,10).padding(.leading,40)
                             
                         }
@@ -151,23 +156,23 @@ struct FacilityDetailView: View {
                         
                         Group {
                             Text("스포츠시설").padding(.leading, 20).font(.system(size:21)).font(.system(size:20))
-                            Text(infraViewModel.infraObject[0].facilityDescription ?? "").padding(.leading, 20).padding(.top,1)
+                            Text(infraViewModel.infraObject[0].facilityDescription ?? "").padding(.leading, 20).padding(.top,1).foregroundColor(.secondary)
                             VStack { Divider().background(Color.gray) }.padding(CGFloat(10)).foregroundColor(.secondary)
                         }
                         
                         Group {
                             Text("부속시설").padding(.leading, 20).font(.system(size:21)).font(.system(size:20))
-                            Text(infraViewModel.infraObject[0].equipmentDescription ?? "").padding(.leading, 20).padding(.top,1)
+                            Text(infraViewModel.infraObject[0].equipmentDescription ?? "").padding(.leading, 20).padding(.top,1).foregroundColor(.secondary)
                             VStack { Divider().background(Color.gray) }.padding(CGFloat(10)).foregroundColor(.secondary)
                         }
                         Group {
                             Text("기타 부대시설").padding(.leading, 20).font(.system(size:21)).font(.system(size:20))
-                            Text(infraViewModel.infraObject[0].etcDescription ?? "").padding(.leading, 20).padding(.top,1)
+                            Text(infraViewModel.infraObject[0].etcDescription ?? "").padding(.leading, 20).padding(.top,1).foregroundColor(.secondary)
                             VStack { Divider().background(Color.gray) }.padding(CGFloat(10)).foregroundColor(.secondary)
                         }
                         Group {
                             Text("위치").padding(.leading, 20).font(.system(size:21)).font(.system(size:20))
-                            Text(infraViewModel.infraObject[0].address ?? "").padding(.leading, 20).padding(.top,3)
+                            Text(infraViewModel.infraObject[0].address ?? "").padding(.leading, 20).padding(.top,3).foregroundColor(.secondary)
                             VStack { Divider().background(Color.gray) }.padding(CGFloat(10)).foregroundColor(.secondary)
                             
                             Text("요금").padding(.leading, 20).font(Font.body.bold())
@@ -179,38 +184,3 @@ struct FacilityDetailView: View {
         }
     }
 }
-//        VStack(){
-//        self.partialSheet.showPartialSheet(){
-//                                                print("dismissed")
-//                                            }
-//        }
-//        Button(action: {
-//                                self.partialSheet.showPartialSheet({
-//                                    print("dismissed")
-//                                }) {
-//                                    Text("Partial Sheet")
-//                                }
-//                            }, label: {
-//                                Text("Show Partial Sheet")
-//                            }).addPartialSheet()
-
-
-//        Button(action:{
-//            //        self.infra.isDisplay(title: title)
-//
-//        }){
-//            Text("sheet")
-//        }.actionSheet(isPresented: $showingSheet) {
-//            ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Dismiss Action Sheet"))])
-//
-//        }
-
-
-//                        Path { path in
-//                            path.move(to: CGPoint(x: 20, y: 700))
-//                            path.addLine(to:CGPoint(x:20, y: 700))
-//                            path.addLine(to: CGPoint(x:geo.size.width, y: 700))
-//                        }
-//                        .stroke(Color.blue, lineWidth: 10)
-
-

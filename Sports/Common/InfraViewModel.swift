@@ -24,17 +24,25 @@ class InfraViewModel: ObservableObject {
     @Published var infraFoodRModel = [InfraModel]()
     @Published var infraRModel = [InfraModel]()
     
+    @Published var infraFacilityDModel = [InfraModel]()
+    @Published var infraHotelDModel = [InfraModel]()
+    @Published var infraFoodDModel = [InfraModel]()
+    @Published var reservationModel = [ReservationModel]()
+    
     @Published var infraSportMenu = [String]()
     @Published var sportMenu:String = "전체"
     @Published var sportMenuR:String = "전체"
     @Published var sportCategory:String = "스포츠시설"
     @Published var infraFoodMenu = [String]()
+    @Published var foodMenu:String = "전체"
     @Published var foodMenuR:String = "전체"
     @Published var foodCategory:String = "맛집"
     @Published var infraHotelMenu = [String]()
+    @Published var hotelMenu:String = "전체"
     @Published var hotelMenuR:String = "전체"
     @Published var hotelCategory:String = "숙소"
     @Published var infraFacilityMenu = [String]()
+    @Published var facilityMenu:String = "전체"
     @Published var facilityMenuR:String = "전체"
     @Published var facilityCategory:String = "부대시설"
     @Published var infraTravelMenu = [String]()
@@ -62,6 +70,10 @@ class InfraViewModel: ObservableObject {
     var infraFacilityRModel_t = [InfraModel]()
     var infraFestivalRModel_t = [InfraModel]()
     var infraTravelRModel_t = [InfraModel]()
+    
+    var infraHotelDModel_t = [InfraModel]()
+    var infraFoodDModel_t = [InfraModel]()
+    var infraFacilityDModel_t = [InfraModel]()
     
     //    @Published var infraSportSoccer = [Infra]()
     //http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1   스포츠
@@ -302,6 +314,82 @@ class InfraViewModel: ObservableObject {
             }
         }.resume()
         
+        
+        
+        guard let url2d = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=2") else { return }
+        
+        URLSession.shared.dataTask(with: url2d) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraFacilityDModel = Array(allData[0 ..< (allData.count)])
+                        self.infraFacilityDModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                }
+                //                print("Fetch failed: \(err?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        .resume()
+        
+        guard let url16d = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=16") else { return }
+        
+        URLSession.shared.dataTask(with: url16d) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraHotelDModel = Array(allData[0 ..< (allData.count)])
+                        self.infraHotelDModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder Error")
+                    }
+                }
+            }
+        }.resume()
+        
+        guard let url17d = URL(string: "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=17") else { return }
+        
+        URLSession.shared.dataTask(with: url17d) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([InfraModel].self, from: data!)
+                        self.infraFoodDModel = Array(allData[0 ..< (allData.count)])
+                        self.infraFoodDModel_t = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder error")
+                    }
+                }
+            }
+        }.resume()
+        
+        guard let url_resv = URL(string: "http://www.kbostat.co.kr/resource/reservation/team/masanuniv") else { return }
+        
+        URLSession.shared.dataTask(with: url_resv) { (data, resp, err) in
+            if err != nil {
+                print("URL Error")
+            } else {
+                DispatchQueue.main.async {
+                    do {
+                        let allData = try JSONDecoder().decode([ReservationModel].self, from: data!)
+                        self.reservationModel = Array(allData[0 ..< (allData.count)])
+                    } catch {
+                        print("JSON Decoder error")
+                    }
+                }
+            }
+        }.resume()
+        
+        
     }
     
     
@@ -477,7 +565,7 @@ class InfraViewModel: ObservableObject {
     func deleteInfras(infraObject: [InfraModel]) {
         self.infraObjects.removeAll()
     }
-
+    
     func setMap(annotation: MKPointAnnotation) {
         self.locations.removeAll()
         self.locations.append(annotation)
@@ -490,7 +578,7 @@ class InfraViewModel: ObservableObject {
     func deleteMaps(locations: [MKPointAnnotation]) {
         self.locations.removeAll()
     }
-
+    
     
 }
 
