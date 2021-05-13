@@ -16,11 +16,19 @@ class LoginViewModel: ObservableObject {
     
     @Published var targetList = [TargetInfoModel]()
     @Published var isLogined = false
+    @Published var name = ""
+    @Published var userNo = ""
+    @Published var email = ""
     
     init() {
         let userNo = UserDefaults.standard.string(forKey: "userNo")
+        let name = UserDefaults.standard.string(forKey: "name")
+        let email = UserDefaults.standard.string(forKey: "email")
         if (userNo != nil) {
-            isLogined = true
+            self.isLogined = true
+            self.name = name ?? "시스템에 문제가 있습니다."
+            self.userNo = userNo ?? ""
+            self.email = email ?? ""
         }
     }
     
@@ -28,6 +36,8 @@ class LoginViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "userNo")
         UserDefaults.standard.removeObject(forKey: "accessToken")
         UserDefaults.standard.removeObject(forKey: "targetNo")
+        UserDefaults.standard.removeObject(forKey: "name")
+        UserDefaults.standard.removeObject(forKey: "email")
         UserDefaults.standard.synchronize()
         
         self.isLogined = false
@@ -95,12 +105,18 @@ class LoginViewModel: ObservableObject {
                 guard let resultData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else { return }
                 
                 let userNo = resultData["userNo"]
+                let name = resultData["name"]
+                let email = resultData["email"]
                 
                 UserDefaults.standard.set(token, forKey: "accessToken")
                 UserDefaults.standard.set(userNo, forKey: "userNo")
+                UserDefaults.standard.set(name, forKey: "email")
                 UserDefaults.standard.synchronize()
                 DispatchQueue.main.async {
                     self.isLogined = true
+                    self.name = name as! String
+                    self.userNo = userNo as! String
+                    self.email = email as! String
                 }
             } catch {
                 self.isLogined = false

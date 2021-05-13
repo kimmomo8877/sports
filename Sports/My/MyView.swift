@@ -14,6 +14,33 @@ struct MyView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    if self.loginViewModel.isLogined {
+                        Text("\(self.loginViewModel.name)")
+                            .bold()
+                            .font(.title2)
+                        Text("\(self.loginViewModel.email)")
+                    } else {
+                        Text("로그인해주세요.")
+                            .bold()
+                            .font(.title2)
+                        Text("")
+                    }
+                    Text("")
+                }
+                Spacer()
+                VStack {
+//                    Text("IMAGE")
+                    Image(systemName: "person")
+                        .font(.system(size: 80))
+                        .border(Color.blue)
+
+                }
+            }
+            
+            
+            Spacer()
             if self.loginViewModel.isLogined {
                 Button(action: {
                     self.loginViewModel.logout()
